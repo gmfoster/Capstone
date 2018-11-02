@@ -8,9 +8,9 @@ Using React with Docker
 
 
 Requirements: 
-* Must be within novasight_front directory
-* Must have Docker installed
-* Must have Node.js 11.0.0 installed
+Must be within novasight_front directory
+Must have Docker installed
+Must have Node.js 11.0.0 installed
 
 1. How to build and run Docker (project)
 
