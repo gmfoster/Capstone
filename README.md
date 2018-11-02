@@ -1,12 +1,16 @@
 # Capstone
 2018/19 Capstone. Team: Human Error Is a Myth. Company: Novacoast
 
-novasight_front
+
 # novasight_front
 Residence of NovaSight front end
 Using React with Docker
 
-Must be within navosight_front directory
+
+Requirements: 
+* Must be within novasight_front directory
+* Must have Docker installed
+* Must have Node.js 11.0.0 installed
 
 1. How to build and run Docker (project)
 
