@@ -1,6 +1,8 @@
 # Docker How to
+
 ## Create/Run Docker 
-<!-- build docker file in current directory (INCLUDE THE PERIOD )-->
+
+### build docker file in current directory (INCLUDE THE PERIOD )
 docker build -t novasight:latest .
 
 <!-- run docker file: -->
