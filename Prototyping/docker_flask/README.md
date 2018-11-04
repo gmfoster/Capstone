@@ -1,27 +1,23 @@
-# Docker How to
+# Create/Run Docker 
 
-## Create/Run Docker 
-
-### build docker file in current directory (INCLUDE THE PERIOD )
+### build docker file in current directory (INCLUDE THE PERIOD)
 docker build -t novasight:latest .
 
-<!-- run docker file: -->
+### run docker file: 
 docker run --name novasight -d -p 8000:5000 --rm novasight:latest
 
 
-      <!-- Delete/Replace Docker -->
-<!-- check current docker processes  -->
+### Delete/Replace Docker
+### check current docker processes
 docker ps
-<!-- end a current container process -->
+### end a current container process 
 docker rmi <ContainerID>
 
-<!-- look at current docker images  -->
+### look at current docker images 
 docker images
-<!-- remove a docker image  -->
+### remove a docker image 
 docker rmi <ImageID#>
 
-
-
-      <!-- Troubleshooting -->
-<!-- View error log  -->
+### Troubleshooting 
+### View error log
 docker logs novasight
