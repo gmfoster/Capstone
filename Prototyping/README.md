@@ -77,8 +77,8 @@ Error responses should include a common HTTP status code, message for the develo
 ## Search Examples
 
 * List of requests:
-    * GET http://www.example.com/v1/search/Bill_Gates.json
-* Filtering is a query:
+    * GET http://www.example.com/v1/search/Bill_Gates.json 
+* Filtering is a query: // modulization not up.
     * GET http://www.example.com/v1/search/Bill_Gates.json?module_pwn=1&module_pb=1
     * GET http://www.example.com/v1/search/Bill_Gates.json?moduke_dw=1
 
