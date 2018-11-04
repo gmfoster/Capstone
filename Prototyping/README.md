@@ -7,39 +7,25 @@
 * [Versions](#versions)
 * [Search Examples](#search-examples)
 
-## Guidelines
+## Introduction
 
 This document provides guidelines and examples for 
 
 ## General guidelines
 
-### General guidelines for RESTful URLs
-* A URL identifies a resource.
-* URLs should include nouns, not verbs.
-* Use plural nouns only for consistency (no singular nouns).
-* Use HTTP verbs (GET, POST, PUT, DELETE) to operate on the collections and elements.
-* You shouldn’t need to go deeper than resource/identifier/resource.
-* Put the version number at the base of your URL, for example http://example.com/v1/path/to/resource.
-* URL v. header:
-    * If it changes the logic you write to handle the response, put it in the URL.
-    * If it doesn’t change the logic for each response, like OAuth info, put it in the header.
-* Specify optional fields in a comma separated list.
-* Formats should be in the form of api/v2/resource/{id}.json
+### General guidelines for NovaSight Url
 
 ## HTTP Verbs
 
 Here's an example of how HTTP verbs map to create, read, update, delete operations in a particular context:
 
-| HTTP METHOD                  | POST   | GET                  | PUT    | DELETE |
-| ---------------------------- | -------| -------------------- | ------ | ------ |
-| CRUD OP                      | CREATE | READ                 | UPDATE | DELETE |
-| /search/Bill_Gates           | Error  | List results on all  | Error  | Error  |
-| /search/Bill_Gates/module_pb | Error  | Results from pastebin| Error  | Error  |
-| /search/Bill_Gates/module_pwn| Error  | Results from hibpwnd | Error  | Error  |
-| /search/Bill_Gates/module_dw | Error  | Results from darkweb | Error  | Error  |
-
-/Bill_Gates/module_pastebin == /search/personname/?module_pb=1&module_hibp=0&module_dw=0
-// given that module_* == 0 unless otherwise specified
+| HTTP METHOD                     | POST   | GET                  | PUT    | DELETE |
+| ------------------------------- | -------| -------------------- | ------ | ------ |
+| CRUD OP                         | CREATE | READ                 | UPDATE | DELETE |
+| /search/Bill_Gates              | Error  | List results on all  | Error  | Error  |
+| /search/Bill_Gates/?module_pb=1 | Error  | Results from pastebin| Error  | Error  |
+| /search/Bill_Gates/?module_pwn=1| Error  | Results from hibpwned| Error  | Error  |
+| /search/Bill_Gates/?module_dw=1 | Error  | Results from darkweb | Error  | Error  |
 
 ## Error handling
 
@@ -96,7 +82,8 @@ Error responses should include a common HTTP status code, message for the develo
     * GET http://www.example.com/v1/search/Bill_Gates.json?module_pwn=1&module_pb=1
     * GET http://www.example.com/v1/search/Bill_Gates.json?moduke_dw=1
 
-### API Resources
+### API Resources--- to be edited
+
 
   - [GET /personname](#get-personname)
   - [GET /personname/[dark]](#get-magazinesid)
