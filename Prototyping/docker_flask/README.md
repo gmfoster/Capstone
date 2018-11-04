@@ -1,4 +1,5 @@
 # Create/Run Docker 
+* TroubleShooting(#troubleshooting)
 
 ### build docker file in current directory (INCLUDE THE PERIOD)
 docker build -t novasight:latest .
@@ -18,6 +19,6 @@ docker images
 ### remove a docker image 
 docker rmi <ImageID#>
 
-### Troubleshooting 
+## Troubleshooting 
 ### View error log
 docker logs novasight
