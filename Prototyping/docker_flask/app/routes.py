@@ -31,10 +31,11 @@ def get_pwned(email):
 
 
 
-@app.route('/search/<string:email>', methods=['GET'])
-def get_tasks(email):
-    #return jsonify({'messages': messages})
-    return (jsonify(get_pwned(email)))
+@app.route('/search/<string:email>/<string:name>', methods=['GET'])
+def get_tasks(email,name):
+    if (email != "null"):
+        return (jsonify(get_pwned(email)))
+    
 
 @app.route('/')
 @app.route('/index')

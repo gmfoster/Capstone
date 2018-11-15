@@ -27,14 +27,14 @@ def get_pwned(email):
     pwned_url = "https://haveibeenpwned.com/api/v2/breachedaccount/" + email +"?includeUnverified=true"
     paste_url = "https://haveibeenpwned.com/api/v2/pasteaccount/" + email +"?includeUnverified=true"
     request  = requests.get(pwned_url)
-    return (request.text)
+    return (request.json())
 
 
 
 @app.route('/search/<string:email>', methods=['GET'])
-def get_tasks():
+def get_tasks(email):
     #return jsonify({'messages': messages})
-    return (get_pwned(email))
+    return (jsonify(get_pwned(email)))
 
 @app.route('/')
 @app.route('/index')
