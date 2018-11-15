@@ -1,24 +1,11 @@
 from app import app
+from app import manager
+from app import pwned
 import json
 import urllib.request
 import urllib
 import requests
 from flask import Flask, jsonify
-
-messages = [
-    {
-        'id': 1,
-        'title': 'SearchResult1',
-        'description': 'description for Title1',
-        'done': False
-    },
-    {
-        'id': 1,
-        'title': 'SearchResult2',
-        'description': 'description for Title2',
-        'done': False
-    }
-]
 
 home = {'home' : 'this is the json returned to the homepage'}
 
@@ -31,11 +18,11 @@ def get_pwned(email):
 
 
 
-@app.route('/search/<string:email>/<string:name>', methods=['GET'])
-def get_tasks(email,name):
-    if (email != "null"):
-        return (jsonify(get_pwned(email)))
-    
+@app.route('/search/<string:email>', methods=['GET'])
+def get_tasks(email):
+    #return (jsonify(get_pwned(email)))
+    test = pwned.Pwned_Module()
+    return (jsonify(test.search(email)))
 
 @app.route('/')
 @app.route('/index')
