@@ -22,7 +22,8 @@ def get_pwned(email):
 def get_tasks(email):
     #return (jsonify(get_pwned(email)))
     test = pwned.Pwned_Module()
-    return (jsonify(test.search(email)))
+    response = test.search(email)
+    return (jsonify(response))
 
 @app.route('/')
 @app.route('/index')

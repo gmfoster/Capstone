@@ -25,5 +25,3 @@ class Pwned_Module():
             error = {'error' : 'Congratulations you have not been pwned'}
             return (error)
 
-test = Pwned_Module()
-test.search("grahammfoster96@gmail.com")

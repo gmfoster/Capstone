@@ -16,8 +16,8 @@ class Pwned_Module():
             return (response.json())
 
         elif response.status_code == 400:
-            error = {'Error 400' : 'Please enter a properly formatted email'} 
-           return (error)
+            error = {'Error 400' : 'Please enter a properly formatted email'}
+            return (error)
         elif response.status_code == 403:
             error = {'Error 403' : 'No user agent has been specified in the request'}
             return (error)
