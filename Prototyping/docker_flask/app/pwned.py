@@ -11,5 +11,19 @@ class Pwned_Module():
     def search(self, email):
         url = self.url_1 + email + self.url_2
         response = requests.get(url)
-        return (response.json())
+        
+        if response.status_code == 200:
+            return (response.json())
 
+        elif response.status_code == 400:
+            error = {'Error 400' : 'Please enter a properly formatted email'}
+            return (error)
+        elif response.status_code == 403:
+            error = {'Error 403' : 'No user agent has been specified in the request'}
+            return (error)
+        elif response.status_code == 404:
+            error = {'error' : 'Congratulations you have not been pwned'}
+            return (error)
+
+test = Pwned_Module()
+test.search("grahammfoster96@gmail.com")
