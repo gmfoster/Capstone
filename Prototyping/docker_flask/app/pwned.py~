@@ -1,3 +1,4 @@
+import re
 import urllib
 import urllib.request
 import requests
@@ -12,16 +13,21 @@ class Pwned_Module():
         url = self.url_1 + email + self.url_2
         response = requests.get(url)
         
-        if response.status_code == 200:
+        status = response.status_code
+
+        if !re.match("\A(?P<name>[\w\-_]+)@(?P<domain>[\w\-_]+).(?P<toplevel>[\w]+)\Z",email,re.IGNORECASE):
+            status = 400
+
+        if status == 200:
             return (response.json())
 
-        elif response.status_code == 400:
+        elif status == 400:
             error = {'Error 400' : 'Please enter a properly formatted email'}
             return (error)
-        elif response.status_code == 403:
+        elif status == 403:
             error = {'Error 403' : 'No user agent has been specified in the request'}
             return (error)
-        elif response.status_code == 404:
-            error = {'error' : 'Congratulations you have not been pwned'}
+        elif status == 404:
+            error = {'Error 404' : 'Congratulations you have not been pwned'}
             return (error)
 
