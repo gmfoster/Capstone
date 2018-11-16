@@ -22,6 +22,6 @@ class Pwned_Module():
             error = {'Error 403' : 'No user agent has been specified in the request'}
             return (error)
         elif response.status_code == 404:
-            error = {'error' : 'Congratulations you have not been pwned'}
+            error = {'Error 404' : 'Congratulations you have not been pwned'}
             return (error)
 
