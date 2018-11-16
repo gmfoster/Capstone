@@ -1,15 +1,25 @@
-from abc import ABC, abstractmethod
-import urllib
-import urllib.request
-import requests
-import json
+from app import pwned
 
-class Module(ABC):
+class Module():
     def __init__(self):
-        super().__init__()
-    
-    @abstractmethod
-    def search(self):
-        pass
+        self.pwnedModule = pwned.Pwned_Module()
+        #self.darkModule = 
+        #self.pasteModule = 
+        
+        
+    def searchEmail(self, email):
+        self.pwnedModule.search(email)
+        #self.darkModule.search(email)
+        #self.pasteModule.search(email)
+        
+    def searchName(self, name):
+        #self.pasteModule.search(name)
+        #self.darkModule.search(name)
+        stub = "this is a stub"
+        return stub
 
-
+    def searchIp(self, ipAddress):
+        #self.pasteModule.search(name)
+        #self.darkModule.search(name)
+        stub = "this is a stub"
+        return stub
