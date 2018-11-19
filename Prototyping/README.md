@@ -25,8 +25,7 @@ Here's an example of how HTTP verbs map to create, read, update, delete operatio
 | /search/Bill_Gates              | Error  | List results on all  | Error  | Error  |
 | /search/Bill_Gates@yahoo.com    | Error  | Results from hibpwned| Error  | Error  |
 | /search/billgates16             | Error  | Results from pastebin| Error  | Error  |
-| /search/Bill_Gates              | Error  | Results from darkweb | Error  | Error  |
-<!--- just --->
+<!---| /search/Bill_Gates              | Error  | Results from darkweb | Error  | Error  |--->
 ## Error handling
 
 Error responses should include a common HTTP status code, message for the developer, message for the end-user (when appropriate), internal error code (corresponding to some specific internally determined ID), links where developers can find more info. For example:
