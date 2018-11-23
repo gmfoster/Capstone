@@ -15,7 +15,7 @@ class Pwned_Module():
         
         status = response.status_code
 
-        if not re.match("(\w+[.|\w])*@(\w+[.])*\w+", email, re.IGNORECASE):
+        if not re.match("(\w+[-|.|\w])+@(\w+[.])+\w+", email, re.IGNORECASE):
             status = 400
 
         if status == 200:
