@@ -17,6 +17,7 @@ class DNS_Check():
         self.api_key = api_key
         self.ping = self.session.get(base_url + "ping")
         
+    this is a test
         
     def test_connect(self):
         endpoint = '{}/ping/'.format(self.base_url)
