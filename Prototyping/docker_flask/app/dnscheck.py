@@ -97,6 +97,16 @@ class DNS_Check():
 
         # Request failed returning false and logging an error
         else:
-            logger.warning("get_history_dns: Invalid type, valid types are {}.".format(
-                str(", ".join(type_check))))
+            logger.warning("get_history_dns: Invalid type, valid types are {}.".format(str(", ".join(type_check))))
+            return False
+
+def ip_explorer(self, ip, mask=32):
+    
+        endpoint = '{}/explore/ip/{}'.format(self.base_url, ip)
+        r = self.session.get(endpoint)
+        if r.status_code == 200:
+            return self.parse_output(r.json())
+        else:
+            output = r.json()
+            logger.warning("ip_explorer:Error with query to Security Trails, error message: {}".format(output['message']))
             return False
