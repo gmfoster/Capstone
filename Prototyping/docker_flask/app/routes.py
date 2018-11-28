@@ -1,6 +1,7 @@
 from app import app
 from app import manager
 from app import pwned
+from app import dnscheck
 import json
 import urllib.request
 import urllib
@@ -12,8 +13,14 @@ home = {'home' : 'this is the json returned to the homepage'}
 
 @app.route('/search/<string:email>', methods=['GET'])
 def get_tasks(email):
-    test = pwned.Pwned_Module()
-    response = test.search(email)
+    p = pwned.Pwned_Module()
+    response = p.search(email)
+    return (jsonify(response))
+
+@app.route('/domain/<string:domain>', methods=['GET'])
+def get_domain(domain):
+    s = dnscheck.DNS_Check(api_key='HNscMl31tmTNfEuMttLO3xVUZ5HrY9Mj')
+    response = s.get_domain(domain)
     return (jsonify(response))
 
 @app.route('/')

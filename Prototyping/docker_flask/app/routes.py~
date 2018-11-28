@@ -12,9 +12,10 @@ home = {'home' : 'this is the json returned to the homepage'}
 
 @app.route('/search/<string:email>', methods=['GET'])
 def get_tasks(email):
-    test = pwned.Pwned_Module()
-    response = test.search(email)
+    p = pwned.Pwned_Module()
+    response = p.search(email)
     return (jsonify(response))
+
 
 @app.route('/')
 @app.route('/index')
