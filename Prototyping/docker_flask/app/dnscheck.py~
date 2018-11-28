@@ -88,9 +88,9 @@ class DNS_Check():
         type_check = ['a', 'aaaa', 'mx', 'ns', 'txt', 'soa']
 
         if record_type in type_check:           
-            endpoint = '{}/history/{}/dns/{}'.format(
-                self.base_url, domain, record_type)
+            endpoint = '{}/history/{}/dns/{}'.format(self.base_url, domain, record_type)
             r = self.session.get(endpoint)
+            output = r.json()
             if r.status_code == 200:
                 # Output results to json
                 return (output)

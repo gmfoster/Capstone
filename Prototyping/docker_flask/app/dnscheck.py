@@ -18,13 +18,6 @@ class DNS_Check():
         self.ping = self.session.get(base_url + "ping")
         
         
-    def test(self):
-        if self.ping.status_code != 200:
-            logger.error(
-                "Error connecting to Security Trails, error message: {}".format(
-                    self.ping.text))
-        
-    
     def test_connect(self):
         endpoint = '{}/ping/'.format(self.base_url)
         r = self.session.get(endpoint)
