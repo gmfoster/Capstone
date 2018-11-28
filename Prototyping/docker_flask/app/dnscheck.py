@@ -39,7 +39,7 @@ class DNS_Check():
             logger.warning("get_domain:Error with query to Security Trails, error message: {}".format(output['message']))
             return (False)
 
-    def get_domain(self,domain):
+    def get_domain(self, domain):
         endpoint = '{}/domain/{}'.format(self.base_url, domain)
         r = self.session.get(endpoint)
         output = r.json()
@@ -48,7 +48,63 @@ class DNS_Check():
         else:
             logger.warning("get_domain:Error with query to Security Trails, error message: {}".format(output['message']))
 
-s = DNS_Check(api_key='HNscMl31tmTNfEuMttLO3xVUZ5HrY9Mj')
-#s.test()
-#s.test_connect()
-s.get_domain('netflix.com')
+    def get_subdomain(self, domain):
+        endpoint = '{}/domain/{}/subdomains'.format(self.base_url, domain)
+        r = self.session.get(endpoint)
+        output = r.json()
+        # If the request is successful
+        if r.status_code == 200:
+            return (output)
+        # Request failed returning false and logging an error
+        else:
+            logger.warning("get_subdomain:Error with query to Security Trails, error message: {}".format(output['message']))
+            
+    def get_tags(self, domain):
+        endpoint = '{}/domain/{}/tags'.format(self.base_url, domain)
+        # Make connection to the tags endpoint
+        r = self.session.get(endpoint)
+        output = r.json()
+        # If the request is successful
+        if r.status_code == 200:
+            return (output)
+        # Request failed returning false and logging an error
+        else:
+            logger.warning("get_tags:Error with query to Security Trails, error message: {}".format(output['message']))
+
+    def get_whois(self, domain):
+        endpoint = '{}/domain/{}/whois'.format(self.base_url, domain)
+        # Make connection to the whois endpoint
+        r = self.session.get(endpoint)
+        output = r.json()
+        # If the request is successful
+        if r.status_code == 200:
+            return (output)
+        # Request failed returning false and logging an error
+        else:
+            logger.warning("get_whois:Error with query to Security Trails, error message: {}".format(output['message']))
+
+    def get_history_dns(self, domain, record_type):
+        record_type = record_type.lower()
+        type_check = ['a', 'aaaa', 'mx', 'ns', 'txt', 'soa']
+
+        if record_type in type_check:           
+            endpoint = '{}/history/{}/dns/{}'.format(self.base_url, domain, record_type)
+            r = self.session.get(endpoint)
+            output = r.json()
+            if r.status_code == 200:
+                # Output results to json
+                return (output)
+            else:
+                # Request failed returning false and logging an error
+                # Output results to json
+                output = r.json()
+                logger.warning(
+                    "get_history_dns:Error with query to Security Trails, error message: {}".format(
+                        output['message']))
+                return False
+
+        # Request failed returning false and logging an error
+        else:
+            logger.warning("get_history_dns: Invalid type, valid types are {}.".format(
+                str(", ".join(type_check))))
+            return False
