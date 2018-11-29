@@ -17,12 +17,14 @@ def get_tasks(email):
     response = p.search(email)
     return (jsonify(response))
 
+#graham testing shit
 @app.route('/domain/<string:domain>', methods = ['GET'])
 def get_domain(domain):
     s = dnscheck.DNS_Check(api_key='HNscMl31tmTNfEuMttLO3xVUZ5HrY9Mj')
     response = s.get_domain(domain)
     return(jsonify(response))
 
+#graham testing shit
 @app.route('/dns/<string:dns>/<string:record_type>', methods=['GET'])
 def get_dns(dns,record_type):
     s = dnscheck.DNS_Check(api_key='HNscMl31tmTNfEuMttLO3xVUZ5HrY9Mj')
