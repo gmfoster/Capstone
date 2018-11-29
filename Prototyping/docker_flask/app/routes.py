@@ -1,6 +1,7 @@
 from app import app
 from app import manager
 from app import pwned
+from app import dnscheck
 import json
 import urllib.request
 import urllib
@@ -10,19 +11,24 @@ from flask import Flask, jsonify
 home = {'home' : 'this is the json returned to the homepage'}
 
 
-def get_pwned(email):
-    pwned_url = "https://haveibeenpwned.com/api/v2/breachedaccount/" + email +"?includeUnverified=true"
-    paste_url = "https://haveibeenpwned.com/api/v2/pasteaccount/" + email +"?includeUnverified=true"
-    request  = requests.get(pwned_url)
-    return (request.json())
-
-
-
 @app.route('/search/<string:email>', methods=['GET'])
 def get_tasks(email):
-    #return (jsonify(get_pwned(email)))
-    test = pwned.Pwned_Module()
-    response = test.search(email)
+    p = pwned.Pwned_Module()
+    response = p.search(email)
+    return (jsonify(response))
+
+#graham testing shit
+@app.route('/domain/<string:domain>', methods = ['GET'])
+def get_domain(domain):
+    s = dnscheck.DNS_Check(api_key='HNscMl31tmTNfEuMttLO3xVUZ5HrY9Mj')
+    response = s.get_domain(domain)
+    return(jsonify(response))
+
+#graham testing shit
+@app.route('/dns/<string:dns>/<string:record_type>', methods=['GET'])
+def get_dns(dns,record_type):
+    s = dnscheck.DNS_Check(api_key='HNscMl31tmTNfEuMttLO3xVUZ5HrY9Mj')
+    response = s.get_history_dns(dns,record_type)
     return (jsonify(response))
 
 @app.route('/')
