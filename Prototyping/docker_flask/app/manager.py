@@ -1,6 +1,6 @@
 from app import pwned
 
-class Module():
+class Manager():
     def __init__(self):
         self.pwnedModule = pwned.Pwned_Module()
         #self.darkModule = 
