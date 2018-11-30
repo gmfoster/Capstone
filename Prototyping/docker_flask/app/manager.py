@@ -1,10 +1,11 @@
 from app import pwned
+#from app import pastebin
 
 class Manager():
     def __init__(self):
         self.pwnedModule = pwned.Pwned_Module()
         #self.darkModule = 
-        #self.pasteModule = 
+        #self.pasteModule = pastebin.Pastebin_Module()
         
         
     def searchEmail(self, email):
