@@ -16,14 +16,8 @@ const MyInvestigations = () => (
                 <code>Start Investigation</code>
             </Link>
         </div>
-      
-      
-      
   
     </div>
-    
-       
-    
   );
 
   class InvestigationList extends React.Component {
