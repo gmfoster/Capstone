@@ -68,6 +68,7 @@ class Pastebin_Module():
                     print("Stale link/pastebin error")
             currentPage = currentPage + 1
 
+        self.browser.close()
         for element in urls:
             if(element != ""):
                 pasteKey = element.split("pastebin.com/")
