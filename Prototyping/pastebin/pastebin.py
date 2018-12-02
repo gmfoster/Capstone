@@ -37,7 +37,7 @@ class Pastebin_Module():
         numPages = 1
         currentPage = 1
 
-        self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
+        self.browser.get("https://www.pastebin.com/search?q="+searchTerm+"&limit=250")
         pageRoot = self.browser.find_element_by_class_name("gsc-cursor")
         pageRootChildren = pageRoot.find_elements_by_css_selector("*")
 
@@ -47,15 +47,15 @@ class Pastebin_Module():
         print("Number of pages: " + str(numPages))
 
         #while(currentPage <= numPages):
-            elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
-            for element in elementRoots:
-                e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
-                urls.append(str(e.text))
+        elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
+        for element in elementRoots:
+            e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
+            urls.append(str(e.text))
 
-            print("Number of urls found on this page: " + str(len(urls)))
+        print("Number of urls found on this page: " + str(len(urls)))
 
-            for element in urls:
-                print(element)
+        for element in urls:
+            print(element)
 
             # if(currentPage < numPages):
             #     pageRootChildren[currentPage].click()
