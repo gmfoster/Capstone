@@ -12,3 +12,127 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+div.centered_div {
+  text-align: center;
+  align:center;
+  margin:auto;
+  width:100%;
+  background-color: #FF6600;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+}
+
+table.investigation_list{
+  width:50%;
+  align:center;
+  margin:auto
+
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table{
+    text-align:center;
+    border-collapse:collapse;
+}
+
+th {
+  background-color: #FF6600;
+  color: white;
+  height:40px;
+}
+
+a.button {
+  background-color: #FF6600;
+  color: white;
+  text-decoration: none;
+  padding: 10px 10px;
+}
+
+label {
+  
+  width:100%;
+  text-align: left;
+  align:left;
+  
+}
+
+div.padded {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  align:center;
+  text-align: center;
+}
+
+div.left_div {
+  align:left;
+  padding-left: 100px;
+  width: 50%;
+  margin:auto;
+  
+
+}
+label.white{
+  color:cyan;
+}
+
+h3.results{
+  color:white;
+  text-align:left;
+}
+
+div.left{
+  background-color:red;
+  width:25%;
+  align:left;
+  height:100%;
+}
+
+div.right{
+  background-color:red;
+  width:25%;
+  align:right;
+  margin:auto;
+  height:100%;
+}
+
+div.results_hibpr_row{
+  width:80%;
+  padding-left:50px;
+  content: "";
+  display: table;
+  clear: both;
+  align:center;
+  
+
+}
+
+div.results_hibpr_column{
+  width: 25%;
+  height: 125px;
+  background-color: green;
+  display:table-cell;
+  text-align:center;
+  vertical-align: middle;
+  border-radius:20px;
+
+  
+}
+
+div.results_hibpr_columnr{
+  float:right;
+  width: 75%;
+  height: 150px;
+  padding-left:50px;
+  padding-top:50px;
+  text-align: left;
+  padding-right:50px;
+  padding-bottom:50px;
+  background-color: red;
+  border-radius:20px;
+  
+}

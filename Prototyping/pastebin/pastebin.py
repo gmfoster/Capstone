@@ -46,7 +46,7 @@ class Pastebin_Module():
 
         print("Number of pages: " + str(numPages))
 
-        while(currentPage <= numPages):
+        #while(currentPage <= numPages):
             elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
             for element in elementRoots:
                 e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
@@ -57,9 +57,9 @@ class Pastebin_Module():
             for element in urls:
                 print(element)
 
-            if(currentPage < numPages):
-                pageRootChildren[currentPage].click()
-            currentPage = currentPage + 1
+            # if(currentPage < numPages):
+            #     pageRootChildren[currentPage].click()
+            # currentPage = currentPage + 1
 
         # //*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[2]/div[11]/div/div[1]
         # //*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[2]/div[11]/div/div[2]
