@@ -1,0 +1,54 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+div.centered_div {
+  text-align: center;
+  align:center;
+  margin:auto;
+  width:100%;
+  background-color: #FF6600;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  
+}
+
+table.investigation_list{
+  width:50%;
+  align:center;
+  margin:auto
+
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+table{
+    text-align:center;
+    border-collapse:collapse;
+}
+
+th {
+  background-color: #FF6600;
+  color: white;
+  height:40px;
+}
+
+a {
+  background-color: #FF6600;
+  color: white;
+  text-decoration: none;
+  padding: 10px 10px;
+}
