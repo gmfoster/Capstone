@@ -11,7 +11,11 @@ ENV PATH /usr/src/app/node_modules/.bin:$PATH
 # install and cache app dependencies
 COPY package.json /usr/src/app/package.json
 RUN npm install --silent
+
+RUN npm install --save react-router-dom
+RUN npm install --save prop-types
 RUN npm install react-scripts@1.1.1 -g --silent
+RUN npm install --save history
 
 # start app
 CMD ["npm", "start"]
