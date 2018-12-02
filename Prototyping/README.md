@@ -18,13 +18,13 @@ This document provides guidelines and examples for
 
 Here's an example of how HTTP verbs map to create, read, update, delete operations in a particular context:
 
-| HTTP METHOD                             | POST   | GET                  | PUT    | DELETE |
-| --------------------------------------- | -------| -------------------- | ------ | ------ |
-| CRUD OP                                 | CREATE | READ                 | UPDATE | DELETE |
-| /analyze/Quintin-Hill                   | Error  | List results on all  | Error  | Error  |
-| /analyze/hibpwned/quill1316@yahoo.com   | Error  | Results from hibpwned| Error  | Error  |
-| /analyze/pastebin/quintinhill           | Error  | Results from pastebin| Error  | Error  |
-| /analyze/DrkWeb/Quintin Hill            | Error  | Results from darkweb | Error  | Error  |
+| HTTP METHOD                             | GET                  | 
+| --------------------------------------- | -------------------- | 
+| CRUD OP                                 | READ                 | 
+| /analyze/Quintin-Hill                   | List results on all  | 
+| /analyze/hibpwned/quill1316@yahoo.com   | Results from hibpwned|
+| /analyze/pastebin/quintinhill           | Results from pastebin| 
+| /analyze/DrkWeb/Quintin Hill            | Results from darkweb | 
 ## Error handling
 
 Error responses should include a common HTTP status code, message for the developer, message for the end-user (when appropriate), internal error code (corresponding to some specific internally determined ID), links where developers can find more info. For example:
