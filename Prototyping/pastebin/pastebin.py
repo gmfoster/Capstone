@@ -37,7 +37,7 @@ class Pastebin_Module():
         numPages = 1
         currentPage = 1
 
-        self.browser.get("https://www.pastebin.com/search?q="+searchTerm+"&limit=250")
+        self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
         pageRoot = self.browser.find_element_by_class_name("gsc-cursor")
         pageRootChildren = pageRoot.find_elements_by_css_selector("*")
 
@@ -46,20 +46,37 @@ class Pastebin_Module():
 
         print("Number of pages: " + str(numPages))
 
-        #while(currentPage <= numPages):
-        elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
-        for element in elementRoots:
-            e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
-            urls.append(str(e.text))
+        while(currentPage <= numPages):
+            elementRoots = []
+            elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
+            for element in elementRoots:
+                try:
+                    e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
+                    urls.append(str(e.text))
+                except:
+                    print("No urls because search results returned an empty page")
 
-        print("Number of urls found on this page: " + str(len(urls)))
+            print("Number of urls found on this page: " + str(len(urls)))
+
+            for element in urls:
+                print(element)
+
+            if(currentPage < numPages):
+                try:
+                    pageRootChildren[currentPage].click()
+                except:
+                    print("Stale link/pastebin error")
+            currentPage = currentPage + 1
 
         for element in urls:
-            print(element)
+            if(element != ""):
+                pasteKey = element.split("pastebin.com/")
+                if(pasteKey[1] not in pasteKeys):
+                    pasteKeys.append(pasteKey[1])
+        
+        print(pasteKeys)
+        
 
-            # if(currentPage < numPages):
-            #     pageRootChildren[currentPage].click()
-            # currentPage = currentPage + 1
 
         # //*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[2]/div[11]/div/div[1]
         # //*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[2]/div[11]/div/div[2]
