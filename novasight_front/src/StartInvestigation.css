@@ -1,0 +1,31 @@
+
+
+div.module{
+  width: 25%;
+  height: 175px;
+  background-color: grey;
+  text-align:left;
+  border-radius:10px;
+  margin:auto;
+  padding-left: 20px;
+}
+
+div.centered_div_mod {
+    text-align: center;
+    margin:auto;
+    width:100%;
+    background-color: #FF6600;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    
+  }
+
+  h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 1em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
