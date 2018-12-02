@@ -17,6 +17,24 @@ def get_tasks(email):
     response = p.search(email)
     return (jsonify(response))
 
+@app.route('/analyze/<string:module>/<string:args>')
+def analyze(module, args):
+    #m = manager.Manager()
+    #response = m.analyze()
+    return "This is a stub!"
+
+@app.route('/progress/<string:module>/<string:args>')
+def progress(module, args):
+    #m = manager.Manager()
+    #response = m.progress()
+    return "This is a stub!"
+
+@app.route('/report/<string:module>/<string:args>')
+def report(module, args):
+    #m = manager.Manager()
+    #response = m.report()
+    return "This is a stub!"
+
 #graham testing shit
 @app.route('/domain/<string:domain>', methods = ['GET'])
 def get_domain(domain):
