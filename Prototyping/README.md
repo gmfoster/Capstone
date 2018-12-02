@@ -85,14 +85,44 @@ Error responses should include a common HTTP status code, message for the develo
 
 ### GET /hibpwned
 
-Example: http://www.example.com/analyze/Quintin-Hill.json
+Example: http://www.example.com/analyze/quill1316@yahoo.com.json
 
-[{"AddedDate":"2017-06-01T05:59:24Z","BreachDate":"2017-05-11","DataClasses":["Emailaddresses","Passwords","Usernames"],"Description":"In May 2017, the education platform <ahref=\"https://motherboard.vice.com/en_us/article/hacker-steals-millions-of-user-account-details-from-education-platform-edmodo\" target=\"_blank\" rel=\"noopener\">Edmodo was hacked</a> resulting in the exposure of 77 million records comprised of over 43 million unique customer email addresses. The data was consequently published to a popular hacking forum and made freely available. The records in the breach included usernames, email addresses and bcrypt hashes of passwords.","Domain":"edmodo.com","IsFabricated":false,"IsRetired":false,"IsSensitive":false,"IsSpamList":false,"IsVerified":true,"LogoType":"svg","ModifiedDate":"2017-06-01T05:59:24Z","Name":"Edmodo","PwnCount":43423561,"Title":"Edmodo"},{"AddedDate":"2016-10-12T09:09:11Z","BreachDate":"2016-10-08","DataClasses":["Dates of birth","Email addresses","Genders","IP addresses","Job titles","Names","Phone numbers","Physical addresses"],"Description":"In October 2016, a large Mongo DB file containing tens of millions of accounts <a href=\"https://twitter.com/0x2Taylor/status/784544208879292417\" target=\"_blank\" rel=\"noopener\">was shared publicly on Twitter</a> (the file has since been removed). The database contained over 58M unique email addresses along with IP addresses, names, home addresses, genders, job titles, dates of birth and phone numbers. The data was subsequently <a href=\"http://news.softpedia.com/news/hacker-steals-58-million-user-records-from-data-storage-provider-509190.shtml\" target=\"_blank\" rel=\"noopener\">attributed to &quot;Modern Business Solutions&quot;</a>, a company that provides data storage and database hosting solutions. They've yet to acknowledge the incident or explain how they came to be in possession of the data.","Domain":"modbsolutions.com","IsFabricated":false,"IsRetired":false,"IsSensitive":false,"IsSpamList":false,"IsVerified":true,"LogoType":"png","ModifiedDate":"2016-10-12T09:09:11Z","Name":"ModernBusinessSolutions","PwnCount":58843488,"Title":"Modern Business Solutions"},{"AddedDate":"2017-03-08T23:49:53Z","BreachDate":"2017-01-01","DataClasses":["Email addresses","IP addresses","Names","Physical addresses"],"Description":"In January 2017, <a href=\"https://mackeeper.com/blog/post/339-spammergate-the-fall-of-an-empire\" target=\"_blank\" rel=\"noopener\">a massive trove of data from River City Media was found exposed online</a>. The data was found to contain almost 1.4 billion records including email and IP addresses, names and physical addresses, all of which was used as part of an enormous spam operation. Once de-duplicated, there were 393 million unique email addresses within the exposed data.","Domain":"rivercitymediaonline.com","IsFabricated":false,"IsRetired":false,"IsSensitive":false,"IsSpamList":true,"IsVerified":true,"LogoType":"png","ModifiedDate":"2017-03-08T23:49:53Z","Name":"RiverCityMedia","PwnCount":393430309,"Title":"River City Media Spam List"}]
-
+[
+{
+"Name":"Adobe",
+"Title":"Adobe",
+"Domain":"adobe.com",
+"BreachDate":"2013-10-04",
+"AddedDate":"2013-12-04T00:00Z",
+"ModifiedDate":"2013-12-04T00:00Z",
+"PwnCount":152445165,
+"Description":"In October 2013, 153 million Adobe accounts were breached with each containing an internal ID, username, email, <em>encrypted</em> password and a password hint in plain text. The password cryptography was poorly done and <a href=\"http://stricture-group.com/files/adobe-top100.txt\" target=\"_blank\" rel=\"noopener\">many were quickly resolved back to plain text</a>. The unencrypted hints also <a href=\"http://www.troyhunt.com/2013/11/adobe-credentials-and-serious.html\" target=\"_blank\" rel=\"noopener\">disclosed much about the passwords</a> adding further to the risk that hundreds of millions of Adobe customers already faced.",
+"DataClasses":["Email addresses","Password hints","Passwords","Usernames"],
+"IsVerified":True,
+"IsSensitive":False,
+"IsRetired":False,
+"IsSpamList":False
+},
+{
+"Name":"BattlefieldHeroes",
+"Title":"Battlefield Heroes",
+"Domain":"battlefieldheroes.com",
+"BreachDate":"2011-06-26",
+"AddedDate":"2014-01-23T13:10Z",
+"ModifiedDate":"2014-01-23T13:10Z",
+"PwnCount":530270,
+"Description":"In June 2011 as part of a final breached data dump, the hacker collective &quot;LulzSec&quot; <a href=\"http://www.rockpapershotgun.com/2011/06/26/lulzsec-over-release-battlefield-heroes-data\" target=\"_blank\" rel=\"noopener\">obtained and released over half a million usernames and passwords from the game Battlefield Heroes</a>. The passwords were stored as MD5 hashes with no salt and many were easily converted back to their plain text versions.",
+"DataClasses":["Passwords","Usernames"],
+"IsVerified":True,
+"IsSensitive":False,
+"IsRetired":False,
+"IsSpamList":False
+}
+]
 
 ### GET /pastebin
 
-Example: http://www.example.com/analyze/quill1316@yahoo.com.json
+Example: http://www.example.com/analyze/Quintin-password.json
 
 Response body: 
 [
