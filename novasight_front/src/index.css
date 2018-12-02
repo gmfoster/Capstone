@@ -27,7 +27,7 @@ div.centered_div {
 table.investigation_list{
   width:50%;
   align:center;
-  margin:auto
+  margin:auto;
 
 }
 
@@ -51,6 +51,10 @@ a.button {
   color: white;
   text-decoration: none;
   padding: 10px 10px;
+}
+
+a.pastebin_ink {
+  text-decoration: none;
 }
 
 label {
@@ -102,19 +106,18 @@ div.right{
 
 div.results_hibpr_row{
   width:80%;
-  padding-left:50px;
   content: "";
   display: table;
   clear: both;
-  align:center;
+  margin:auto;
   
 
 }
 
 div.results_hibpr_column{
   width: 25%;
-  height: 125px;
-  background-color: green;
+  
+  /*background-color: green;*/
   display:table-cell;
   text-align:center;
   vertical-align: middle;
@@ -126,13 +129,27 @@ div.results_hibpr_column{
 div.results_hibpr_columnr{
   float:right;
   width: 75%;
-  height: 150px;
+  
   padding-left:50px;
-  padding-top:50px;
+  padding-top:25px;
   text-align: left;
   padding-right:50px;
   padding-bottom:50px;
-  background-color: red;
+  /*background-color: red;*/
   border-radius:20px;
   
 }
+
+div.pastebin_results{
+  margin:auto;
+  text-align:left;
+  padding-top: 20px;
+  width: 80%;
+}
+
+div.darknet_list {
+  text-align: left;
+  width:80%;
+  margin:auto;
+}
+
