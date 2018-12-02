@@ -6,13 +6,19 @@ import './App.css';
 
 
 const MyInvestigations = () => (
-    <div class="centered_div">
-      <h2> My Investigations</h2>
-      <InvestigationList />
+    <div>
+        <div class="centered_div">
+            <h2> My Investigations</h2>
+            <InvestigationList />
+        </div>
+        <div class="padded" >
+            <Link to='startinvestigation'>
+                <code>Start Investigation</code>
+            </Link>
+        </div>
       
-      <Link to='startinvestigation'>
-        <code>Start Investigation</code>
-      </Link>
+      
+      
   
     </div>
     
@@ -49,13 +55,31 @@ const MyInvestigations = () => (
 
   class Investigation extends React.Component {
     render() {
-      return (
-        <tr>
-          <td>{this.props.id}</td>
-          <td>{this.props.modules}</td>
-          <td>{this.props.status}</td>
-        </tr>
-      );
+
+        if(this.props.status == "Complete"){
+            return (
+                <tr>
+                    <td>{this.props.id}</td>
+                    <td>{this.props.modules}</td>
+                    <td>
+                        <Link to="investigationresults">
+                            <code>
+                                {this.props.status}
+                            </code>
+                        </Link>
+                    </td>
+                </tr>
+              );
+        }else {
+            return (
+                <tr>
+                  <td>{this.props.id}</td>
+                  <td>{this.props.modules}</td>
+                  <td>{this.props.status}</td>
+                </tr>
+              );
+        }
+      
     }
   }
 

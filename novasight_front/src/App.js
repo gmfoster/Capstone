@@ -9,7 +9,7 @@ import InvestigationProgress from './InvestigationProgress'
 
 
 import createHistory from 'history/createBrowserHistory'; 
-//const history = createHistory();
+import InvestigationResults from './InvestigationResults';
 
 
 
@@ -69,6 +69,7 @@ const App = () => (
       <Route path='/myinvestigations' component={MyInvestigations}/>
       <Route path='/startinvestigation' component={StartInvestigation}/>
       <Route path='/investigationprogress' component={InvestigationProgress}/>
+      <Route path='/investigationresults' component={InvestigationResults}/>
 
       
     </div>
