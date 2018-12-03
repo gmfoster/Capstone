@@ -5,9 +5,9 @@ import './App.css';
 import './InvestigationProgress.css'
 
 const investigations = {
-    investigation:1,
+    investigation:5,
     modules:"HIBP-Pastebin",
-    eta:"15 minutes"
+    eta:"30 minutes"
 }
 
 
