@@ -207,6 +207,8 @@ class DarknetListing extends React.Component{
         return(
             <div>
                 <h3> {this.props.marketName}</h3>
+                
+
                 <div>
                    <img src={this.props.imageSrc}></img>
                 </div>

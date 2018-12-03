@@ -55,16 +55,22 @@ class Router extends React.Component {
 const App = () => (
   <Router>
     <div className='ui text container'>
+      <div class='navigation_container'>
+        <div class= 'navigation_header'>
+          <b>
+          <Link to='/myinvestigations'>
+              <code class='button_link'>
+                NovaSight
+              </code>
+          </Link>
+          </b>
+          
+        </div>
+        <hr/>
+      </div>
+      
 
-      <h6 className='ui dividing header'>  NovaSight
-      </h6>
-      <Link to='/myinvestigations'>
-        <code>
-          Home
-        </code>
-      </Link>
-
-      <hr/>
+     
 
       <Route path='/myinvestigations' component={MyInvestigations}/>
       <Route path='/startinvestigation' component={StartInvestigation}/>

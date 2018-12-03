@@ -7,14 +7,16 @@ import './App.css';
 
 const MyInvestigations = () => (
     <div>
-        <div class="centered_div">
+        <div class='centered_div'>
             <h2> My Investigations</h2>
             <InvestigationList />
         </div>
-        <div class="padded" >
-            <Link to='startinvestigation'>
-                <code>Start Investigation</code>
-            </Link>
+        <div class='centered_div'>
+            <div class="button_link" >
+                <Link to='startinvestigation'>
+                    <code class='button_link'>Start Investigation</code>
+                </Link>
+            </div>
         </div>
   
     </div>
@@ -57,7 +59,7 @@ const MyInvestigations = () => (
                     <td>{this.props.modules}</td>
                     <td>
                         <Link to="investigationresults">
-                            <code>
+                            <code class='status_link'>
                                 {this.props.status}
                             </code>
                         </Link>
@@ -87,11 +89,7 @@ const MyInvestigations = () => (
         id:2,
         modules:"HIBP",
         status:"Complete"
-    },{
-        id:3,
-        modules:"Pastebin",
-        status:"In Progress"
-    }  
+    } 
   ];
 
   export default MyInvestigations;

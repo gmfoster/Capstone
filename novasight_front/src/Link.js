@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import './App.css';
 
 const Link = ({ to, children }, {history}) => (
-    <a
+    <a  class='undecorated'
       onClick={(e) => {
         e.preventDefault();
         history.push(to);
