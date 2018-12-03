@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Link from './Link';
 import './App.css';
+import './MyInvestigation.css';
 
 
 
@@ -89,7 +90,15 @@ const MyInvestigations = () => (
         id:2,
         modules:"HIBP",
         status:"Complete"
-    } 
+    },{
+        id:3,
+        modules:"Pastebin-Darknet",
+        status:"Complete"
+    },{
+        id:4,
+        modules:"Pastebin",
+        status:"Complete"
+    }
   ];
 
   export default MyInvestigations;

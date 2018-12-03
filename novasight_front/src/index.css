@@ -23,27 +23,7 @@ div.centered_div {
   
 }
 
-table.investigation_list{
-  width:50%;
-  align:center;
-  margin:auto;
 
-}
-
-table, th, td {
-  border: 1px solid black;
-}
-
-table{
-    text-align:center;
-    border-collapse:collapse;
-}
-
-th {
-  background-color: #FF9833;
-  color: white;
-  height:40px;
-}
 
 a.button {
   background-color: #FF6600;
@@ -60,14 +40,14 @@ label {
   
   width:100%;
   text-align: left;
-  align:left;
+  
   
 }
 
 div.padded {
   padding-top: 50px;
   padding-bottom: 50px;
-  align:center;
+  
   text-align: center;
 }
 
@@ -91,14 +71,12 @@ h3.results{
 div.left{
   background-color:red;
   width:25%;
-  align:left;
   height:100%;
 }
 
 div.right{
   background-color:red;
   width:25%;
-  align:right;
   margin:auto;
   height:100%;
 }
@@ -167,8 +145,14 @@ div.navigation_header{
 a.undecorated{
   margin:auto; 
   text-decoration:none;
-  
+}
 
+
+
+code.button_link{
+  margin:auto;
+  color:white;
+  
 }
 
 div.button_link{
@@ -179,16 +163,6 @@ div.button_link{
   padding-left:10px;
   padding-right:10px;
   display:inline;
-}
-
-code.button_link{
-  margin:auto;
-  color:white;
-  
-}
-
-code.status_link{
-  color:green;
 }
 
 

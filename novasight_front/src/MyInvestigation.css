@@ -1,0 +1,29 @@
+
+
+  table.investigation_list{
+    width:50%;
+    margin:auto;
+    border-collapse:collapse;
+  
+  }
+  
+  table{
+      text-align:center;
+      border-collapse:collapse;
+  }
+
+  tr:nth-child(even){background-color: #f2f2f2}
+  
+  th {
+    background-color: #FF9833;
+    color: white;
+    height:40px;
+  }
+
+  th, td {
+    padding: 8px;
+  }
+  
+  code.status_link{
+    color:green;
+  }
