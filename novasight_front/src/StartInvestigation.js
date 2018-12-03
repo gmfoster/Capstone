@@ -50,7 +50,7 @@ class StartInvestigation extends React.Component {
         <form>
         <h2> Dark web Sweep </h2>
                 Input Key word:<br></br><br></br>
-        <input type="text" name="darkUserInTxt" value=""></input><br></br><br></br>
+        <input type="text" name="darkUserInTxt" ></input><br></br><br></br>
         <input type="reset"></input>
       </form><br></br>
   
