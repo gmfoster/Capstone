@@ -1,0 +1,86 @@
+div.pastebin_results{
+    margin:auto;
+    text-align:left;
+    padding-top: 20px;
+    width: 80%;
+  }
+
+  a.pastebin_ink {
+    text-decoration: none;
+  }
+
+  
+
+
+  div.results_hibpr_row{
+    width:100%;
+    content: "";
+    display: table;
+    clear: both;
+    margin:auto;
+    
+  
+  }
+  
+  div.results_hibpr_column{
+    width: 25%;
+    
+    /*background-color: green;*/
+    display:table-cell;
+    text-align:center;
+    vertical-align: middle;
+    border-radius:20px;
+  
+    
+  }
+  
+  div.results_hibpr_columnr{
+    
+    width: 75%;
+    padding-left:50px;
+    padding-top:25px;
+    text-align: left;
+    padding-right:50px;
+    padding-bottom:25px;
+    /*background-color: red;*/
+    border-radius:20px;
+    display: table-cell;
+    
+    float:center;
+    
+  }
+
+  h3.results{
+      color:black;
+      text-align: left;
+      padding-top:50px;
+      margin:auto;
+      width:95%;
+      
+  }
+
+  h2.results{
+    color:black;
+    text-align: left;
+    padding-top:15px;
+    padding-bottom:15px;
+    margin:auto;
+    width:95%;
+  }
+
+
+  div.results{
+      width: 100%;
+      
+  }
+
+  div.darknet_list {
+    text-align: left;
+    width:100%;
+    margin:auto;
+    
+  }
+
+  hr.orange{
+    border:3px solid #FF9833;
+  }

@@ -5,6 +5,7 @@ import wall_st_market from './images/wall_st_market.png';
 import dream_market from './images/dream_market.png';
 import silk_road_3 from './images/silk_road_3.png';
 import berlusconi_market from './images/berlusconi_market.png';
+import './InvestigationResults.css';
 
 
 const invesitgationInfo = {
@@ -16,7 +17,7 @@ const invesitgationInfo = {
 
 
 const hibpResults = {
-    companyName: "Abdobe",
+    companyName: "Adobe",
     dateBreached:"4 October 2013",
     dateAdded:"4 December 2013",
     compromisedAccounts: "152,445,165",
@@ -79,13 +80,13 @@ const darknetResults = [
 
 const InvestigationResults = () => (
     <div>
-        <h2 >Investigation Results</h2>
+        <h2 class='results' >Investigation Results</h2>
 
-        <div >
-            <label> User Intiated: <label> {invesitgationInfo.userInitated} </label></label><br/>
-            <label> Investigation #: <label>{invesitgationInfo.number}</label></label><br/>
-            <label>Investigation Duration: <label> {invesitgationInfo.duration} </label></label><br/>
-            <label>Risk Factor:<label> {invesitgationInfo.riskFactor}</label></label>
+        <div class='pastebin_results'>
+            <label> <b>User Intiated: </b><label> {invesitgationInfo.userInitated} </label></label><br/>
+            <label><b> Investigation #: </b><label>{invesitgationInfo.number}</label></label><br/>
+            <label> <b>Investigation Duration: </b><label> {invesitgationInfo.duration} </label></label><br/>
+            <label> <b>Risk Factor:</b><label> {invesitgationInfo.riskFactor}</label></label>
         </div>
 
         <ResultsList/>
@@ -138,9 +139,9 @@ class HaveIBeenPwnedResults extends React.Component{
 
     render(){
         return(
-            <div>
+            <div class='results'>
                 <h3 class='results'>Have I Been Pwned Results</h3>
-                <hr/>
+                <hr class='orange'></hr>
                 
                 <div class='results_hibpr_row'>
                     <div class='results_hibpr_column'>
@@ -172,7 +173,7 @@ class PastebinResults extends React.Component{
         return(
             <div>
                 <h3 class='results'>Pastebin Results</h3>
-                <hr/>
+                <hr class='orange'></hr>
                 <PastebinList />
             </div>
         );
@@ -195,7 +196,7 @@ class DarknetList extends React.Component{
 
 
         return(
-            <div class ='darknet_list'>
+            <div>
                 {results}
             </div>
         );
@@ -206,17 +207,21 @@ class DarknetListing extends React.Component{
     render(){
         return(
             <div>
-                <h3> {this.props.marketName}</h3>
-                
-
-                <div>
-                   <img src={this.props.imageSrc}></img>
+                <div class='results_hibpr_row'>
+                    <div class='results_hibpr_column'>
+                        <img src={this.props.imageSrc}></img>
+                    </div>
+                    <div class='results_hibpr_columnr'>
+                        <h3>{this.props.marketName}</h3>
+                        <p>
+                            {this.props.description}
+                        </p>
+                        <label><b>Total Listings </b>{this.props.totalListings}</label><br/>
+                        <label><b>Link: </b> {this.props.marketName}</label><br/>
+                        
+                        
+                    </div>
                 </div>
-                <label><b>Total Listings:</b><label> {this.props.totalListings}</label></label><br/>
-                <label><b>Drug Listings: </b> <label> {this.props.drugsListings} </label></label><br/>
-                <label><b>Description: </b><label> {this.props.description} </label></label><br/>
-
-
             </div>
         );
     }
@@ -225,9 +230,9 @@ class DarknetListing extends React.Component{
 class DarknetResults extends React.Component{
     render(){
         return (
-            <div>
+            <div class='results'>
                 <h3 class='results'>Darknet Results</h3>
-                <hr/>
+                <hr class='orange'></hr>
                 <DarknetList />
             </div>
         );

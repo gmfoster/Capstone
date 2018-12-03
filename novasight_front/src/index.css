@@ -32,9 +32,7 @@ a.button {
   padding: 10px 10px;
 }
 
-a.pastebin_ink {
-  text-decoration: none;
-}
+
 
 label {
   
@@ -63,10 +61,7 @@ label.white{
   color:cyan;
 }
 
-h3.results{
-  color:white;
-  text-align:left;
-}
+
 
 div.left{
   background-color:red;
@@ -81,54 +76,8 @@ div.right{
   height:100%;
 }
 
-div.results_hibpr_row{
-  width:80%;
-  content: "";
-  display: table;
-  clear: both;
-  margin:auto;
-  
 
-}
 
-div.results_hibpr_column{
-  width: 25%;
-  
-  /*background-color: green;*/
-  display:table-cell;
-  text-align:center;
-  vertical-align: middle;
-  border-radius:20px;
-
-  
-}
-
-div.results_hibpr_columnr{
-  float:right;
-  width: 75%;
-  
-  padding-left:50px;
-  padding-top:25px;
-  text-align: left;
-  padding-right:50px;
-  padding-bottom:50px;
-  /*background-color: red;*/
-  border-radius:20px;
-  
-}
-
-div.pastebin_results{
-  margin:auto;
-  text-align:left;
-  padding-top: 20px;
-  width: 80%;
-}
-
-div.darknet_list {
-  text-align: left;
-  width:80%;
-  margin:auto;
-}
 
 div.navigation_container{
   background-color: #FF9833;
