@@ -56,25 +56,29 @@ const darknetResults = [
         totalListings:"120262",
         drugsListings:"61457",
         marketDescription:"Dream Market has been working since the latter part of 2013. It is a regular escrow marketplace",
-        imgSrc: dream_market
+        imgSrc: dream_market,
+        url:"http://6khhxwj7viwe5xjm.onion/?ai=552713"
     },{
         marketName:"Wall Street Market",
         totalListings:"9604",
         drugsListings:"4685",
         marketDescription:"The Wall Street Market is one of the most modern, innovative and up-to-date marketplaces on the dark web, including a wide-range of special features. This multisig darknet market grants the capability of PGP 2-factor authentication, an auto shop for digital goods and a bit message notification system. Moreover, exit scams are impossible because users’ funds are never fully controlled by the marketplace. The site also features a number of interesting components, such as a badge reward system and a beneficial EXIF remover for uploaded images.",
-        imgSrc: wall_st_market
+        imgSrc: wall_st_market,
+        url:"http://wallstyizjhkrvmj.onion/signup?ref=166794"
     },{
         marketName:"Silk Road 3 Market",
         totalListings:"51074",
         drugsListings:"33291",
         marketDescription:"The name Silk Road has become synonymous with buying drugs on the internet. Older Silk Road marketplaces have been closed down, however, every now and then, a new one with a similar name pops up. That’s why you should be wary of using this marketplace. Agora and other more trusted marketplaces are safer bets.",
-        imgSrc: silk_road_3
+        imgSrc: silk_road_3,
+        url:"http://silkroad7rn2puhj.onion/?register&ref=bVehnOXR"
     },{
         marketName:"Berlusconi Market",
         totalListings:"12224",
         drugsListings:"6459",
         marketDescription:"Berlusconi Market surfaced in the summer of 2017. It does not contain multisig and forced vendor PGP but it does have 2FA. The commission is 2% and the vendor bond varies from $0-250.",
-        imgSrc:berlusconi_market
+        imgSrc:berlusconi_market,
+        url:" http://berluscqui3nj4qz.onion/"
     }
 ];
 
@@ -191,6 +195,7 @@ class DarknetList extends React.Component{
                     totalListings = {result.totalListings}
                     description = {result.marketDescription}
                     marketName = {result.marketName}
+                    url = {result.url}
                 />
         ));
 
@@ -217,7 +222,7 @@ class DarknetListing extends React.Component{
                             {this.props.description}
                         </p>
                         <label><b>Total Listings </b>{this.props.totalListings}</label><br/>
-                        <label><b>Link: </b> {this.props.marketName}</label><br/>
+                        <label><b>Link: </b> {this.props.url}</label><br/>
                         
                         
                     </div>
