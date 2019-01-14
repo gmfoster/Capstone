@@ -10,6 +10,7 @@ import os
 class Pastebin_Module():
     def __init__(self):
         #initialize something
+        print("This is a " + platform + "machine.")
         dirPath = os.path.dirname(os.path.realpath(__file__))
         self.moduleName = "Pastebin"
         if platform == "linux" or platform == "linux2":
