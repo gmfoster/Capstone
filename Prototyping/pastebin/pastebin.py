@@ -44,7 +44,7 @@ class Pastebin_Module():
         if(len(pageRootChildren) != 0):
             numPages = len(pageRootChildren)
 
-        print("Number of pages: " + str(numPages))
+        #print("Number of pages: " + str(numPages))
 
         while(currentPage <= numPages):
             elementRoots = []
@@ -52,14 +52,16 @@ class Pastebin_Module():
             for element in elementRoots:
                 try:
                     e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
+                    #print("Adding paste url: " + str(e.text))
+                    #print("Current Page is " + str(currentPage))
                     urls.append(str(e.text))
                 except:
                     print("No urls because search results returned an empty page")
 
-            print("Number of urls found on this page: " + str(len(urls)))
+            #print("Number of urls found on this page: " + str(len(urls)))
 
-            for element in urls:
-                print(element)
+            #for element in urls:
+                #print(element)
 
             if(currentPage < numPages):
                 try:
@@ -77,12 +79,18 @@ class Pastebin_Module():
         
         print(pasteKeys)
         
+        return pasteKeys
 
+    def scrapingApiFromKeys(self, pasteKeys):
+        print("api calls")
 
-        # //*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[2]/div[11]/div/div[1]
-        # //*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[2]/div[11]/div/div[2]
-        # //*[@id="___gcse_0"]/div/div/div/div[5]/div[2]/div/div/div[2]/div[11]/div/div[3]
+    def search(self, keyword):
+        results = []
+        keys = self.seleniumSearch(keyword)
+        results = self.scrapingApiFromKeys(keys)
+        return results
+        
 
 if __name__ == "__main__":
     paste = Pastebin_Module()
-    paste.seleniumSearch("umail.ucsb.edu")
+    paste.search("umail.ucsb.edu")
