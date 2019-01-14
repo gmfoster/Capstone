@@ -5,6 +5,7 @@ import wall_st_market from './images/wall_st_market.png';
 import dream_market from './images/dream_market.png';
 import silk_road_3 from './images/silk_road_3.png';
 import berlusconi_market from './images/berlusconi_market.png';
+import './InvestigationResults.css';
 
 
 const invesitgationInfo = {
@@ -16,7 +17,7 @@ const invesitgationInfo = {
 
 
 const hibpResults = {
-    companyName: "Abdobe",
+    companyName: "Adobe",
     dateBreached:"4 October 2013",
     dateAdded:"4 December 2013",
     compromisedAccounts: "152,445,165",
@@ -55,37 +56,41 @@ const darknetResults = [
         totalListings:"120262",
         drugsListings:"61457",
         marketDescription:"Dream Market has been working since the latter part of 2013. It is a regular escrow marketplace",
-        imgSrc: dream_market
+        imgSrc: dream_market,
+        url:"http://6khhxwj7viwe5xjm.onion/?ai=552713"
     },{
         marketName:"Wall Street Market",
         totalListings:"9604",
         drugsListings:"4685",
         marketDescription:"The Wall Street Market is one of the most modern, innovative and up-to-date marketplaces on the dark web, including a wide-range of special features. This multisig darknet market grants the capability of PGP 2-factor authentication, an auto shop for digital goods and a bit message notification system. Moreover, exit scams are impossible because users’ funds are never fully controlled by the marketplace. The site also features a number of interesting components, such as a badge reward system and a beneficial EXIF remover for uploaded images.",
-        imgSrc: wall_st_market
+        imgSrc: wall_st_market,
+        url:"http://wallstyizjhkrvmj.onion/signup?ref=166794"
     },{
         marketName:"Silk Road 3 Market",
         totalListings:"51074",
         drugsListings:"33291",
         marketDescription:"The name Silk Road has become synonymous with buying drugs on the internet. Older Silk Road marketplaces have been closed down, however, every now and then, a new one with a similar name pops up. That’s why you should be wary of using this marketplace. Agora and other more trusted marketplaces are safer bets.",
-        imgSrc: silk_road_3
+        imgSrc: silk_road_3,
+        url:"http://silkroad7rn2puhj.onion/?register&ref=bVehnOXR"
     },{
         marketName:"Berlusconi Market",
         totalListings:"12224",
         drugsListings:"6459",
         marketDescription:"Berlusconi Market surfaced in the summer of 2017. It does not contain multisig and forced vendor PGP but it does have 2FA. The commission is 2% and the vendor bond varies from $0-250.",
-        imgSrc:berlusconi_market
+        imgSrc:berlusconi_market,
+        url:" http://berluscqui3nj4qz.onion/"
     }
 ];
 
 const InvestigationResults = () => (
     <div>
-        <h2 >Investigation Results</h2>
+        <h2 class='results' >Investigation Results</h2>
 
-        <div >
-            <label> User Intiated: <label> {invesitgationInfo.userInitated} </label></label><br/>
-            <label> Investigation #: <label>{invesitgationInfo.number}</label></label><br/>
-            <label>Investigation Duration: <label> {invesitgationInfo.duration} </label></label><br/>
-            <label>Risk Factor:<label> {invesitgationInfo.riskFactor}</label></label>
+        <div class='pastebin_results'>
+            <label> <b>User Intiated: </b><label> {invesitgationInfo.userInitated} </label></label><br/>
+            <label><b> Investigation #: </b><label>{invesitgationInfo.number}</label></label><br/>
+            <label> <b>Investigation Duration: </b><label> {invesitgationInfo.duration} </label></label><br/>
+            <label> <b>Risk Factor:</b><label> {invesitgationInfo.riskFactor}</label></label>
         </div>
 
         <ResultsList/>
@@ -138,9 +143,9 @@ class HaveIBeenPwnedResults extends React.Component{
 
     render(){
         return(
-            <div>
+            <div class='results'>
                 <h3 class='results'>Have I Been Pwned Results</h3>
-                <hr/>
+                <hr class='orange'></hr>
                 
                 <div class='results_hibpr_row'>
                     <div class='results_hibpr_column'>
@@ -172,7 +177,7 @@ class PastebinResults extends React.Component{
         return(
             <div>
                 <h3 class='results'>Pastebin Results</h3>
-                <hr/>
+                <hr class='orange'></hr>
                 <PastebinList />
             </div>
         );
@@ -190,12 +195,13 @@ class DarknetList extends React.Component{
                     totalListings = {result.totalListings}
                     description = {result.marketDescription}
                     marketName = {result.marketName}
+                    url = {result.url}
                 />
         ));
 
 
         return(
-            <div class ='darknet_list'>
+            <div>
                 {results}
             </div>
         );
@@ -206,15 +212,21 @@ class DarknetListing extends React.Component{
     render(){
         return(
             <div>
-                <h3> {this.props.marketName}</h3>
-                <div>
-                   <img src={this.props.imageSrc}></img>
+                <div class='results_hibpr_row'>
+                    <div class='results_hibpr_column'>
+                        <img src={this.props.imageSrc}></img>
+                    </div>
+                    <div class='results_hibpr_columnr'>
+                        <h3>{this.props.marketName}</h3>
+                        <p>
+                            {this.props.description}
+                        </p>
+                        <label><b>Total Listings </b>{this.props.totalListings}</label><br/>
+                        <label><b>Link: </b> {this.props.url}</label><br/>
+                        
+                        
+                    </div>
                 </div>
-                <label><b>Total Listings:</b><label> {this.props.totalListings}</label></label><br/>
-                <label><b>Drug Listings: </b> <label> {this.props.drugsListings} </label></label><br/>
-                <label><b>Description: </b><label> {this.props.description} </label></label><br/>
-
-
             </div>
         );
     }
@@ -223,9 +235,9 @@ class DarknetListing extends React.Component{
 class DarknetResults extends React.Component{
     render(){
         return (
-            <div>
+            <div class='results'>
                 <h3 class='results'>Darknet Results</h3>
-                <hr/>
+                <hr class='orange'></hr>
                 <DarknetList />
             </div>
         );

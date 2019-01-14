@@ -48,9 +48,9 @@ class StartInvestigation extends React.Component {
       <div class="module"> 
         
         <form>
-        <h2> Dark web sweep </h2>
+        <h2> Dark web Sweep </h2>
                 Input Key word:<br></br><br></br>
-        <input type="text" name="darkUserInTxt" value=""></input><br></br><br></br>
+        <input type="text" name="darkUserInTxt" ></input><br></br><br></br>
         <input type="reset"></input>
       </form><br></br>
   
@@ -59,10 +59,12 @@ class StartInvestigation extends React.Component {
      
      
      
-      <h2>Start Investigation</h2>
-      <button>
-      <Link to='/investigationprogress'><code>   Investigate   </code></Link>
-      </button>
+      <br></br><br></br>
+      <div class="button_link_start"><Link to='/investigationprogress'><code class="button_link">Analyze Input</code></Link></div>
+      
+    
+
+ 
       
     </div>
     );

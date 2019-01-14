@@ -15,36 +15,15 @@ code {
 
 div.centered_div {
   text-align: center;
-  align:center;
   margin:auto;
   width:100%;
-  background-color: #FF6600;
+  /*background-color: #FF6600;*/
   padding-top: 50px;
   padding-bottom: 50px;
   
 }
 
-table.investigation_list{
-  width:50%;
-  align:center;
-  margin:auto;
 
-}
-
-table, th, td {
-  border: 1px solid black;
-}
-
-table{
-    text-align:center;
-    border-collapse:collapse;
-}
-
-th {
-  background-color: #FF6600;
-  color: white;
-  height:40px;
-}
 
 a.button {
   background-color: #FF6600;
@@ -53,27 +32,25 @@ a.button {
   padding: 10px 10px;
 }
 
-a.pastebin_ink {
-  text-decoration: none;
-}
+
 
 label {
   
   width:100%;
   text-align: left;
-  align:left;
+  
   
 }
 
 div.padded {
   padding-top: 50px;
   padding-bottom: 50px;
-  align:center;
+  
   text-align: center;
 }
 
 div.left_div {
-  align:left;
+  text-align:left;
   padding-left: 100px;
   width: 50%;
   margin:auto;
@@ -84,72 +61,58 @@ label.white{
   color:cyan;
 }
 
-h3.results{
-  color:white;
-  text-align:left;
-}
+
 
 div.left{
   background-color:red;
   width:25%;
-  align:left;
   height:100%;
 }
 
 div.right{
   background-color:red;
   width:25%;
-  align:right;
   margin:auto;
   height:100%;
 }
 
-div.results_hibpr_row{
-  width:80%;
-  content: "";
-  display: table;
-  clear: both;
+
+
+
+div.navigation_container{
+  background-color: #FF9833;
+  width:100%;
+}
+
+div.navigation_header{
+  background-color: #FF9833;
+  padding-top:20px;
+  width:95%;
+  margin:auto
+}
+
+a.undecorated{
+  margin:auto; 
+  text-decoration:none;
+}
+
+
+
+code.button_link{
   margin:auto;
-  
-
-}
-
-div.results_hibpr_column{
-  width: 25%;
-  
-  /*background-color: green;*/
-  display:table-cell;
-  text-align:center;
-  vertical-align: middle;
-  border-radius:20px;
-
+  color:white;
   
 }
 
-div.results_hibpr_columnr{
-  float:right;
-  width: 75%;
-  
-  padding-left:50px;
-  padding-top:25px;
-  text-align: left;
-  padding-right:50px;
-  padding-bottom:50px;
-  /*background-color: red;*/
-  border-radius:20px;
-  
-}
-
-div.pastebin_results{
+div.button_link{
+  background-color: #FF9833;
   margin:auto;
-  text-align:left;
-  padding-top: 20px;
-  width: 80%;
+  padding-top:15px;
+  padding-bottom:15px;
+  padding-left:10px;
+  padding-right:10px;
+  display:inline;
 }
 
-div.darknet_list {
-  text-align: left;
-  width:80%;
-  margin:auto;
-}
+
 

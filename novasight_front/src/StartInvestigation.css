@@ -1,9 +1,9 @@
 
 
 div.module{
-  width: 25%;
+  width: 75%;
   height: 175px;
-  background-color: grey;
+  background-color: #cccccc;
   text-align:left;
   border-radius:10px;
   margin:auto;
@@ -14,13 +14,15 @@ div.centered_div_mod {
     text-align: center;
     margin:auto;
     width:100%;
-    background-color: #FF6600;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    /*background-color: #FF6600;*/
+    /* padding-top: 25px; */
+    padding-bottom: 50px;
     
   }
 
-  h2 {
+
+
+h2 {
     display: block;
     font-size: 1.5em;
     margin-top: 1em;
@@ -29,3 +31,18 @@ div.centered_div_mod {
     margin-right: 0;
     font-weight: bold;
 }
+
+button { 
+    background-color: #FF9833;
+}
+
+div.button_link_start{
+    background-color: #FF9833;
+    /* margin:auto; */
+    margin-top: auto;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:10px;
+    padding-right:10px;
+    display:inline;
+  }
