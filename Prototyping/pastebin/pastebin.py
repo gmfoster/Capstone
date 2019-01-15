@@ -6,6 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from sys import platform
 import os
+import time
 
 class Pastebin_Module():
     def __init__(self):
@@ -83,7 +84,10 @@ class Pastebin_Module():
         return pasteKeys
 
     def scrapingApiFromKeys(self, pasteKeys):
-        print("api calls")
+        for i in range(len(pasteKeys)):
+            response = requests.get("http://scrape.pastebin.com/api_scrape_item.php?i=" + pasteKeys[i])
+            print(response.text)
+            time.sleep(1)
 
     def search(self, keyword):
         results = []
