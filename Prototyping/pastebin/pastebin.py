@@ -1,7 +1,10 @@
 import urllib
 import urllib.request
 import requests
+import pyrebase
 import json
+import hashlib
+from flask import Flask, jsonify
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from sys import platform
@@ -32,6 +35,21 @@ class Pastebin_Module():
         #print(search)
         #print(search.text)
         #print(search.json)
+        
+
+#Firebase Config
+        config = {
+            "apiKey": "AIzaSyCGkOiKMSxR9NRM-d1WkC2kEYOGp2d8j5k",
+            "authDomain": "novacoast-capstone.firebaseapp.com",
+            "databaseURL": "https://novacoast-capstone.firebaseio.com",
+            "projectId": "novacoast-capstone",
+            "storageBucket": "novacoast-capstone.appspot.com",
+            "messagingSenderId": "1039131724249"
+        }
+        self.firebase = pyrebase.initialize_app(config)
+        self.db = self.firebase.database()
+
+
 
     def seleniumSearch(self, searchTerm):
         pasteKeys = []
@@ -83,19 +101,28 @@ class Pastebin_Module():
         
         return pasteKeys
 
-    def scrapingApiFromKeys(self, pasteKeys):
+    def scrapingApiFromKeys(self, pasteKeys, id):
         for i in range(len(pasteKeys)):
             response = requests.get("http://scrape.pastebin.com/api_scrape_item.php?i=" + pasteKeys[i])
-            print(response.text)
+            data = {"content":response.text}
+            #data = response.json()
+            self.db.child("paste_search").child(id).child(pasteKeys[i]).set(data)
+            #print(response.text)
+            #self.db.child("test").push({"links":response.text})
             time.sleep(1)
 
     def search(self, keyword):
         results = []
         keys = self.seleniumSearch(keyword)
-        results = self.scrapingApiFromKeys(keys)
+        id = hashlib.md5(keyword.encode()).hexdigest()
+        data = ""
+        for i in range(len(keys)):
+            self.db.child("paste_search").child(id).child(keys[i]).set(data)
+        
+        results = self.scrapingApiFromKeys(keys, id)
         return results
         
-
+                                      
 if __name__ == "__main__":
     paste = Pastebin_Module()
     paste.search("umail.ucsb.edu")
