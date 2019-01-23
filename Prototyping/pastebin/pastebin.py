@@ -7,6 +7,7 @@ import hashlib
 from flask import Flask, jsonify
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import NoSuchElementException,StaleElementReferenceException
 from sys import platform
 import os
 import time
@@ -58,30 +59,26 @@ class Pastebin_Module():
         currentPage = 1
 
         self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
-        pageRoot = self.browser.find_element_by_class_name("gsc-cursor")
-        pageRootChildren = pageRoot.find_elements_by_css_selector("*")
 
-        if(len(pageRootChildren) != 0):
+        #Finds the number of pages that return the results of the search
+        try:
+            pageRoot = self.browser.find_element_by_class_name("gsc-cursor")
+            pageRootChildren = pageRoot.find_elements_by_css_selector("*")
             numPages = len(pageRootChildren)
+        except NoSuchElementException:
+            print("Only one page")
+            numPages = 1
 
-        #print("Number of pages: " + str(numPages))
-
+        #Finds urls and adds them to a list before iterating to next page if necesary
         while(currentPage <= numPages):
             elementRoots = []
             elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
             for element in elementRoots:
                 try:
                     e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
-                    #print("Adding paste url: " + str(e.text))
-                    #print("Current Page is " + str(currentPage))
                     urls.append(str(e.text))
-                except:
-                    print("No urls because search results returned an empty page")
-
-            #print("Number of urls found on this page: " + str(len(urls)))
-
-            #for element in urls:
-                #print(element)
+                except StaleElementReferenceException:
+                   print("No urls because search results returned a stale page")
 
             if(currentPage < numPages):
                 try:
@@ -91,14 +88,16 @@ class Pastebin_Module():
             currentPage = currentPage + 1
 
         self.browser.close()
-        for element in urls:
-            if(element != ""):
-                pasteKey = element.split("pastebin.com/")
-                if(pasteKey[1] not in pasteKeys):
-                    pasteKeys.append(pasteKey[1])
+
+        #Finds pasteKey from url
+        for resultURL in urls:
+            if(resultURL != ""):
+                pasteKeySplit = resultURL.split("pastebin.com/")
+                if(pasteKeySplit[1] not in pasteKeys):
+                    pasteKeys.append(pasteKeySplit[1])
         
+        #Print and return paste keys
         print(pasteKeys)
-        
         return pasteKeys
 
     def scrapingApiFromKeys(self, pasteKeys, id):
