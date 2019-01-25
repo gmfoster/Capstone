@@ -5,3 +5,4 @@ app = Flask(__name__)
 from app import routes
 from app import manager
 from app import pwned
+from app import pastebin
