@@ -8,6 +8,7 @@ import StartInvestigation from './StartInvestigation';
 import InvestigationProgress from './InvestigationProgress'
 
 
+
 import createHistory from 'history/createBrowserHistory'; 
 import InvestigationResults from './InvestigationResults';
 
@@ -54,20 +55,32 @@ class Router extends React.Component {
 
 const App = () => (
   <Router>
-    <div className='ui text container'>
-      <div class='navigation_container'>
-        <div class= 'navigation_header'>
-          <b>
-          <Link to='/myinvestigations'>
-              <code class='button_link'>
-                NovaSight
-              </code>
-          </Link>
-          </b>
-          
-        </div>
-        <hr/>
-      </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">  
+      
+            <a class="navbar-brand" href="#">Project Bob</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">This Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">That Link</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">The Other Link</a>
+                    </li>
+                </ul>
+            </div>
+      </nav> 
+
       
 
       {/* <Route path='/login' component={Login}/> */}
@@ -76,8 +89,7 @@ const App = () => (
       <Route path='/investigationprogress' component={InvestigationProgress}/>
       <Route path='/investigationresults' component={InvestigationResults}/>
 
-      
-    </div>
+
   </Router>
 );
 
