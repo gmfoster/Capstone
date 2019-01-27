@@ -1,0 +1,3 @@
+npm install node-sass
+npm install bootstrap
+npm install jquery popper.js

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import './App.css';
+import './Style Sheets/App.css';
 import MyInvestigations from './MyInvestigations';
 import Link from './Link';
 import StartInvestigation from './StartInvestigation';
@@ -70,7 +70,7 @@ const App = () => (
       </div>
       
 
-      <Route path='/login' component={Login}/>
+      {/* <Route path='/login' component={Login}/> */}
       <Route path='/myinvestigations' component={MyInvestigations}/>
       <Route path='/startinvestigation' component={StartInvestigation}/>
       <Route path='/investigationprogress' component={InvestigationProgress}/>

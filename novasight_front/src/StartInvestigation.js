@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Link from './Link';
-import './App.css';
-import './index.css';
-import './StartInvestigation.css';
+import './Style Sheets/App.css';
+import './Style Sheets/index.css';
+import './Style Sheets/StartInvestigation.css';
 import { link } from 'fs';
 import HaveIBeenPwnd from './HaveIBeenPwnd';
 

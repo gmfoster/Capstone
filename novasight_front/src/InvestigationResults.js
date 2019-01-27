@@ -5,7 +5,7 @@ import wall_st_market from './images/wall_st_market.png';
 import dream_market from './images/dream_market.png';
 import silk_road_3 from './images/silk_road_3.png';
 import berlusconi_market from './images/berlusconi_market.png';
-import './InvestigationResults.css';
+import './Style Sheets/InvestigationResults.css';
 
 
 const invesitgationInfo = {

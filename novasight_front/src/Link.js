@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
-import './App.css';
+import './Style Sheets/App.css';
 
 const Link = ({ to, children }, {history}) => (
     <a  class='undecorated'

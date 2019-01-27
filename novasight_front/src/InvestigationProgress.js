@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Link from './Link';
 import logo from './logo.svg'
-import './App.css';
-import './InvestigationProgress.css'
+import './Style Sheets/App.css';
+import './Style Sheets/InvestigationProgress.css'
 
 const investigations = {
     investigation:5,
