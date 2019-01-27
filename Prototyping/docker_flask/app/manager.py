@@ -1,14 +1,15 @@
+import pyrebase
 import pastebin
 import hashlib
 #Store sensors in database, in infinite look query database for all sensors 
 class Manager():
     def __init__(self):
         #self.pastebin_module = pastebin.Pastebin_Module()
-        self.paste_sensor = dict() #dict to store hashed values of paste keywords
+        self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
-        self.pwned_sensor = dict() #dict to store hashed values of pwned keywords
+        self.pwned_sensors = dict() #dict to store hashed values of pwned keywords
         self.pwned_keywords = [] #array to store pwned keywords for search
-        self.dark_sensor = dict() #dict to store hashed valuse of darknet keywords
+        self.dark_sensors = dict() #dict to store hashed valuse of darknet keywords
         self.dark_keywords = [] #array to store darknet keywords
 
 
@@ -25,24 +26,13 @@ class Manager():
         self.db = self.firebase.database()
 
 
-    def addPasteSensor(self, sensor):
-        self.paste_keywords.append(sensor)
-        hash = hashlib.md5(sensor.encode()).hexdigest()
-        self.paste_sensor[sensor] = hash
-        
-    def getNewSensor(self, sensor, type):  #might not need this???
-        #this will run in loop with timer
-        if(type == "paste"):
-            self.addPasteSensor(sensor)
-
-        elif(type == "pwned"):
-            #stub, process pwned here
-            return;
-        
-        elif(type == "dark"):
-            #stub, process dark here
-            return;
-
+    def getSensors(self):
+        self.paste_sensors = self.db.child("sensors").child("paste_sensors").get().val()
+        for k, v in self.paste_sensors.items():
+            for k1, v1 in v.items():
+                self.paste_keywords.append(v1)
+        print(self.paste_keywords)
+    
     def pasteTimedSearch(self):
         while(1):
             
@@ -51,16 +41,11 @@ class Manager():
                     paste = pastebin.Pastebin_Module()
                     paste.search(self.paste_keywords[i])
                 time.sleep(15)
+
     
-    def getUserInput(self): #testing multiprocessing
-        while(1):
-            sensor = input("Add new sensor: ")
-            self.getNewSensor(sensor, "paste")
-            print(self.paste_keywords)
-            print(self.paste_sensor)
 
 if __name__ == "__main__":
     manager = Manager()
-    manager.pasteTimedSearch()
-   
+    #manager.pasteTimedSearch()
+    manager.getSensors()
        

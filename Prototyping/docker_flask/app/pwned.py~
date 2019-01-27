@@ -1,3 +1,5 @@
+import pyrebase
+import hashlib
 import re
 import urllib
 import urllib.request
@@ -9,16 +11,34 @@ class Pwned_Module():
         self.url_1 = url_1
         self.url_2 = url_2
 
+#Firebase Config                                                                       
+                                                                                      
+        config = {
+            "apiKey": "AIzaSyCGkOiKMSxR9NRM-d1WkC2kEYOGp2d8j5k",
+            "authDomain": "novacoast-capstone.firebaseapp.com",
+            "databaseURL": "https://novacoast-capstone.firebaseio.com",
+            "projectId": "novacoast-capstone",
+            "storageBucket": "novacoast-capstone.appspot.com",
+            "messagingSenderId": "1039131724249"
+        }
+        self.firebase = pyrebase.initialize_app(config)
+        self.db = self.firebase.database()
+
+
+
     def search(self, email):
         url = self.url_1 + email + self.url_2
         response = requests.get(url)
-        
+        id = hashlib.md5(email.encode()).hexdigest()
         status = response.status_code
-
-        if not re.match("(\w+[-|.|\w])*@(\w+[.])+\w+", email, re.IGNORECASE):
+        print(response)
+        if not re.match("(\w+[-|.|\w])+@(\w+[.])+\w+", email, re.IGNORECASE):
             status = 400
-
+            
         if status == 200:
+            data = response.json()
+            self.db.child("pwned_search").child(id).set(data)
+            print(data)
             return (response.json())
         elif status == 201:
             error = {"developerMessage" : "Created"} 
@@ -44,3 +64,8 @@ class Pwned_Module():
         elif status == 500:
             error = {'developerMessage' : 'Internal Server Error'}
             return(error)
+
+#testing
+if __name__ == "__main__":
+    pwned = Pwned_Module()
+    pwned.search("grahammfoster96@gmail.com")
