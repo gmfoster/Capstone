@@ -70,8 +70,7 @@ const App = () => (
       </div>
       
 
-     
-
+      <Route path='/login' component={Login}/>
       <Route path='/myinvestigations' component={MyInvestigations}/>
       <Route path='/startinvestigation' component={StartInvestigation}/>
       <Route path='/investigationprogress' component={InvestigationProgress}/>

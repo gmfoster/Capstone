@@ -21,7 +21,7 @@ class InvestigationProgress extends React.Component {
           text += possible.charAt(Math.floor(Math.random() * possible.length));
         console.log(text);
         return text;
-      }
+    }
 
     render() { 
         return(
@@ -37,8 +37,8 @@ class InvestigationProgress extends React.Component {
                     </div>
                 </div>
             </div>
-  );
-        }
+        );
     }
+}
 
   export default InvestigationProgress
