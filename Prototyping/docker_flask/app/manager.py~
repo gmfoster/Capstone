@@ -11,6 +11,20 @@ class Manager():
         self.dark_sensor = dict() #dict to store hashed valuse of darknet keywords
         self.dark_keywords = [] #array to store darknet keywords
 
+
+#Firebase Config                                                                
+        config = {
+            "apiKey": "AIzaSyCGkOiKMSxR9NRM-d1WkC2kEYOGp2d8j5k",
+            "authDomain": "novacoast-capstone.firebaseapp.com",
+            "databaseURL": "https://novacoast-capstone.firebaseio.com",
+            "projectId": "novacoast-capstone",
+            "storageBucket": "novacoast-capstone.appspot.com",
+            "messagingSenderId": "1039131724249"
+        }
+        self.firebase = pyrebase.initialize_app(config)
+        self.db = self.firebase.database()
+
+
     def addPasteSensor(self, sensor):
         self.paste_keywords.append(sensor)
         hash = hashlib.md5(sensor.encode()).hexdigest()

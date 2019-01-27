@@ -103,7 +103,7 @@ class Pastebin_Module():
     def scrapingApiFromKeys(self, pasteKeys, id):
         for i in range(len(pasteKeys)):
             response = requests.get("http://scrape.pastebin.com/api_scrape_item.php?i=" + pasteKeys[i])
-            data = {"content":response.text}
+            #data = {"content":response.text}
             #data = response.json()
             #self.db.child("paste_search").child(id).child(pasteKeys[i]).set(data)
             #print(response.text)

@@ -45,6 +45,7 @@ class Manager():
 
     def pasteTimedSearch(self):
         while(1):
+            
             if (len(self.paste_keywords) != 0):
                 for i in range(len(self.paste_keywords)):
                     paste = pastebin.Pastebin_Module()
