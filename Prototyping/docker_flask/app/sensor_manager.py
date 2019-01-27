@@ -48,13 +48,14 @@ if __name__ == "__main__":
     Sensor_Manager = Sensor_Manager()
     Sensor_Manager.addSensor("umail.ucsb.edu", "paste")
     Sensor_Manager.addSensor("graham", "paste")
-    id = hashlib.md5("graham".encode()).hexdigest()
     sensors = Sensor_Manager.db.child("sensors").child("paste_sensors").get()
     values = sensors.val()
-    
+    print(values)
     t = []
     for k, v in values.items():
-        t.append(v)
-
-
+        for k1, v1 in v.items():
+            t.append(v1)
     print(t)
+
+
+
