@@ -14,14 +14,6 @@ let styles = {
 
 const Home = () => (
     <div>
-        <html lang="en">
-        {/* <meta charset="utf-8"></meta>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
-        {} */}
-
-        {/* <body class="pt-0 mb-5"> */}
-        
-
         <div class="jumbotron jumbotron-fluid bg-primary text-light">
             <div class="container">
             <p class="lead text-uppercase">Name, Text & Layout Pending</p>
@@ -34,7 +26,7 @@ const Home = () => (
             <div class="row align-items-center px-3 py-5">
                 <div class="col-6">
                     <img class="img-fluid rounded shadow" src="images/a.png"></img>
-              
+                </div>
                 <div class="col-5 mx-auto">
                     <p class="lead text-muted text-uppercase">Brand Monitoring</p>
                     <h1>Get Rapidly Alerted About Risks to Your Brand</h1>
@@ -42,12 +34,12 @@ const Home = () => (
                 </div>
             </div>
         </div>
- 
+
         <div class="container-fluid">
             <div class="row align-items-center px-3 py-5">
                 <div class="col-5 mx-auto">
                     <p class="lead text-muted text-uppercase">Brand Monitoring</p>
-                    <h1>A Sens or on the Widest Breadth of Sources</h1>
+                    <h1>A Sensor on the Widest Breadth of Sources</h1>
                     <p>By configuring our technology to continuously monitor for threat-related references to your brand, industry, or technologies, you’ll have a sensor on the widest breadth of threat data sources, including paste sites and the dark web.</p>
                 </div>
                 <div class="col-6">
@@ -97,19 +89,11 @@ const Home = () => (
                     <div class="col">
                         <a href="#" class="text-reset">The Other Link</a>
                     </div>
-                </div> 
+                </div>
                 <hr class="border-light"></hr>
                 <p><small>Copyright &copy; Capstone 2019</small></p>
             </div>
         </div>
-
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="js/bootstrap.min.js"></script>
-        </div>
-        {/* </body> */}
-     </html>
-        
     </div>
    
   );

@@ -11,7 +11,6 @@ import Login from './Login'
 
 
 import createHistory from 'history/createBrowserHistory'; 
-import InvestigationResults from './Login';
 
 
 
