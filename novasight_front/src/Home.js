@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import Link from './Link';
 import './Style Sheets/App.css';
@@ -11,7 +12,7 @@ let styles = {
     height: '150px'
 }
 
-const MyInvestigations = () => (
+const Home = () => (
     <div>
         <html lang="en">
         {/* <meta charset="utf-8"></meta>
@@ -191,4 +192,4 @@ const MyInvestigations = () => (
     }
   ];
 
-  export default MyInvestigations;
+  export default Home;

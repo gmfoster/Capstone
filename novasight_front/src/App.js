@@ -2,15 +2,16 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import './Style Sheets/App.css';
-import MyInvestigations from './MyInvestigations';
+import Home from './Home';
 import Link from './Link';
-import StartInvestigation from './StartInvestigation';
-import InvestigationProgress from './InvestigationProgress'
+import Dashboard from './Dashboard';
+import Sensors from './Sensors'
+import Login from './Login'
 
 
 
 import createHistory from 'history/createBrowserHistory'; 
-import InvestigationResults from './InvestigationResults';
+import InvestigationResults from './Login';
 
 
 
@@ -65,17 +66,40 @@ const App = () => (
             
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                      <Link to='/home'>
+                        <a class="nav-link">
+                            Home
+                        </a>
+                      </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">This Link</a>
+                      <Link to='/dashboard'>
+                        <a class="nav-link">
+                            Dashboard
+                        </a>
+                      </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">That Link</a>
+                      <Link to='/sensors'>
+                        <a class="nav-link">
+                            Sensors
+                        </a>
+                      </Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">The Other Link</a>
+                      <Link to='/sensors'>
+                        <a class="nav-link">
+                            Alerts
+                        </a>
+                      </Link>
+                    </li>
+                    <li class="nav-item">
+                      <Link to='/login'>
+                        <a class="nav-link">
+                            Login
+                        </a>
+                      </Link>
                     </li>
                 </ul>
             </div>
@@ -84,10 +108,10 @@ const App = () => (
       
 
       {/* <Route path='/login' component={Login}/> */}
-      <Route path='/myinvestigations' component={MyInvestigations}/>
-      <Route path='/startinvestigation' component={StartInvestigation}/>
-      <Route path='/investigationprogress' component={InvestigationProgress}/>
-      <Route path='/investigationresults' component={InvestigationResults}/>
+      <Route path='/home' component={Home}/>
+      <Route path='/dashboard' component={Dashboard}/>
+      <Route path='/sensors' component={Sensors}/>
+      <Route path='/login' component={Login}/>
 
 
   </Router>

@@ -10,7 +10,7 @@ import HaveIBeenPwnd from './HaveIBeenPwnd';
 
 
 
-class StartInvestigation extends React.Component {
+class Dashboard extends React.Component {
   handleClick() {
     
     //TODO: REST Api call and User input checker
@@ -18,7 +18,7 @@ class StartInvestigation extends React.Component {
     return(
       <div> 
       
-      <Link to='/investigationprogress'>
+      < Link to='/investigationprogress'>
 
           </Link>
         </div>
@@ -88,4 +88,4 @@ class StartInvestigation extends React.Component {
 
 //  <code>Investigate</code>
 
-  export default StartInvestigation;
+  export default Dashboard;

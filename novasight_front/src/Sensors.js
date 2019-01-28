@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Link from './Link';
 import logo from './logo.svg'
 import './Style Sheets/App.css';
 import './Style Sheets/InvestigationProgress.css'
@@ -11,7 +10,7 @@ const investigations = {
 }
 
 
-class InvestigationProgress extends React.Component {
+class Sensors extends React.Component {
 
      update() {
         var text = "";
@@ -41,4 +40,4 @@ class InvestigationProgress extends React.Component {
     }
 }
 
-  export default InvestigationProgress
+  export default Sensors
