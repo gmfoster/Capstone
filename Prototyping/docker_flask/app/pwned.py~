@@ -32,7 +32,7 @@ class Pwned_Module():
         response = requests.get(url, headers=self.headers)
         id = hashlib.md5(email.encode()).hexdigest()
         status = response.status_code
-   
+        print(response)
         if not re.match("(\w+[-|.|\w])+@(\w+[.])+\w+", email, re.IGNORECASE):
             status = 400
             
@@ -59,7 +59,8 @@ class Pwned_Module():
             error = {'Error 403' : 'No user agent has been specified in the request'}
             return (error)
         elif status == 404:
-            error = {'Error 404' : 'Congratulations you have not been pwned'}
+            error = {'404' : 'Congratulations you have not been pwned'}
+            self.db.child("pwned_search").child(id).set(error)
             return (error)
         elif status == 409:
             error = {'developerMessage' : 'Conflict'}
@@ -68,13 +69,9 @@ class Pwned_Module():
             error = {'developerMessage' : 'Internal Server Error'}
             return(error)
 
-    def get_search_results(self, email):
-        id = hashlib.md5(email.encode()).hexdigest()
-        data =  self.db.child("pwned_search").child(id).get()
-        return(data.val())
 
 #testing
-#if __name__ == "__main__":
-#    pwned = Pwned_Module()
-    #pwned.search("grahammfoster96@gmail.com")
-#    pwned.get_search_results("grahammfoster96@gmail.com")
+if __name__ == "__main__":
+    pwned = Pwned_Module()
+    pwned.search("gmfoster@umail.ucsb.edu")
+    

@@ -1,7 +1,10 @@
-
+import time
+from app import pwned
 import pyrebase
 import hashlib
+
 #Store sensors in database, in infinite look query database for all sensors 
+
 class Manager():
     def __init__(self):
         #self.pastebin_module = pastebin.Pastebin_Module()
@@ -11,7 +14,7 @@ class Manager():
         self.pwned_keywords = [] #array to store pwned keywords for search
         self.dark_sensors = dict() #dict to store hashed valuse of darknet keywords
         self.dark_keywords = [] #array to store darknet keywords
-
+        self.pwned_module = pwned.Pwned_Module()
 
 #Firebase Config                                                                
         config = {
@@ -28,32 +31,45 @@ class Manager():
 
     def getPasteSensors(self):
         self.paste_sensors = self.db.child("sensors").child("paste_sensors").get().val()
+        seen = set(self.paste_keywords)
         for k, v in self.paste_sensors.items():
             for k1, v1 in v.items():
-                self.paste_keywords.append(v1)
+                if v1 not in seen:
+                    seen.add(v1)
+                    self.paste_keywords.append(v1)
         print(self.paste_keywords)
 
     def getPwnedSensors(self):
         self.pwned_sensors = self.db.child("sensors").child("pwned_sensors").get().val()
+        seen = set(self.pwned_keywords)
         for k, v in self.pwned_sensors.items():
             for k1, v1 in v.items():
-                self.pwned_keywords.append(v1)
+                if v1 not in seen:
+                    seen.add(v1)
+                    self.pwned_keywords.append(v1)
         print(self.pwned_keywords)    
 
-    def pasteTimedSearch(self):
-        self.getSensors()
+    def timedSearch(self):
+        
         while(1):
-            
+        #start infinite loop
+            self.getPasteSensors() #get paste sensors
             if (len(self.paste_keywords) != 0):
                 for i in range(len(self.paste_keywords)):
-                    paste = pastebin.Pastebin_Module()
-                    paste.search(self.paste_keywords[i])
-                time.sleep(15)
-
+                    #paste = pastebin.Pastebin_Module()
+                    #paste.search(self.paste_keywords[i])
+                    print("searching paste: " + self.paste_keywords[i])
+            self.getPwnedSensors() #get pwned sensors
+            if (len(self.pwned_keywords) != 0):
+                for i in range(len(self.pwned_keywords)):
+                    #pwned = pwned.Pwned_Module()
+                    self.pwned_module.search(self.pwned_keywords[i])
+            print("Sleeping for 5 seconds")
+            time.sleep(5)
     
 
-
+if __name__ == "__main__":
     manager = Manager()
-    manager.pasteTimedSearch()
-#    manager.getSensors()
+    manager.timedSearch()
+ #   manager.getPwnedSensors()
        
