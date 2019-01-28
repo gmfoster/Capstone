@@ -1,11 +1,9 @@
-#MIGHT NOT NEED THIS CLASS, IF WE ARE ADDING SENSORS FROM THE FRONTEND
 import pyrebase
 import hashlib
 import collections
 
 class Sensor_Manager():
-    def __init__(self):
-        
+    def __init__(self):        
 
 
 

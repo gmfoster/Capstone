@@ -2,6 +2,8 @@ from app import app
 from app import manager
 from app import pwned
 from app import dnscheck
+from app import pastebin
+from app import get_data
 import json
 import urllib.request
 import urllib
@@ -12,28 +14,23 @@ home = {'home' : 'this is the json returned to the homepage'}
 
 
 @app.route('/search/<string:email>', methods=['GET'])
-def get_tasks(email):
-    p = pwned.Pwned_Module()
-    response = p.search(email)
-    return (jsonify(response))
+def get_pwned(email):
+    getter = get_data.Get_Data()
+    data = getter.get_pwned(email)
+    return(jsonify(data))
 
-@app.route('/analyze/<string:module>/<string:args>')
-def analyze(module, args):
-    #m = manager.Manager()
-    #response = m.analyze()
-    return "This is a stub!"
+@app.route('/paste/<string:sensor>', methods=['GET'])
+def get_paste(sensor):
+    getter = get_data.Get_Data()
+    data = getter.get_paste(sensor)
+    return (jsonify(data))
 
-@app.route('/progress/<string:module>/<string:args>')
-def progress(module, args):
-    #m = manager.Manager()
-    #response = m.progress()
-    return "This is a stub!"
-
-@app.route('/report/<string:module>/<string:args>')
-def report(module, args):
-    #m = manager.Manager()
-    #response = m.report()
-    return "This is a stub!"
+@app.route('/virus/<string:url>', methods = ['GET'])
+def get_virus(url):
+#not sure how to get this to work since we cant enter a the actual url in the route
+    getter = get_data.Get_Data()
+    data = getter.get_virus(url)
+    return (jsonify(data))
 
 
 @app.route('/')

@@ -1,7 +1,7 @@
 import pyrebase
-import pastebin
 import hashlib
 #Store sensors in database, in infinite look query database for all sensors 
+
 class Manager():
     def __init__(self):
         #self.pastebin_module = pastebin.Pastebin_Module()
@@ -26,14 +26,22 @@ class Manager():
         self.db = self.firebase.database()
 
 
-    def getSensors(self):
+    def getPasteSensors(self):
         self.paste_sensors = self.db.child("sensors").child("paste_sensors").get().val()
         for k, v in self.paste_sensors.items():
             for k1, v1 in v.items():
                 self.paste_keywords.append(v1)
         print(self.paste_keywords)
-    
+
+    def getPwnedSensors(self):
+        self.pwned_sensors = self.db.child("sensors").child("pwned_sensors").get().val()
+        for k, v in self.pwned_sensors.items():
+            for k1, v1 in v.items():
+                self.pwned_keywords.append(v1)
+        print(self.pwned_keywords)    
+
     def pasteTimedSearch(self):
+        self.getSensors()
         while(1):
             
             if (len(self.paste_keywords) != 0):
@@ -44,8 +52,8 @@ class Manager():
 
     
 
-if __name__ == "__main__":
-    manager = Manager()
-    #manager.pasteTimedSearch()
-    manager.getSensors()
+#if __name__ == "__main__":
+#    manager = Manager()
+#    manager.pasteTimedSearch()
+#    manager.getSensors()
        
