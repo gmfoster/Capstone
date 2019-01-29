@@ -2,12 +2,6 @@ import smtplib
 from email.MIMEMultipart import MIMEMultipart
 from email.MIMEText import MIMEText
 
-class user():
-    def __init__(self, name, email, phone):
-        self.name = name
-        self.email = email
-        self.phone = phon
-
 class alert():
     def __init__(self, name, email, phone):
         self.name = name 
