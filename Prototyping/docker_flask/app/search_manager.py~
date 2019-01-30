@@ -1,15 +1,15 @@
 import time
-import pwned
+from app import pwned
 import pyrebase
 import hashlib
-import alert
+
 #Store sensors in database, in infinite look query database for all sensors 
 
-class Manager():
-    def __init__(self, name = "No name", email = "nobody@nowhere.com", phone = "+18005550000"):
+class Search_Manager():
+    def __init__(self, name = "Nobody", email = "noone@nowhere.com", phone = "+18005550000"):
         self.name = name
         self.email = email
-        self.phone = phone
+        self. phone = phone
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -18,7 +18,6 @@ class Manager():
         self.dark_sensors = dict() #dict to store hashed valuse of darknet keywords
         self.dark_keywords = [] #array to store darknet keywords
         self.pwned_module = pwned.Pwned_Module()
-        self.alertUser = alert()
 
 #Firebase Config                                                                
         config = {
@@ -61,22 +60,19 @@ class Manager():
             if (len(self.paste_keywords) != 0):
                 for i in range(len(self.paste_keywords)):
                     #paste = pastebin.Pastebin_Module()
-                    #self.paste.search(self.paste_keywords[i])
+                    #paste.search(self.paste_keywords[i])
                     print("searching paste: " + self.paste_keywords[i])
             self.getPwnedSensors() #get pwned sensors
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
                     #pwned = pwned.Pwned_Module()
                     self.pwned_module.search(self.pwned_keywords[i])
-            #if(pwned_module.search found something || paste.search found something):
-             #   self.alertUser.sendEmail(self.name, self.email)
-              #  self.alertUser.sendText(self.phone)
-            print("Sleeping for 15 seconds")
-            time.sleep(15)
+            print("Sleeping for 5 seconds")
+            time.sleep(5)
     
 
-if __name__ == "__main__":
-    manager = Manager()
-    manager.timedSearch()
+#if __name__ == "__main__":
+#    manager = Search_Manager()
+#    manager.timedSearch()
  #   manager.getPwnedSensors()
        

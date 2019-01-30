@@ -1,0 +1,7 @@
+from rfapi import ConnectApiClient
+import hashlib
+import json
+
+class Darkweb_Module():
+    def __init__(self):
+        api = ConnectApiClient(auth='85c7bffbcab1471d8e416f0477e230cf')

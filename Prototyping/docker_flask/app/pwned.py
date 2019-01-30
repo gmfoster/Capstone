@@ -10,7 +10,7 @@ class Pwned_Module():
     def __init__(self, url_1 ="https://haveibeenpwned.com/api/v2/breachedaccount/", url_2 ="?includeUnverified=true"):
         self.url_1 = url_1
         self.url_2 = url_2
-
+        self.headers = {"User-Agent": "pwned-check-for-webapp"}
 #Firebase Config                                                                       
                                                                                       
         config = {
@@ -29,7 +29,7 @@ class Pwned_Module():
     def search(self, email):
         url = self.url_1 + email + self.url_2
         print(url)
-        response = requests.get(url)
+        response = requests.get(url, headers=self.headers)
         id = hashlib.md5(email.encode()).hexdigest()
         status = response.status_code
         print(response)
@@ -38,7 +38,9 @@ class Pwned_Module():
             
         if status == 200:
             data = response.json()
-            self.db.child("pwned_search").child(id).set(data)
+            json_string = json.dumps(data)
+            json_data = json.loads(json_string)
+            self.db.child("pwned_search").child(id).set(json_data)
             print(data)
             return (response.json())
         elif status == 201:
@@ -57,7 +59,8 @@ class Pwned_Module():
             error = {'Error 403' : 'No user agent has been specified in the request'}
             return (error)
         elif status == 404:
-            error = {'Error 404' : 'Congratulations you have not been pwned'}
+            error = {'404' : 'Congratulations you have not been pwned'}
+            self.db.child("pwned_search").child(id).set(error)
             return (error)
         elif status == 409:
             error = {'developerMessage' : 'Conflict'}
@@ -66,7 +69,9 @@ class Pwned_Module():
             error = {'developerMessage' : 'Internal Server Error'}
             return(error)
 
+
 #testing
-if __name__ == "__main__":
-    pwned = Pwned_Module()
-    pwned.search("grahammfoster96@gmail.com")
+#if __name__ == "__main__":
+#    pwned = Pwned_Module()
+#    pwned.search("gmfoster@umail.ucsb.edu")
+    
