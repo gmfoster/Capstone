@@ -6,7 +6,7 @@ import alert
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Manager():
-    def __init__(self, name, email, phone):
+    def __init__(self, name = "No name", email = "nobody@nowhere.com", phone = "+18005550000"):
         self.name = name
         self.email = email
         self.phone = phone

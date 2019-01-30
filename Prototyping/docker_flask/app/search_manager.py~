@@ -5,8 +5,11 @@ import hashlib
 
 #Store sensors in database, in infinite look query database for all sensors 
 
-class Manager():
-    def __init__(self):
+class Search_Manager():
+    def __init__(self, name = "Nobody", email = "noone@nowhere.com", phone = "+18005550000"):
+        self.name = name
+        self.email = email
+        self. phone = phone
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -68,8 +71,8 @@ class Manager():
             time.sleep(5)
     
 
-if __name__ == "__main__":
-    manager = Manager()
-    manager.timedSearch()
+#if __name__ == "__main__":
+#    manager = Search_Manager()
+#    manager.timedSearch()
  #   manager.getPwnedSensors()
        

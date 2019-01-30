@@ -2,11 +2,15 @@ import time
 from app import pwned
 import pyrebase
 import hashlib
+import alert
 
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
-    def __init__(self):
+    def __init__(self, name = "Nobody", email = "noone@nowhere.com", phone = "+18005550000"):
+        self.name = name
+        self.email = email
+        self. phone = phone
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -64,6 +68,8 @@ class Search_Manager():
                 for i in range(len(self.pwned_keywords)):
                     #pwned = pwned.Pwned_Module()
                     self.pwned_module.search(self.pwned_keywords[i])
+            #if(pwned_module.search found something || paste.search found something):                
+             #   self.alertUser.sendEmail(self.name, self.email)                                                    #  self.alertUser.sendText(self.phone)
             print("Sleeping for 5 seconds")
             time.sleep(5)
     

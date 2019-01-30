@@ -6,7 +6,7 @@ import alert
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Manager():
-    def __init__(self, name, email, phone):
+    def __init__(self, name = "No name", email = "noemail@gmail.com", phone):
         self.name = name
         self.email = email
         self.phone = phone
@@ -69,8 +69,8 @@ class Manager():
                     #pwned = pwned.Pwned_Module()
                     self.pwned_module.search(self.pwned_keywords[i])
             #if(pwned_module.search found something || paste.search found something):
-             #   self.alertUser.sendEmail()
-              #  self.alertUser.sendText()
+             #   self.alertUser.sendEmail(self.name, self.email)
+              #  self.alertUser.sendText(self.phone)
             print("Sleeping for 15 seconds")
             time.sleep(15)
     
