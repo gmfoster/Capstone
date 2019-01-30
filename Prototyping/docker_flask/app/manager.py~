@@ -6,7 +6,10 @@ import hashlib
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Manager():
-    def __init__(self):
+    def __init__(self, name, email, phone):
+        self.name = name
+        self.email = email
+        self.phone = phone
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -41,9 +44,12 @@ class Manager():
 
     def getPwnedSensors(self):
         self.pwned_sensors = self.db.child("sensors").child("pwned_sensors").get().val()
+        seen = set(self.pwned_keywords)
         for k, v in self.pwned_sensors.items():
             for k1, v1 in v.items():
-                self.pwned_keywords.append(v1)
+                if v1 not in seen:
+                    seen.add(v1)
+                    self.pwned_keywords.append(v1)
         print(self.pwned_keywords)    
 
     def timedSearch(self):
@@ -54,15 +60,18 @@ class Manager():
             if (len(self.paste_keywords) != 0):
                 for i in range(len(self.paste_keywords)):
                     #paste = pastebin.Pastebin_Module()
-                    #paste.search(self.paste_keywords[i])
+                    #self.paste.search(self.paste_keywords[i])
                     print("searching paste: " + self.paste_keywords[i])
             self.getPwnedSensors() #get pwned sensors
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
                     #pwned = pwned.Pwned_Module()
                     self.pwned_module.search(self.pwned_keywords[i])
-            print("Sleeping for 5 seconds")
-            time.sleep(5)
+            #if(pwned_module.search found something || paste.search found something):
+             #   alert(self.name, self.email, self.phone).sendEmail()
+              #  alert(self.name, self.email, self.phone).sendText()
+            print("Sleeping for 15 seconds")
+            time.sleep(15)
     
 
 if __name__ == "__main__":

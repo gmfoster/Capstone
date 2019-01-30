@@ -6,7 +6,10 @@ import hashlib
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Manager():
-    def __init__(self):
+    def __init__(self, name, email, phone):
+        self.name = name
+        self.email = email
+        self.phone = phone
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -57,13 +60,16 @@ class Manager():
             if (len(self.paste_keywords) != 0):
                 for i in range(len(self.paste_keywords)):
                     #paste = pastebin.Pastebin_Module()
-                    #paste.search(self.paste_keywords[i])
+                    #self.paste.search(self.paste_keywords[i])
                     print("searching paste: " + self.paste_keywords[i])
             self.getPwnedSensors() #get pwned sensors
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
                     #pwned = pwned.Pwned_Module()
                     self.pwned_module.search(self.pwned_keywords[i])
+            #if(pwned_module.search found something || paste.search found something):
+             #   alert(self).sendEmail()
+              #  alert(self).sendText()
             print("Sleeping for 15 seconds")
             time.sleep(15)
     
