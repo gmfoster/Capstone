@@ -2,7 +2,7 @@ import time
 import pwned
 import pyrebase
 import hashlib
-
+import alert
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Manager():
@@ -18,6 +18,7 @@ class Manager():
         self.dark_sensors = dict() #dict to store hashed valuse of darknet keywords
         self.dark_keywords = [] #array to store darknet keywords
         self.pwned_module = pwned.Pwned_Module()
+        self.alertUser = alert()
 
 #Firebase Config                                                                
         config = {
@@ -68,8 +69,8 @@ class Manager():
                     #pwned = pwned.Pwned_Module()
                     self.pwned_module.search(self.pwned_keywords[i])
             #if(pwned_module.search found something || paste.search found something):
-             #   alert(self.name, self.email, self.phone).sendEmail()
-              #  alert(self.name, self.email, self.phone).sendText()
+             #   self.alertUser.sendEmail()
+              #  self.alertUser.sendText()
             print("Sleeping for 15 seconds")
             time.sleep(15)
     

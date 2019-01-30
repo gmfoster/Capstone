@@ -9,25 +9,25 @@ class alert():
         AUTH_TOKEN = "7a030cf16277e88e6c5f451d50c52612"
         client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
-    def sendText(self):
+    def sendText(self, name, phone):
         message = client.messages.create(
-            body = "test message",
+            body = " " +name+ "\nYou are being alerted because a sensor from NovaSight has been triggered",
             from_ = '+19152283110',
-            to = self.phone)
+            to = phone)
         print(message.sid)
 
-    def sendEmail(self):
-        toaddr = self.email
+    def sendEmail(self, name, email):
+        toaddr = email
         fromaddr = "quintinhill1316@gmail.com"
         msg = MIMEMultipart()
         msg['From'] = fromaddr
         msg['To'] = toaddr
         msg['Subject'] = "NovaSight Alert"
-        body = "\n"+self.name+"\n 1 OR MORE SENSORS HAVE FOUND DATA\n"
+        body = "\n"+name+"\n 1 OR MORE SENSORS HAVE FOUND DATA\n"
 
         msg.attach(MIMEText(body, 'plain'))
 
-        toaddr = self.email
+        toaddr = email
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.starttls()
         server.login(fromaddr, "30261316Sss")
