@@ -54,23 +54,31 @@ class Manager():
         print(self.pwned_keywords)    
 
     def timedSearch(self):
-        
+        int count = 0;
+        int pasteCount = 0
         while(1):
         #start infinite loop
             self.getPasteSensors() #get paste sensors
             if (len(self.paste_keywords) != 0):
+            	int pasteCount = 0
                 for i in range(len(self.paste_keywords)):
                     #paste = pastebin.Pastebin_Module()
-                    #self.paste.search(self.paste_keywords[i])
+                    #pasteCount = pasteCount + self.paste.search(self.paste_keywords[i])
                     print("searching paste: " + self.paste_keywords[i])
             self.getPwnedSensors() #get pwned sensors
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
                     #pwned = pwned.Pwned_Module()
-                    self.pwned_module.search(self.pwned_keywords[i])
-            #if(pwned_module.search found something || paste.search found something):
-             #   self.alertUser.sendEmail(self.name, self.email)
-              #  self.alertUser.sendText(self.phone)
+                    pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
+            newCount = pwnedCount + pasteCount
+            found = newCount-count
+            count =  newCount
+            if(found > 5):
+                self.alertUser.sendEmail(self.name, self.email)
+                self.alertUser.sendText(self.phone)
+            pasteCount = 0;
+            pwnedCount = 0;
+            found = 0;
             print("Sleeping for 15 seconds")
             time.sleep(15)
     
