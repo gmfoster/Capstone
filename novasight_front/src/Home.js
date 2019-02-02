@@ -3,9 +3,12 @@ import React, { Component } from 'react';
 import Link from './Link';
 import './Style Sheets/App.css';
 import './Style Sheets/MyInvestigation.css';
-import './Style Sheets/site.min.css'
-import './Style Sheets/site.min.css.map'
-import './Style Sheets/style.scss'
+import './Style Sheets/site.min.css';
+import './Style Sheets/site.min.css.map';
+import './Style Sheets/style.scss';
+import './images/a.png';
+import './images/b.png'; 
+import './images/c.png';  
 
 
 let styles = { 
@@ -16,16 +19,18 @@ const Home = () => (
     <div>
         <div class="jumbotron jumbotron-fluid bg-primary text-light">
             <div class="container">
-            <p class="lead text-uppercase">Name, Text & Layout Pending</p>
-            <h1 class="display-4">Welcome to Project Bob!</h1>
-            <p class="lead">Intelligence relevant to your organization is out there — from compromised credentials, customer data, and payment card information, to new vulnerabilities and exploits. But relying on open source tools or ad hoc approaches to monitor for this information will likely be time-consuming, generate noisy false positives, and miss hard-to-reach sources.</p>
+            {/* <p class="lead text-uppercase">Name, Text & Layout Pending</p> */}
+            <h1 class="display-4">Welcome to Novasight</h1>
+            {/* <p class="lead">Intelligence relevant to your organization is out there — from compromised credentials, customer data, and payment card information, to new vulnerabilities and exploits. But relying on open source tools or ad hoc approaches to monitor for this information will likely be time-consuming, generate noisy false positives, and miss hard-to-reach sources.</p> */}
+            <p class="lead">The real time online security feed and monitoring application.</p> 
+            
             </div>
         </div>
 
         <div class="container-fluid">
             <div class="row align-items-center px-3 py-5">
                 <div class="col-6">
-                    <img class="img-fluid rounded shadow" src="images/a.png"></img>
+                    <img class="img-fluid rounded shadow" src={require('./images/a.png')}></img>
                 </div>
                 <div class="col-5 mx-auto">
                     <p class="lead text-muted text-uppercase">Brand Monitoring</p>
@@ -43,7 +48,7 @@ const Home = () => (
                     <p>By configuring our technology to continuously monitor for threat-related references to your brand, industry, or technologies, you’ll have a sensor on the widest breadth of threat data sources, including paste sites and the dark web.</p>
                 </div>
                 <div class="col-6">
-                    <img class="img-fluid rounded shadow" src="images/b.png"></img>
+                    <img class="img-fluid rounded shadow" src={require('./images/b.png')}></img>
                 </div>
             </div>
         </div>
@@ -51,7 +56,7 @@ const Home = () => (
         <div class="container-fluid">
             <div class="row align-items-center px-3 py-5">
                 <div class="col-6">
-                    <img class="img-fluid rounded shadow" src="images/c.png"></img>
+                    <img class="img-fluid rounded shadow" src={require('./images/c.png')}></img>
                 </div>
                 <div class="col-5 mx-auto">
                     <p class="lead text-muted text-uppercase">Brand Monitoring</p>
