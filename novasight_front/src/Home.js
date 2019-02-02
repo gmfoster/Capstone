@@ -83,10 +83,10 @@ const Home = () => (
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-6">
-                        <h1 class="display-4">Project Bob</h1>
+                        <h1 class="display-4">Novasight</h1>
                     </div>
                     <div class="col">
-                        <a href="#" class="text-reset">This Link</a>
+                        <a href="#" class="text-reset">About Us</a>
                     </div>
                     <div class="col">
                         <a href="#" class="text-reset">That Link</a>
