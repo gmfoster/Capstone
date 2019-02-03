@@ -4,7 +4,8 @@ import './Style Sheets/App.css';
 import './Style Sheets/index.css'
 
 const Link = ({ to, children }, {history}) => (
-    <a  class='undecorated'
+
+    <a  class={to.class}
       onClick={(e) => {
         e.preventDefault();
         history.push({
