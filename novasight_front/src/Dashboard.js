@@ -41,12 +41,12 @@ class PastebinTable extends React.Component {
     constructor(){
         super();
         this.pasteList = [];
+        this.ref = firebase.database().ref('paste_search');
 
     }
 
     componentDidMount(){
-        const itemsRef = firebase.database().ref('paste_search');
-        itemsRef.on('value', (snapshot) => {
+        this.ref.on('value', (snapshot) => {
             let items = snapshot.val();
             
             var data = items[this.props.sensorKey]
@@ -70,11 +70,15 @@ class PastebinTable extends React.Component {
         });
     }
 
+    componentWillUnmount(){
+        this.ref.off();
+    }
+
     render(){
         return (
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
-                <h6 class="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
-                <table class="table table-responsive small">
+            <div className="my-3 p-3 bg-white rounded shadow-sm">
+                <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
+                <table className="table table-responsive small">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
@@ -111,13 +115,14 @@ class HaveIBeenPwndTable extends React.Component{
     constructor(){
         super();
         this.pwndList = [];
+        this.ref = firebase.database().ref('pwned_search');
     }
 
     componentDidMount(){
         var PWND_LIST = {};
         
-        const itemsRef = firebase.database().ref('pwned_search');
-        itemsRef.on('value', (snapshot) => {
+        
+        this.ref.on('value', (snapshot) => {
             let items = snapshot.val();
             
             PWND_LIST = items[this.props.sensorKey]
@@ -144,12 +149,16 @@ class HaveIBeenPwndTable extends React.Component{
 
         });
     }
+
+    componentWillUnmount(){
+        this.ref.off();
+    }
     
     render(){
         return (
-            <div class="my-3 p-3 bg-white rounded shadow-sm">
-                <h6 class="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
-                <table class="table table-responsive small">
+            <div className="my-3 p-3 bg-white rounded shadow-sm">
+                <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
+                <table className="table table-responsive small">
                     <thead>
                         <tr>
                             <th scope="col">Breach Date</th>
@@ -184,89 +193,6 @@ class HaveIBeenPwndEntry extends React.Component{
     }
 }
 
-/*
-class DashboardList extends React.Component {
-    render() {
-
-      const threatList = THREATS.map((threatEntry) =>(
-            <DashboardEntry
-                key={threatEntry.date+threatEntry.description}
-                date={threatEntry.date}
-                type={threatEntry.type}
-                involving={threatEntry.involving}
-                description={threatEntry.description}
-            />
-      ));
-  
-      return (
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-            <h6 class="border-bottom border-gray pb-2 mb-0">Threats</h6>
-            <table class="table table-responsive small">
-                <thead>
-                    <tr>
-                        <th scope="col">Date</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Involving</th>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {threatList}
-                </tbody>
-            </table>
-        </div>
-        
-        ); 
-    }
-  }
-
-  class DashboardEntry extends React.Component {
-    render() {
-
-        return (
-            <tr>
-                <th scope="row">{this.props.date}</th>
-                <td>{this.props.type}</td>
-                <td>{this.props.involving}</td>
-                <td>{this.props.description}</td>
-            </tr>
-        );
-    }
-  }
-
-
-update() {
-        var text = "";
-        console.log("omer");
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for (var i = 0; i < 5; i++)
-          text += possible.charAt(Math.floor(Math.random() * possible.length));
-        console.log(text);
-        return text;
-    }
-    
-    
-    
-    render() { 
-        return(
-            <div>
-                <div class='centered_div_2'>
-                    <img className="App-logo" alt="logo"src={logo}></img>
-                    <div class="tab">  
-                        <h1 class ="prog">Analysis in progress... </h1>
-                        <label> Investigation #: <label class='nova_label'> {investigations.investigation} </label><br></br></label>
-                        <label> Modules: <label class='nova_label'> {investigations.modules} </label><br></br></label>
-                        <label> ETA: <label class='nova_label'> {investigations.eta} </label><br></br></label>
-                        <label> Data: <label class='nova_label'> {this.update} </label><br></br></label> 
-                        </div>
-                        </div>
-                    </div>
-                );
-            }
-
-*/
-
-
 class Dashboard extends React.Component {
 
     render(){
@@ -293,22 +219,18 @@ class Dashboard extends React.Component {
             ));
         }
 
-
-        
-
         return (
             <div>
-                <div class="nav-scroller bg-white shadow-sm">
-                    <nav class="nav nav-underline">
-                        <a class="nav-link active" href="#">This Link</a>
-                        <a class="nav-link active" href="#">That Link</a>
-                        <a class="nav-link active" href="#">The Other Link</a>
+                <div className="nav-scroller bg-white shadow-sm">
+                    <nav className="nav nav-underline">
+                        <a className="nav-link active" href="#">This Link</a>
+                        <a className="nav-link active" href="#">That Link</a>
+                        <a className="nav-link active" href="#">The Other Link</a>
                     </nav>
                 </div>
 
-                <main role="main" class="container">
+                <main role="main" className="container">
                     {SENSORS}
-                    
                 </main>
             </div>
         );
