@@ -6,7 +6,6 @@ import silk_road_3 from './images/silk_road_3.png';
 import berlusconi_market from './images/berlusconi_market.png';
 import './Style Sheets/InvestigationResults.css';
 import './Style Sheets/App.css';
-import './Style Sheets/MyInvestigation.css';
 import './Style Sheets/site.min.css'
 import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
@@ -86,48 +85,42 @@ const darknetResults = [
     }
 ];
 
-const Login = () => (
 
-    <div>
-        <form class="form-signin">
-            <h1 class="display-4 text-primary">Project Bob</h1>
-            <h6 class="mb-3 font-weight-normal">Please sign in</h6>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus/>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required/>
-            <div class="checkbox mb-3">
-                <label>
-                <input type="checkbox" value="remember-me"/> Remember me
-                </label>
+class Login extends React.Component{
+    
+
+
+    handleClick(e){
+        console.log("print")
+        window.isAuthenticated = true
+    }
+
+    //class="btn btn-lg btn-primary btn-block" type="submit"
+
+    render(){
+        return (
+            <div>
+                <form class="form-signin">
+                    <h1 class="display-4 text-primary">Project Bob</h1>
+                    <h6 class="mb-3 font-weight-normal">Please sign in</h6>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus/>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required/>
+                    <div class="checkbox mb-3">
+                        <label>
+                        <input type="checkbox" value="remember-me"/> Remember me
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" onClick={this.handleClick}>
+                        Sign in
+                    </button>
+                    <p class="mt-5 mb-3 text-muted">Copyright &copy; Capstone 2019</p>
+                </form>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-            <p class="mt-5 mb-3 text-muted">Copyright &copy; Capstone 2019</p>
-        </form>
-    </div>
-    
-    /* A JSX comment 
-    <div>
-        <h2 class='results' >Investigation Results</h2>
-
-        <div class='pastebin_results'>
-            <label> <b>User Intiated: </b><label> {invesitgationInfo.userInitated} </label></label><br/>
-            <label><b> Investigation #: </b><label>{invesitgationInfo.number}</label></label><br/>
-            <label> <b>Investigation Duration: </b><label> {invesitgationInfo.duration} </label></label><br/>
-            <label> <b>Risk Factor:</b><label> {invesitgationInfo.riskFactor}</label></label>
-        </div>
-
-        <ResultsList/>
-    </div>
-    */
-
-    
-    
-    
-    
-    
-    
-);
+        );
+    }
+}
 
 
 class PastebinPaste extends React.Component{

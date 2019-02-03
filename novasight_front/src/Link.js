@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from "prop-types";
 import './Style Sheets/App.css';
+import './Style Sheets/index.css'
 
 const Link = ({ to, children }, {history}) => (
     <a  class='undecorated'
       onClick={(e) => {
         e.preventDefault();
-        history.push(to);
+        history.push({
+          pathname:to.pathname,
+          data:to.data
+        });
       }}
-      href={to} 
+      href={to.pathname} 
     >
       {children}
     </a>
