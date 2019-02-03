@@ -12,7 +12,7 @@ from sys import platform
 import os
 import time
 
-class Pastebin_Module():
+class PastebinGoogle_Module():
     def __init__(self):
         #initialize something
         print("This is a " + platform + "machine.")
@@ -86,48 +86,26 @@ class Pastebin_Module():
         pasteKeys = []
         urls = []   
 
-        self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
+
+        self.browser.get("https://www.google.com/search?q=site%3Apastebin.com+" + searchTerm)
 
         ###WAIT PERIOD FOR PAGE TO LOAD###
-        #time.sleep(5)
+        time.sleep(2)
 
         #Finds the number of pages that return the results of the search
-        pagesRemaining = self.getPagesRemaining()
-        print("PagesRemainingTop: " + str(pagesRemaining))
+        
 
         #Finds urls and adds them to a list before iterating to next page if necesary
-        while(pagesRemaining > 0):
-            elementRoots = []
-            elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
-         
-            #Find the next page
-            nextPage = self.getNextPage()
 
-            for element in elementRoots:
-                try:
-                    e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
-                    urls.append(str(e.text))
-                except StaleElementReferenceException:
-                   print("No urls because search results returned a stale page")
-
-
-            if(pagesRemaining > 1):
-                try:
-                    nextPage.click()
-                except:
-                    print("Stale link/pastebin error")
-            getValue = self.getPagesRemaining()
-            expectedValue = pagesRemaining - 1
-
-            print("getValue = " + str(getValue))
-            print("expectedValue = " + str(expectedValue))
-
-            if(getValue != expectedValue):
-                print("pastebin was terribly implemented and cannot count how many pages of results there are.")
-
-            pagesRemaining = pagesRemaining - 1
+        elementRoots = []
+        elementRoots = self.browser.find_elements_by_class_name('r')
+    
+        for element in elementRoots:
+            href = element.find_element_by_tag_name("a").get_attribute("href")
+            urls.append(href)
 
         self.browser.close()
+
 
         #Finds pasteKey from url
         for resultURL in urls:
@@ -165,5 +143,5 @@ class Pastebin_Module():
         
                                       
 if __name__ == "__main__":
-    paste = Pastebin_Module()
+    paste = PastebinGoogle_Module()
     paste.search("ucsb")
