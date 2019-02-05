@@ -2,7 +2,7 @@ import time
 from app import pwned
 import pyrebase
 import hashlib
-import alert
+from app import alert
 
 #Store sensors in database, in infinite look query database for all sensors 
 
