@@ -9,8 +9,10 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException,StaleElementReferenceException
 from sys import platform
+from sys import argv
 import os
 import time
+from googlesearch import search
 
 class PastebinGoogle_Module():
     def __init__(self):
@@ -18,11 +20,15 @@ class PastebinGoogle_Module():
         print("This is a " + platform + "machine.")
         dirPath = os.path.dirname(os.path.realpath(__file__))
         self.moduleName = "Pastebin"
-        if platform == "linux" or platform == "linux2":
-            subDir = "linux/chromedriver"
-        elif platform == "darwin":
+        if(platform == "linux" or platform == "linux2"):
+            if("wsl" in argv):
+                print("Took wsl branch")
+                subDir = "windows/chromedriver.exe"
+            else:
+                subDir = "linux/chromedriver"
+        elif(platform == "darwin"):
             subDir = "mac/chromedriver"
-        elif platform == "win32":
+        elif(platform == "win32"):
             subDir = "windows/chromedriver.exe"
         self.driverDirectory = dirPath + "/chromedriver/" + subDir
         self.chrome_options = Options()
@@ -43,69 +49,98 @@ class PastebinGoogle_Module():
 
     #Finds the number of pages that return the results of the search
     def getPagesRemaining(self):
+        pagesRemaining = 0
+        
         try: 
-            pageSelector = self.browser.find_element_by_class_name("gsc-cursor")
-            pagesElementsArray = pageSelector.find_elements_by_css_selector("*")
-            currentPage = pageSelector.find_element_by_class_name("gsc-cursor-current-page")
-
+            allPages = self.browser.find_elements_by_xpath("//*[@id='nav']/tbody/tr/td")
+            navEnds = self.browser.find_elements_by_class_name("navend")
+            currentPage = self.browser.find_element_by_class_name("cur")
             futurePage = False
-            pagesRemaining = 0
-            for page in pagesElementsArray:
+            
+            for page in allPages:
                 if(page == currentPage):
                     futurePage = True
-                    pagesRemaining = 1
+                    pagesRemaining = 0
                 elif(futurePage == True):
-                    pagesRemaining = pagesRemaining + 1
+                    if page not in navEnds:
+                        pagesRemaining = pagesRemaining + 1
 
             print("pagesRemaining: " + str(pagesRemaining))
             return pagesRemaining
         except NoSuchElementException:
             print(NoSuchElementException)
             print("Only one page")
-            return 1
+            return pagesRemaining
 
     #Finds the WebElement that is the next page to click
     def getNextPage(self):
         try: 
-            pageSelector = self.browser.find_element_by_class_name("gsc-cursor")
-            pagesElementsArray = pageSelector.find_elements_by_css_selector("*")
-            currentPage = pageSelector.find_element_by_class_name("gsc-cursor-current-page")
+            allPages = self.browser.find_elements_by_xpath("//*[@id='nav']/tbody/tr/td")
+            navEnds = self.browser.find_elements_by_class_name("navend")
+            currentPage = self.browser.find_element_by_class_name("cur")
             pageAfterCurrent = False
             
-            for page in pagesElementsArray:
+            for page in allPages:
                 if(page == currentPage):
                     pageAfterCurrent = True
                 elif(pageAfterCurrent == True):
-                    return page
+                    if(page not in navEnds):
+                        return page.find_element_by_tag_name("a")
+                    else:
+                        return None
+            
+            return None
 
         except NoSuchElementException:
             print(NoSuchElementException)
             return None
 
+    def searchGoogleModule(self, searchTerm):
+        print(searchTerm)
+        for url in search("ucsb"):
+            print(url)
+        return None
+
     def seleniumSearch(self, searchTerm):
-        pasteKeys = []
         urls = []   
-
-
+        pagesRemaining = 1
+        
         self.browser.get("https://www.google.com/search?q=site%3Apastebin.com+" + searchTerm)
-
-        ###WAIT PERIOD FOR PAGE TO LOAD###
         time.sleep(2)
 
-        #Finds the number of pages that return the results of the search
+        while(pagesRemaining > 0):
+            elementRoots = []
+            nextPage = None
+
+            ###WAIT PERIOD FOR PAGE TO LOAD###
+            time.sleep(3)
+
+            #Finds the number of pages that return the results of the search
+            #pagesRemaining = self.getPagesRemaining()
+
+            #Finds urls and adds them to a list before iterating to next page if necesary
+            
+            elementRoots = self.browser.find_elements_by_class_name('r')
         
+            for element in elementRoots:
+                href = element.find_element_by_tag_name("a").get_attribute("href")
+                urls.append(href)
 
-        #Finds urls and adds them to a list before iterating to next page if necesary
+            nextPage = self.getNextPage()
 
-        elementRoots = []
-        elementRoots = self.browser.find_elements_by_class_name('r')
-    
-        for element in elementRoots:
-            href = element.find_element_by_tag_name("a").get_attribute("href")
-            urls.append(href)
+            if(pagesRemaining > 0 and nextPage is not None):
+                time.sleep(6)
+                nextPage.click()
 
-        self.browser.close()
+            
+            pagesRemaining = self.getPagesRemaining()   
+            #pagesRemaining = pagesRemaining - 1 
 
+        #self.browser.close()
+        return self.parseKeysFromURLs(urls)
+
+    def parseKeysFromURLs(self, urls):
+        pasteKeys = []
 
         #Finds pasteKey from url
         for resultURL in urls:
@@ -145,3 +180,4 @@ class PastebinGoogle_Module():
 if __name__ == "__main__":
     paste = PastebinGoogle_Module()
     paste.search("ucsb")
+    #paste.searchGoogleModule("ucsb")
