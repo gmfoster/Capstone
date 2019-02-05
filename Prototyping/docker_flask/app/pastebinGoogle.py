@@ -129,7 +129,7 @@ class PastebinGoogle_Module():
             nextPage = self.getNextPage()
 
             if(pagesRemaining > 0 and nextPage is not None):
-                time.sleep(6)
+                time.sleep(20)
                 nextPage.click()
 
             
