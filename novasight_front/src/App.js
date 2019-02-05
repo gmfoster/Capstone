@@ -62,52 +62,52 @@ class App extends React.Component {
   render(){
     return (
       <Router>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">  
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">  
           
           <Link to={{pathname:'/home', class:"navbar-brand"}}>
             Novasight
           </Link>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span className="navbar-toggler-icon"></span>
           </button>
           
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <li class="nav-item">
+          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item">
                 <Link to={{pathname:'/home', class:"nav-link"}}>
                   Home
                 </Link>
               </li>
               {isAuthenticated &&
-                <li class="nav-item">
+                <li className="nav-item">
                   <Link to={{pathname:'/dashboard',class:"nav-link"}}>
                     Dashboard
                   </Link>
                 </li>
               }
               { isAuthenticated &&
-                <li class="nav-item">
+                <li className="nav-item">
                   <Link to={{pathname:'/sensors',class:"nav-link"}}>
                     Sensors
                   </Link>
                 </li>
               }
               {isAuthenticated &&
-                <li class="nav-item">
+                <li className="nav-item">
                   <Link to={{pathname:'/sensors',class:"nav-link"}}>
                     Alerts
                   </Link>
                 </li>
               }
               {!isAuthenticated &&
-                <li class="nav-item">
+                <li className="nav-item">
                   <Link to={{pathname:'/login',class:"nav-link"}}>
                     Login
                   </Link>
                 </li>
               }
               {isAuthenticated &&
-                <li onClick={this.handleLogout.bind(this)} class="nav-item">
+                <li onClick={this.handleLogout.bind(this)} className="nav-item">
                   <Link to={{pathname:'/login',class:"nav-link"}}>
                     Lougout
                   </Link>
