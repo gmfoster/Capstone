@@ -6,7 +6,6 @@ import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
 
 class Login extends React.Component{
-    
 
 
     handleClick(e){
@@ -19,7 +18,7 @@ class Login extends React.Component{
         return (
             <div>
                 <form className="form-signin">
-                    <h1 className="display-4 text-primary">Project Bob</h1>
+                    <h1 className="display-4 text-primary">Nova Sight</h1>
                     <h6 className="mb-3 font-weight-normal">Please sign in</h6>
                     <label htmlFor="inputEmail" className="sr-only">Email address</label>
                     <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>

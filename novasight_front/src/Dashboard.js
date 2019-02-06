@@ -33,6 +33,12 @@ var pwnedSensors = [
     {
         key:"64cbb14ec41478b5d9cdff67ee8320e0",
         string:"gmfoster@umail.ucsb.edu"
+    },{
+        key:"65dc726e67621fcca86b0c92a0700710",
+        string:"grahamimportantstuff96@gmail.com"
+    },{
+        key:"f4fad95f5b58463cd24ca59e35513874",
+        string:"grahammfoster96@gmail.com"
     }
 ];
 
@@ -42,6 +48,7 @@ class PastebinTable extends React.Component {
         super();
         this.pasteList = [];
         this.ref = firebase.database().ref('paste_search');
+        this.number = 0;
 
     }
 
@@ -102,7 +109,7 @@ class PastebinEntry extends React.Component{
         return(
             <tr>
                 <th scope="row">{this.props.Date}</th>
-                <td>{this.props.Link}</td>
+                <td><a href={this.props.Link}>{this.props.Link}</a></td>
                 <td>{this.props.Preview}</td>
             </tr>    
         );
@@ -116,6 +123,8 @@ class HaveIBeenPwndTable extends React.Component{
         super();
         this.pwndList = [];
         this.ref = firebase.database().ref('pwned_search');
+        this.noData = false;
+        this.number = 0;
     }
 
     componentDidMount(){
@@ -128,9 +137,10 @@ class HaveIBeenPwndTable extends React.Component{
             PWND_LIST = items[this.props.sensorKey]
 
             if (PWND_LIST["404"] != undefined){
+                this.noData = true;
                 this.pwndList = <HaveIBeenPwndEntry
                     Key={this.props.sensorString}
-                    Description={PWND_LIST["404"]}
+                    Description={"<font size='3' color='green'>" + PWND_LIST["404"] + "</font>"}
                 />
             }else{
                 console.log("Not undefined")
@@ -161,9 +171,15 @@ class HaveIBeenPwndTable extends React.Component{
                 <table className="table table-responsive small">
                     <thead>
                         <tr>
-                            <th scope="col">Breach Date</th>
-                            <th scope="col">Domain</th>
-                            <th scope="col">Name</th>
+                            {!this.noData &&
+                                <th scope="col">Breach Date</th>
+                            }
+                            {!this.noData &&
+                                <th scope="col">Domain</th>
+                            }
+                            {!this.noData &&
+                                <th scope="col">Name</th>
+                            }
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -186,7 +202,7 @@ class HaveIBeenPwndEntry extends React.Component{
                 <th scope="row">{this.props.BreachDate}</th>
                 <td>{this.props.Domain}</td>
                 <td>{this.props.Name}</td>
-                <td>{this.props.Description}</td>
+                <td dangerouslySetInnerHTML={{__html: this.props.Description}}></td>
             </tr>    
         );
         
