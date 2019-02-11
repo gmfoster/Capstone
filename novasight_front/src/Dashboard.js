@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './Style Sheets/site.min.css'
 import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
+import './Style Sheets/Dashboard.css'
 import firebase from './firebase.js';
 
 
@@ -239,6 +240,57 @@ class HaveIBeenPwndEntry extends React.Component{
     }
 }
 
+class BubbleSensor extends React.Component { 
+
+    render() { 
+
+        return (
+            <div class="container-outer">
+                        <div class="container-inner">
+                      
+                            <div class="wrapper">
+                                <div class="round-button">
+                                <div class="round-button-circle">
+                                    <a href="http://example.com" class="round-button">Sensor</a>
+                                </div>
+                                </div>
+                                <div class="round-button">
+                                <div class="round-button-circle">
+                                    <a href="http://example.com" class="round-button">Sensor</a>
+                                </div>
+                                </div>
+
+                                <div class="round-button">
+                                <div class="round-button-circle">
+                                    <a href="http://example.com" class="round-button">Sensor</a>
+                                </div>
+                                </div>
+                                <div class="round-button">
+                                <div class="round-button-circle">
+                                    <a href="http://example.com" class="round-button">Sensor</a>
+                                </div>
+                                </div>
+                                <div class="round-button">
+                                <div class="round-button-circle">
+                                    <a href="http://example.com" class="round-button">Sensor</a>
+                                </div>
+                                </div>
+                                <div class="round-button">
+                                <div class="round-button-circle">
+                                    <a href="http://example.com" class="round-button">Sensor</a>
+                                </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+            
+        ); 
+    }
+}
+
 class Dashboard extends React.Component {
 
     render(){
@@ -267,13 +319,16 @@ class Dashboard extends React.Component {
 
         return (
             <div>
-                <div className="nav-scroller bg-white shadow-sm">
+                {/* <div className="nav-scroller bg-white shadow-sm">
                     <nav className="nav nav-underline">
                         <a className="nav-link active" href="#">This Link</a>
                         <a className="nav-link active" href="#">That Link</a>
                         <a className="nav-link active" href="#">The Other Link</a>
                     </nav>
-                </div>
+                </div> */}
+                <main role="main" className="container">
+                    <BubbleSensor/>
+                </main> 
 
                 <main role="main" className="container">
                     <AreaChart title="Paste Dump" colors={["#007bff", "#666"]} data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
@@ -282,7 +337,9 @@ class Dashboard extends React.Component {
                 <main role="main" className="container">
                     {SENSORS}
                 </main>
+                
             </div>
+            
         );
     }
 }
