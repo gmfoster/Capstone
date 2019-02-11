@@ -6,11 +6,41 @@ import './Style Sheets/style.scss'
 import firebase from './firebase.js';
 
 
-var isPastebin = true;
-var isHaveIBeenPwnd = false;
+
+import ReactChartkick, { LineChart, AreaChart } from 'react-chartkick'
+import Chart from 'chart.js'
+ReactChartkick.addAdapter(Chart)
+
+var isPastebin = false;
+var isHaveIBeenPwnd = true;
 
 
-
+var lineChartData = {
+    "2019-01-01":10,
+    "2019-01-02":20,
+    "2019-01-03":13,
+    "2019-01-04":15,
+    "2019-01-05":2,
+    "2019-01-06":50,
+    "2019-01-07":10,
+    "2019-01-08":20,
+    "2019-01-09":13,
+    "2019-01-10":15,
+    "2019-01-11":2,
+    "2019-01-12":50,
+    "2019-01-13":10,
+    "2019-01-14":20,
+    "2019-01-15":13,
+    "2019-01-16":15,
+    "2019-01-17":2,
+    "2019-01-18":50,
+    "2019-01-19":10,
+    "2019-01-20":20,
+    "2019-01-21":13,
+    "2019-01-22":15,
+    "2019-01-23":2,
+    "2019-01-24":50
+}
 
 var pasteSensors = [
     {
@@ -244,6 +274,10 @@ class Dashboard extends React.Component {
                         <a className="nav-link active" href="#">The Other Link</a>
                     </nav>
                 </div>
+
+                <main role="main" className="container">
+                    <AreaChart title="Paste Dump" colors={["#007bff", "#666"]} data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
+                </main>
 
                 <main role="main" className="container">
                     {SENSORS}
