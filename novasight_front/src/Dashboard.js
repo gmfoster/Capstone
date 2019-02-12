@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
-
 import './Style Sheets/site.min.css'
 import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
 import './Style Sheets/Dashboard.css'
 import firebase from './firebase.js';
-
-
-
 import ReactChartkick, { LineChart, AreaChart } from 'react-chartkick'
 import Chart from 'chart.js'
+
 ReactChartkick.addAdapter(Chart)
 
 var isPastebin = false;
 var isHaveIBeenPwnd = true;
-
-
 
 var bubbleSensors =[
     {
@@ -269,28 +264,50 @@ class BubbleSensor extends React.Component {
     constructor(){
         super();
         this.list = [];
+        this.ref = firebase.database().ref('sensors').child('paste_sensors');
+        this.sensorList = []
     }
+    
+    componentDidMount() { 
+        var sensorKeys = []; 
+        
+        this.ref.on('value', (snapshot) => { 
 
+            console.log(snapshot.val());
+            
+            for(var key in snapshot.val()) { 
+                var tempSensor = snapshot.val()[key]["sensor"];
+                sensorKeys.push(key);
+                console.log(tempSensor);
+                this.sensorList.push(tempSensor);
+            }
+            this.forceUpdate()
+        
+        }); 
+        console.log(this.sensorList);
+        
+    }
+    
+    componentWillUnmount() { 
+        this.ref.off(); 
+    }
     render() { 
-        this.list = bubbleSensors.map((sensor)=>(
+
+        this.list = this.sensorList.map((entry) => (
             <Bubble
-            name={sensor.name}
-            key={sensor.key}
-            />
-        ));
+                name={entry}
+                key={entry}
+            /> 
+        )); 
 
         return (
             <div class="container-outer">
-                        <div class="container-inner">
-                      
-                            <div class="wrapper">
-                                {this.list}
-                            </div>
-                        </div>
+                <div class="container-inner">
+                    <div class="wrapper">
+                        {this.list}
                     </div>
-
-
-            
+                </div>
+            </div>
         ); 
     }
 }
@@ -331,6 +348,10 @@ class Dashboard extends React.Component {
                     </nav>
                 </div> */}
                 <main role="main" className="container">
+                    <h2>My Sensors </h2> 
+                </main>
+                
+                <main>
                     <BubbleSensor/>
                 </main> 
 

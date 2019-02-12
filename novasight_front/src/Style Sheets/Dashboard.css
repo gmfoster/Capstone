@@ -28,14 +28,15 @@
       background:#E8E3E3;
       /* #EEE */
       padding:1em;
-    }
-    /* .wrapper > div:nth-child(odd){ */
-      background:#B6B1B1;
-      /* #DDD */
-    /* } */
 
-    .round-button {
-    width:25%;
+        /* .wrapper > div:nth-child(odd){ */
+          /* background:#B6B1B1; */
+          /* #DDD */
+        /* } */
+    }
+
+  .round-button {
+    width:100%;
   }
   .round-button-circle {
     width: 100%;
@@ -66,4 +67,9 @@
     font-size:1.2em;
     font-weight:bold;
     text-decoration:none;
+}
+
+.sensor_intro { 
+  background: #E8E3E3;
+
 }
