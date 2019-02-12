@@ -6,13 +6,16 @@ from pyvirtualdisplay import Display
 from time import sleep
 import pyrebase
 import hashlib
+import os
 
 
 class Dread_Module():
     def __init__(self):
         self.search_url = 'http://dreadditevelidot.onion/search/'
-        self.tbb_dir = '/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/'
-
+        #self.tbb_dir = '/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/'
+        self.script_dir = os.path.dirname(os.path.abspath(__file__))
+        self.rel_path = '/tor-browser/'
+        self.tbb_dir = self.script_dir + self.rel_path        
         self.config = {
                     "apiKey": "AIzaSyCGkOiKMSxR9NRM-d1WkC2kEYOGp2d8j5k",
                     "authDomain": "novacoast-capstone.firebaseapp.com",
