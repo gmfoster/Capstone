@@ -16,6 +16,18 @@ var isPastebin = false;
 var isHaveIBeenPwnd = true;
 
 
+
+var bubbleSensors =[
+    {
+        name:"bUUUUUUUUU",
+        key:"FDAF;ADF"
+    },
+    {
+        name:"LLLLLLLLL",
+        key:"FADF;OAD"
+    }
+]
+
 var lineChartData = {
     "2019-01-01":10,
     "2019-01-02":20,
@@ -240,47 +252,39 @@ class HaveIBeenPwndEntry extends React.Component{
     }
 }
 
+
+class Bubble extends React.Component{
+    render(){
+        return(
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="http://example.com" class="round-button">{this.props.name}</a>
+                </div>
+            </div>
+        )
+    }
+}
+
 class BubbleSensor extends React.Component { 
+    constructor(){
+        super();
+        this.list = [];
+    }
 
     render() { 
+        this.list = bubbleSensors.map((sensor)=>(
+            <Bubble
+            name={sensor.name}
+            key={sensor.key}
+            />
+        ));
 
         return (
             <div class="container-outer">
                         <div class="container-inner">
                       
                             <div class="wrapper">
-                                <div class="round-button">
-                                <div class="round-button-circle">
-                                    <a href="http://example.com" class="round-button">Sensor</a>
-                                </div>
-                                </div>
-                                <div class="round-button">
-                                <div class="round-button-circle">
-                                    <a href="http://example.com" class="round-button">Sensor</a>
-                                </div>
-                                </div>
-
-                                <div class="round-button">
-                                <div class="round-button-circle">
-                                    <a href="http://example.com" class="round-button">Sensor</a>
-                                </div>
-                                </div>
-                                <div class="round-button">
-                                <div class="round-button-circle">
-                                    <a href="http://example.com" class="round-button">Sensor</a>
-                                </div>
-                                </div>
-                                <div class="round-button">
-                                <div class="round-button-circle">
-                                    <a href="http://example.com" class="round-button">Sensor</a>
-                                </div>
-                                </div>
-                                <div class="round-button">
-                                <div class="round-button-circle">
-                                    <a href="http://example.com" class="round-button">Sensor</a>
-                                </div>
-                                </div>
-
+                                {this.list}
                             </div>
                         </div>
                     </div>
