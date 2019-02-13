@@ -10142,3 +10142,103 @@ Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/
 [02-13 03:16:47] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
                        dreadditevelidot.onion:5f61a5bc3c2c601356f9777a2f5a8391
 [Child 10802, Chrome_ChildThread] WARNING: pipe error (17): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+1550101752262	geckodriver	INFO	Listening on 127.0.0.1:39685
+1550101755009	geckodriver::marionette	INFO	Starting browser /home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/firefox with args ["-marionette"]
+[02-13 23:49:17] Torbutton INFO: Torbutton debug output ready
+[02-13 23:49:17] Torbutton INFO: Component Load 5: New CookieJarSelector @torproject.org/cookie-jar-selector;1
+[02-13 23:49:17] Torbutton INFO: Cookie jar selector got profile-after-change
+[02-13 23:49:17] Torbutton INFO: domain isolator: set up isolating circuits by domain
+[02-13 23:49:17] Torbutton INFO: Component Load 0: New DragDropFilter.
+[02-13 23:49:17] Torbutton INFO: Startup Observer created
+[02-13 23:49:17] Torbutton INFO: This is a Tor Browser's XPCOM
+[02-13 23:49:17] TorLauncher INFO: debug output ready
+[02-13 23:49:17] TorLauncher INFO: SOCKS port type: TCP
+[02-13 23:49:17] TorLauncher INFO: SOCKS host: 127.0.0.1
+[02-13 23:49:17] TorLauncher INFO: SOCKS port: 9250
+[02-13 23:49:17] Torbutton INFO: Reset socks host to 127.0.0.1
+[02-13 23:49:17] Torbutton INFO: Reset socks port to 9250
+[02-13 23:49:17] Torbutton INFO: Synced network settings to environment.
+[02-13 23:49:17] Torbutton INFO: Listening for message from NoScript.
+[02-13 23:49:17] Torbutton INFO: Reset socks host to 127.0.0.1
+[02-13 23:49:17] Torbutton INFO: Reset socks port to 9250
+[02-13 23:49:17] Torbutton INFO: Synced network settings to environment.
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1550101758102	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Loading extension '{73a6fe31-595d-460b-a920-fcc0f8843232}': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+[02-13 23:49:18] Torbutton INFO: Loading tor-control-port.js
+JavaScript error: chrome://torbutton/content/torbutton.js, line 16: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIXPCComponents_Utils.importGlobalProperties]
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+[02-13 23:49:18] Torbutton INFO: called init()
+[02-13 23:49:18] Torbutton NOTE: Initializing security-prefs.js
+[02-13 23:49:18] Torbutton NOTE: security-prefs.js initialization complete
+[02-13 23:49:18] Torbutton INFO: This is not a Tor Browser: TypeError: m_tb_prefs is undefined
+JavaScript error: chrome://torbutton/content/torbutton.js, line 348: TypeError: m_tb_prefs is undefined
+1550101758772	Marionette	INFO	Listening on port 45065
+1550101758975	addons.webextension.https-everywhere-eff@eff.org	WARN	Please specify whether you want browser_style or not in your browser_action options.
+1550101758975	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Please specify whether you want browser_style or not in your browser_action options.
+JavaScript error: moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/lib/Messages.js, line 68: Error: Could not establish connection. Receiving end does not exist.
+1550101759216	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+1550101759233	Marionette	WARN	TLS certificate errors will be ignored for this session
+1550101759331	addons.webextension.<unknown>	WARN	Loading extension 'null': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+1550101759374	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+[02-13 23:49:19] Torbutton INFO: Message received from NoScript: [{"__meta":{"name":"started","recipientInfo":null},"_messageName":"started"},{"id":"{73a6fe31-595d-460b-a920-fcc0f8843232}","url":"moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/_generated_background_page.html","envType":"addon_child","extensionId":"{73a6fe31-595d-460b-a920-fcc0f8843232}","contextId":4},null]
+[02-13 23:49:19] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//latest-rulesets-timestamp via
+                       --unknown--:5930b9174795bb63f584298c0a76dd0f
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+[02-13 23:49:20] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/ via
+                       dreadditevelidot.onion:5f2407514812d5cbc51398f90f637ab4
+[02-13 23:49:21] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//rulesets-signature.1548969377.sha256 via
+                       --unknown--:5930b9174795bb63f584298c0a76dd0f
+[02-13 23:49:21] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//default.rulesets.1548969377.gz via
+                       --unknown--:5930b9174795bb63f584298c0a76dd0f
+[Child 4453, Chrome_ChildThread] WARNING: pipe error (17): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+[Child 4453, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+1550101836821	geckodriver	INFO	Listening on 127.0.0.1:43465
+1550101839377	geckodriver::marionette	INFO	Starting browser /home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/firefox with args ["-marionette"]
+[02-13 23:50:39] Torbutton INFO: Torbutton debug output ready
+[02-13 23:50:39] Torbutton INFO: Component Load 5: New CookieJarSelector @torproject.org/cookie-jar-selector;1
+[02-13 23:50:39] Torbutton INFO: Cookie jar selector got profile-after-change
+[02-13 23:50:39] Torbutton INFO: domain isolator: set up isolating circuits by domain
+[02-13 23:50:39] Torbutton INFO: Component Load 0: New DragDropFilter.
+[02-13 23:50:39] Torbutton INFO: Startup Observer created
+[02-13 23:50:39] Torbutton INFO: This is a Tor Browser's XPCOM
+[02-13 23:50:39] TorLauncher INFO: debug output ready
+[02-13 23:50:39] TorLauncher INFO: SOCKS port type: TCP
+[02-13 23:50:39] TorLauncher INFO: SOCKS host: 127.0.0.1
+[02-13 23:50:39] TorLauncher INFO: SOCKS port: 9250
+[02-13 23:50:39] Torbutton INFO: Reset socks host to 127.0.0.1
+[02-13 23:50:39] Torbutton INFO: Reset socks port to 9250
+[02-13 23:50:39] Torbutton INFO: Synced network settings to environment.
+[02-13 23:50:39] Torbutton INFO: Listening for message from NoScript.
+[02-13 23:50:39] Torbutton INFO: Reset socks host to 127.0.0.1
+[02-13 23:50:39] Torbutton INFO: Reset socks port to 9250
+[02-13 23:50:39] Torbutton INFO: Synced network settings to environment.
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1550101839910	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Loading extension '{73a6fe31-595d-460b-a920-fcc0f8843232}': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+[02-13 23:50:39] Torbutton INFO: Loading tor-control-port.js
+JavaScript error: chrome://torbutton/content/torbutton.js, line 16: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIXPCComponents_Utils.importGlobalProperties]
+[02-13 23:50:40] Torbutton INFO: called init()
+[02-13 23:50:40] Torbutton NOTE: Initializing security-prefs.js
+[02-13 23:50:40] Torbutton NOTE: security-prefs.js initialization complete
+[02-13 23:50:40] Torbutton INFO: This is not a Tor Browser: TypeError: m_tb_prefs is undefined
+JavaScript error: chrome://torbutton/content/torbutton.js, line 348: TypeError: m_tb_prefs is undefined
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1550101840405	Marionette	INFO	Listening on port 45679
+1550101840511	Marionette	WARN	TLS certificate errors will be ignored for this session
+1550101840550	addons.webextension.https-everywhere-eff@eff.org	WARN	Please specify whether you want browser_style or not in your browser_action options.
+1550101840551	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Please specify whether you want browser_style or not in your browser_action options.
+JavaScript error: moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/lib/Messages.js, line 68: Error: Could not establish connection. Receiving end does not exist.
+1550101840827	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+1550101840908	addons.webextension.<unknown>	WARN	Loading extension 'null': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+1550101840947	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+[02-13 23:50:41] Torbutton INFO: Message received from NoScript: [{"__meta":{"name":"started","recipientInfo":null},"_messageName":"started"},{"id":"{73a6fe31-595d-460b-a920-fcc0f8843232}","url":"moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/_generated_background_page.html","envType":"addon_child","extensionId":"{73a6fe31-595d-460b-a920-fcc0f8843232}","contextId":4},null]
+[02-13 23:50:41] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//latest-rulesets-timestamp via
+                       --unknown--:b83e173ac6f4f77a1ae2307c8b944f44
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+[02-13 23:50:41] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/ via
+                       dreadditevelidot.onion:20c6c5ce5d8b3fecf0e5119415b9cdcc
+[02-13 23:50:42] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//rulesets-signature.1548969377.sha256 via
+                       --unknown--:b83e173ac6f4f77a1ae2307c8b944f44
+[02-13 23:50:42] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//default.rulesets.1548969377.gz via
+                       --unknown--:b83e173ac6f4f77a1ae2307c8b944f44
+[Child 4747, Chrome_ChildThread] WARNING: pipe error (20): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+[Child 4747, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342

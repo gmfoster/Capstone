@@ -42,8 +42,8 @@ class Dread_Module():
             sleep(2)
 
     def run(self, queries, wait_time=0):
-        xvfb_display = start_xvfb()
-
+ #       xvfb_display = start_xvfb()
+        resultCount = 0
         results = []
 
 
@@ -70,11 +70,12 @@ class Dread_Module():
 
                 id = hashlib.md5(q.encode()).hexdigest()
                 postNum = 0
-
+            
                 while (nextPage == True):
                     postBoard = driver.find_element_by_class_name("postBoard")
                     items = postBoard.find_elements_by_class_name("item")
                     comments = postBoard.find_elements_by_class_name("item.comment")
+                    resultCount += len(comments)
                     for c in comments:
                         items.remove(c)
                     for l in items:
@@ -105,9 +106,10 @@ class Dread_Module():
                 sleep(10)
 
 
-        stop_xvfb(xvfb_display)
+#        stop_xvfb(xvfb_display)
         tor_process.kill()
-        return
+        print(resultCount)
+        return resultCount
 
 if __name__ == '__main__':
     print("searching Dread")
