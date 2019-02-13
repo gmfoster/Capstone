@@ -9,7 +9,8 @@ class Profile extends React.Component {
         var name = document.getElementById("name");
         var email = document.getElementById("email");
         var phone = document.getElementById("phone");
-        console.log(name.value, email.value, phone.value);
+        var frequency = document.getElementById("frequency")
+        console.log(name.value, email.value, phone.value, frequency.value);
 
     }
 
@@ -33,21 +34,12 @@ class Profile extends React.Component {
                     <h6 class="border-bottom border-gray pb-2 mt-4 mb-3">Set Threshold</h6>
                     <div class="form-group">
                         <label>Severity Match</label>
-                        <select class="custom-select">
+                        <select class="custom-select" id = "frequency">
                             <option selected>Set Severity</option>
                             <option value="1">Low</option>
-                            <option value="2">Medium</option>
-                            <option value="3">High</option>
+                            <option value="5">Medium</option>
+                            <option value="15">High</option>
                         </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Alert Frequency</label>
-                        <select class="custom-select">
-                            <option selected>Set Alert Frequency</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            </select>
                     </div>
                     <button onClick={this.handler}  class="btn btn-primary" >Save</button>
                 </div>

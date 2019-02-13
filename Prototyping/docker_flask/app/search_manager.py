@@ -3,15 +3,13 @@ from app import pwned
 import pyrebase
 import hashlib
 from app import alert
+from app import user
 
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
-    def __init__(self, name = "", email = "", phone = "", frequency = 5):
-        self.name = name
-        self.email = email
-        self. phone = phone
-        self.frequency = frequency
+    def __init__(self, user):
+        self.user = user()
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -54,7 +52,7 @@ class Search_Manager():
                     self.pwned_keywords.append(v1)
         print(self.pwned_keywords)    
 
-def timedSearch(self):
+    def timedSearch(self):
         int count = 0;
         int pasteCount = 0
         int found, pwnedCount = 0, newCount
@@ -77,8 +75,8 @@ def timedSearch(self):
             found = newCount-count
             count =  newCount
             if(found > self.frequency and firtTime = 0):
-                self.alertUser.sendEmail(self.name, self.email)
-                self.alertUser.sendText(self.phone)
+                self.alertUser.sendEmail(self.user.getName(), self.user.getEmail())
+                self.alertUser.sendText(self.user.getPhone())
             pasteCount = 0;
             pwnedCount = 0;
             found = 0;
