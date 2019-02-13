@@ -5,6 +5,7 @@ from app import dnscheck
 from app import pastebin
 from app import get_data
 from app import sensor_manager
+from app import dread
 import json
 import urllib.request
 import urllib
@@ -13,6 +14,11 @@ from flask import Flask, jsonify
 
 home = {'home' : 'this is the json returned to the homepage'}
 
+@app.route('/dark/<string:sensor>', methods=['GET'])
+def get_dark(sensor):
+    getter = get_data.Get_Data()
+    data = getter.get_dark(sensor)
+    return(josnify(data))
 
 @app.route('/pwned/<string:email>', methods=['GET'])
 def get_pwned(email):

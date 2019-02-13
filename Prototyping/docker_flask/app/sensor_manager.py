@@ -43,6 +43,10 @@ class Sensor_Manager():
             data = {"sensor":sensor}
             self.db.child("sensors").child("virus_sensors").child(id).set(data)
 
+        elif (type == "dark"):
+            id = hashlib.md5(sensor.encode()).hexadigest()
+            data = {"sensor":sensor}
+            self.db.child("sensors").child("dark_sensors").child(id).set(data)
 
 #testing
 #if __name__ == "__main__":
