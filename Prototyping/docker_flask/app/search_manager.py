@@ -76,7 +76,7 @@ def timedSearch(self):
             newCount = pwnedCount + pasteCount
             found = newCount-count
             count =  newCount
-            if(found > self.frequency&& firtTime = 0):
+            if(found > self.frequency and firtTime = 0):
                 self.alertUser.sendEmail(self.name, self.email)
                 self.alertUser.sendText(self.phone)
             pasteCount = 0;
