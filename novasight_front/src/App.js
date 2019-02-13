@@ -8,7 +8,7 @@ import Dashboard from './Dashboard';
 import Sensors from './Sensors'
 import Login from './Login'
 import Redirect from './Redirect'
-import Alerts from './Alerts'
+import Profile from './Profile'
 
 
 
@@ -95,8 +95,8 @@ class App extends React.Component {
               }
               {isAuthenticated &&
                 <li className="nav-item">
-                  <Link to={{pathname:'/alerts',class:"nav-link"}}>
-                    Alerts
+                  <Link to={{pathname:'/profile',class:"nav-link"}}>
+                    Profile
                   </Link>
                 </li>
               }
@@ -110,7 +110,7 @@ class App extends React.Component {
               {isAuthenticated &&
                 <li onClick={this.handleLogout.bind(this)} className="nav-item">
                   <Link to={{pathname:'/login',class:"nav-link"}}>
-                    Lougout
+                    Logout
                   </Link>
                 </li>
               }
@@ -129,7 +129,7 @@ class App extends React.Component {
         <Route path='/dashboard' component={Dashboard}/>
         <Route path='/sensors' component={Sensors}/>
         <Route path='/login' component={Login}/>
-        <Route path='/alerts'component={Alerts}/>
+        <Route path='/profile'component={Profile}/>
 
       </Router>
     );
