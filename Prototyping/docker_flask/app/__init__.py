@@ -7,3 +7,4 @@ from app import pastebin
 from app import search_manager
 from app import pwned
 from app import get_data
+from app import dread

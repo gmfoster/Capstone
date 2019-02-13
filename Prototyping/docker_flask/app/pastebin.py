@@ -25,6 +25,7 @@ class Pastebin_Module():
         elif platform == "win32":
             subDir = "windows/chromedriver.exe"
         self.driverDirectory = dirPath + "/chromedriver/" + subDir
+        print(self.driverDirectory)
         self.chrome_options = Options()
         #self.chrome_options.add_argument('headless')
         self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
@@ -164,6 +165,6 @@ class Pastebin_Module():
         return results
         
                                       
-if __name__ == "__main__":
-    paste = Pastebin_Module()
-    paste.search("ucsb")
+#if __name__ == "__main__":
+#    paste = Pastebin_Module()
+#    paste.search("ucsb")

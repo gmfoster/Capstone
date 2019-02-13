@@ -80,8 +80,7 @@ class Search_Manager():
                     #print("searching paste: " + self.paste_keywords[i])
             self.getPwnedSensors() #get pwned sensors
             if (len(self.pwned_keywords) != 0):
-                for i in range(len(self.pwned_keywords)):
-                    self.pwned_module.search(self.pwned_keywords[i])
+                for i in range(len(self.pwned_keywordsself.pwned_module.search(self.pwned_keywords[i])
             #if(pwned_module.search found something || paste.search found something):                
                 #self.alertUser.sendEmail(self.name, self.email)                                                    #  self.alertUser.sendText(self.phone)
             self.getDarkSensors()
