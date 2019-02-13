@@ -4,19 +4,21 @@ from app import pwned
 import pyrebase
 import hashlib
 from app import alert
+<<<<<<< HEAD
 #import alert
 from app import dread
 #import dread
 from app import pastebin
 #import pastebin
+=======
+from app import user
+
+>>>>>>> 97823eaa1246fc9a3c486e81ccb35ad5c8eca232
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
-    def __init__(self, name = "", email = "", phone = "", frequency = 5):
-        self.name = name
-        self.email = email
-        self. phone = phone
-        self.frequency = frequency
+    def __init__(self, user):
+        self.user = user()
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -60,6 +62,7 @@ class Search_Manager():
                     self.pwned_keywords.append(v1)
         print(self.pwned_keywords)
 
+<<<<<<< HEAD
         def getDarkSensors(self):
             self.dark_sensors = self.db.child("sensors").child("dark_sensors").get().val()
             seen = set(self.dark_keywords)
@@ -72,6 +75,10 @@ class Search_Manager():
         
     def timedSearch(self):
         int count = 0
+=======
+    def timedSearch(self):
+        int count = 0;
+>>>>>>> 97823eaa1246fc9a3c486e81ccb35ad5c8eca232
         int pasteCount = 0
         int darkCoutn = 0
         int found, pwnedCount = 0, newCount
@@ -96,6 +103,7 @@ class Search_Manager():
             newCount = pwnedCount + pasteCount + darkCount
             found = newCount-count
             count =  newCount
+<<<<<<< HEAD
             if(found > self.frequency and firstTime = 0):
                 self.alertUser.sendEmail(self.name, self.email)
                 self.alertUser.sendText(self.phone)
@@ -103,6 +111,14 @@ class Search_Manager():
             pwnedCount = 0
             darkCount = 0
             found = 0
+=======
+            if(found > self.frequency and firtTime = 0):
+                self.alertUser.sendEmail(self.user.getName(), self.user.getEmail())
+                self.alertUser.sendText(self.user.getPhone())
+            pasteCount = 0;
+            pwnedCount = 0;
+            found = 0;
+>>>>>>> 97823eaa1246fc9a3c486e81ccb35ad5c8eca232
             print("Sleeping for 15 seconds")
             time.sleep(15)
             firstTime = 0
