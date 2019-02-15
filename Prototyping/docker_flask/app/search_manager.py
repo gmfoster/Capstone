@@ -70,16 +70,16 @@ class Search_Manager():
             print(self.dark_keywords)
         
     def timedSearch(self):
-        int count = 0;
-        int pasteCount = 0
-        int darkCoutn = 0
-        int found, pwnedCount = 0, newCount
-        int firstTime = 1
+        count = 0
+        pasteCount = 0
+        darkCoutn = 0
+        found, pwnedCount = 0, newCount
+        firstTime = 1
         while(1):
         #start infinite loop                                                                          
             self.getPasteSensors() #get paste sensors                                                 
             if (len(self.paste_keywords) != 0):
-                int pasteCount = 0
+                pasteCount = 0
                 for i in range(len(self.paste_keywords)):
                     #pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i])              
                     print("searching paste: " + self.paste_keywords[i])
@@ -96,7 +96,7 @@ class Search_Manager():
             found = newCount-count
             count =  newCount
 
-            if(found > self.frequency and firstTime = 0):
+            if(found > self.frequency and firstTime == 0):
                 self.alertUser.sendEmail(self.name, self.email)
                 self.alertUser.sendText(self.phone)
             pasteCount = 0

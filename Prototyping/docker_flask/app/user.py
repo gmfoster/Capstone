@@ -1,37 +1,37 @@
 class user():
-	def __init__(self):
-		self.name = ""
-        self.email = ""
-        self. phone = ""
-        self.frequency = 5
-        self.password = ""
+        def __init__(self):
+                self.name = ""
+                self.email = ""
+                self.phone = ""
+                self.frequency = 5
+                self.password = ""
+                
+        def setName(self, name):
+                self.name = name
 
-    def setName(self, name):
-    	self.name = name
+        def setEmail(self, email):
+                self.email = email
 
-    def setEmail(self, email):
-    	self.email = email
+        def setPhone(self, phone):
+    	        self.phone = phone
+                
+        def setFrequency(self, frequency):
+    	        self.frequency = frequency
 
-    def setPhone(self, phone):
-    	self.phone = phone
+        def setFrequency(self, password):
+    	        self.frequency = password
 
-    def setFrequency(self, frequency):
-    	self.frequency = frequency
+        def getName(self):
+    	        return self.name
 
-    def setFrequency(self, password):
-    	self.frequency = password
+        def getEmail(self):
+    	        return self.email
 
-    def getName(self):
-    	return self.name
+        def getPhone(self):
+    	        return self.phone
 
-    def getEmail(self):
-    	return self.email
+        def getFrequency(self):
+    	        return self.frequency
 
-    def getPhone(self):
-    	return self.phone
-
-    def getFrequency(self):
-    	return self.frequency
-
-    def getPassword(self):
-    	return self.password
+        def getPassword(self):
+    	        return self.password

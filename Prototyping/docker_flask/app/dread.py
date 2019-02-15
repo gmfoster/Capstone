@@ -111,10 +111,10 @@ class Dread_Module():
         print(resultCount)
         return resultCount
 
-if __name__ == '__main__':
-    print("searching Dread")
-    ds = Dread_Module()
-    queries = ['netflix accounts']
-    dread_results = ds.run(queries=queries, wait_time=0)
+#if __name__ == '__main__':
+#    print("searching Dread")
+#    ds = Dread_Module()
+#    queries = ['netflix accounts']
+#    dread_results = ds.run(queries=queries, wait_time=0)
 
 

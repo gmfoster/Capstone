@@ -22,31 +22,27 @@ class Sensor_Manager():
         self.db = self.firebase.database()
 
 
-    def addSensor(self, sensor, type):
+    def addSensor(self, sensor, type, tag):
         if (type == "paste"):
             id = hashlib.md5(sensor.encode()).hexdigest()
             data = {"sensor":sensor}
-            self.db.child("sensors").child("paste_sensors").child(id).set(data)
+            self.db.child("sensors").child(tag).child("paste_sensors").child(id).set(data)
         
         elif (type == "pwned"):
             id = hashlib.md5(sensor.encode()).hexdigest()
             data = {"sensor":sensor}
-            self.db.child("sensors").child("pwned_sensors").child(id).set(data)
+            self.db.child("sensors").child(tag).child("pwned_sensors").child(id).set(data)
 
         elif (type == "dark"):
             id = hashlib.md5(sensor.encode()).hexdigest()
             data = {"sensor":sensor}
-            self.db.child("sensors").child("dark_sensors").child(id).set(data)
+            self.db.child("sensors").child(tag).child("dark_sensors").child(id).set(data)
 
         elif (type == "virus"): 
             id = hashlib.md5(sensor.encode()).hexdigest()
             data = {"sensor":sensor}
-            self.db.child("sensors").child("virus_sensors").child(id).set(data)
+            self.db.child("sensors").child(tag).child("virus_sensors").child(id).set(data)
 
-        elif (type == "dark"):
-            id = hashlib.md5(sensor.encode()).hexadigest()
-            data = {"sensor":sensor}
-            self.db.child("sensors").child("dark_sensors").child(id).set(data)
 
 #testing
 #if __name__ == "__main__":
