@@ -6,6 +6,7 @@ from app import pastebin
 from app import get_data
 from app import sensor_manager
 from app import dread
+from app import user
 import json
 import urllib.request
 import urllib
@@ -53,7 +54,11 @@ def scan():
     search.timedSearch()
     data = {"Message":"Scanning"}
     return(jsonify(data))
-    
+
+@app.route('/new_user/<string:name>/<string:email>/<string:phone>/<string:frequency>', methods = ['GET'])
+def addNewUser(name, email, phone, keywords):
+    user = user.user(name,email,phone,keywords)
+
 @app.route('/')
 @app.route('/index')
 def index():
