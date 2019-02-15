@@ -41,8 +41,7 @@ class Pwned_Module():
             json_string = json.dumps(data)
             json_data = json.loads(json_string)
             self.db.child("pwned_search").child(id).set(json_data)
-            print(data)
-            return (response.json())
+            return (len(data))
         elif status == 201:
             error = {"developerMessage" : "Created"} 
             return(error)
@@ -61,7 +60,7 @@ class Pwned_Module():
         elif status == 404:
             error = {'404' : 'Congratulations you have not been pwned'}
             self.db.child("pwned_search").child(id).set(error)
-            return (error)
+            return (0)
         elif status == 409:
             error = {'developerMessage' : 'Conflict'}
             return(error)
@@ -69,9 +68,9 @@ class Pwned_Module():
             error = {'developerMessage' : 'Internal Server Error'}
             return(error)
 
-
+    
 #testing
-#if __name__ == "__main__":
-#    pwned = Pwned_Module()
-#    pwned.search("gmfoster@umail.ucsb.edu")
+if __name__ == "__main__":
+    pwned = Pwned_Module()
+    pwned.search("gfoster831@gmail.com")
     
