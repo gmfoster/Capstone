@@ -5,6 +5,8 @@ from app import dnscheck
 from app import pastebin
 from app import get_data
 from app import sensor_manager
+from app import dread
+from app import user
 import json
 import urllib.request
 import urllib
@@ -13,6 +15,11 @@ from flask import Flask, jsonify
 
 home = {'home' : 'this is the json returned to the homepage'}
 
+@app.route('/dark/<string:sensor>', methods=['GET'])
+def get_dark(sensor):
+    getter = get_data.Get_Data()
+    data = getter.get_dark(sensor)
+    return(josnify(data))
 
 @app.route('/pwned/<string:email>', methods=['GET'])
 def get_pwned(email):
@@ -34,10 +41,10 @@ def get_virus(url):
     return (jsonify(data))
 
 #testing
-@app.route('/add/<string:sensor>/<string:type>', methods = ['GET'])
-def add_sensor(sensor,type):
+@app.route('/add/<string:sensor>/<string:type>/<string:tag>', methods = ['GET'])
+def add_sensor(sensor,type,tag):
     add = sensor_manager.Sensor_Manager()
-    add.addSensor(sensor,type)
+    add.addSensor(sensor,type,tag)
     data = {"Message":"We've added your sensor"}
     return (jsonify(data))
 
@@ -47,7 +54,11 @@ def scan():
     search.timedSearch()
     data = {"Message":"Scanning"}
     return(jsonify(data))
-    
+
+@app.route('/new_user/<string:name>/<string:email>/<string:phone>/<string:frequency>', methods = ['GET'])
+def addNewUser(name, email, phone, keywords):
+    user = user.user(name,email,phone,frequency)
+
 @app.route('/')
 @app.route('/index')
 def index():

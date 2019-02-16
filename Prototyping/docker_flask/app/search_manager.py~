@@ -2,14 +2,16 @@ import time
 from app import pwned
 import pyrebase
 import hashlib
+from app import alert
 
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
-    def __init__(self, name = "Nobody", email = "noone@nowhere.com", phone = "+18005550000"):
+    def __init__(self, name = "", email = "", phone = "", frequency = 5):
         self.name = name
         self.email = email
         self. phone = phone
+        self.frequency = frequency
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -52,24 +54,35 @@ class Search_Manager():
                     self.pwned_keywords.append(v1)
         print(self.pwned_keywords)    
 
-    def timedSearch(self):
-        
+def timedSearch(self):
+        int count = 0;
+        int pasteCount = 0
+        int found, pwnedCount = 0, newCount
         while(1):
-        #start infinite loop
-            self.getPasteSensors() #get paste sensors
+        #start infinite loop                                                                          
+            self.getPasteSensors() #get paste sensors                                                 
             if (len(self.paste_keywords) != 0):
+                int pasteCount = 0
                 for i in range(len(self.paste_keywords)):
-                    #paste = pastebin.Pastebin_Module()
-                    #paste.search(self.paste_keywords[i])
+                    #paste = pastebin.Pastebin_Module()                                               
+                    #pasteCount = pasteCount + self.paste.search(self.paste_keywords[i])              
                     print("searching paste: " + self.paste_keywords[i])
-            self.getPwnedSensors() #get pwned sensors
+            self.getPwnedSensors() #get pwned sensors                                                 
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
-                    #pwned = pwned.Pwned_Module()
-                    self.pwned_module.search(self.pwned_keywords[i])
-            print("Sleeping for 5 seconds")
-            time.sleep(5)
-    
+                    #pwned = pwned.Pwned_Module()                                                     
+                    pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
+            newCount = pwnedCount + pasteCount
+            found = newCount-count
+            count =  newCount
+            if(found > self.frequency):
+                self.alertUser.sendEmail(self.name, self.email)
+                self.alertUser.sendText(self.phone)
+            pasteCount = 0;
+            pwnedCount = 0;
+            found = 0;
+            print("Sleeping for 15 seconds")
+            time.sleep(15)
 
 #if __name__ == "__main__":
 #    manager = Search_Manager()

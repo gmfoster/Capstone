@@ -1,0 +1,52 @@
+# Tor state file last generated on 2019-02-12 19:01:37 local time
+# Other times below are in UTC
+# You *do not* need to edit this file.
+
+Guard in=default rsa_id=5CFC486780CBD4446B764E51608D6574003B350D nickname=helena sampled_on=2019-02-03T07:36:42 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=70CD43F7F15BCAC37DCB13E220DB12504A647A78 nickname=Unnamed sampled_on=2019-01-26T07:47:51 sampled_by=0.3.5.7 listed=1 confirmed_on=2019-01-28T23:17:19 confirmed_idx=2
+Guard in=default rsa_id=937F201D2797314953F268D252F5C98D3FA9F71E nickname=Fission2 sampled_on=2019-01-29T20:44:12 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=7A4C296A01FADA0BC5DE4DA743EEED1682829496 nickname=myrelay sampled_on=2019-01-31T20:05:39 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=C49A177510CAA653DA6727BF0E07FB7F56A0F09D nickname=Unnamed sampled_on=2019-01-25T11:37:54 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=6B9EA8927AB6E94E216067E65372182343A5AFA2 nickname=angelinajolie sampled_on=2019-01-30T23:41:52 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=88805BF67227821F859FABB118F49B3CB1B1B483 nickname=LaMexiTORta sampled_on=2019-01-30T00:53:04 sampled_by=0.3.5.7 listed=1 confirmed_on=2019-01-29T17:44:58 confirmed_idx=0 pb_use_attempts=23.000000 pb_use_successes=23.000000 pb_circ_attempts=104.000000 pb_circ_successes=102.000000 pb_successful_circuits_closed=102.000000 pb_timeouts=3.000000
+Guard in=default rsa_id=221F035A330AC4231A2E3D901F1CB11483C19F66 nickname=Unnamed sampled_on=2019-01-30T23:53:36 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=F0F13714732C347312426EC2B8D5C4940EAA45BA nickname=FalkensteinTor03 sampled_on=2019-02-01T14:17:18 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=5E4D1E6D31413DCCC148A8050224578CBBF12883 nickname=Unnamed sampled_on=2019-01-31T13:13:18 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=CF3BE80ADFF62DFF289E60D87CB1B44A013F096F nickname=aliceinwonderland sampled_on=2019-01-29T08:35:37 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=4B351545DD58473F36B0A20E5500AC6ED51E8CD5 nickname=idideditheconfig sampled_on=2019-01-28T17:18:36 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=5FDA34ECC83610427841E467CCC6C6163EEC6BE7 nickname=isthisthereallife sampled_on=2019-01-25T04:39:05 sampled_by=0.3.5.7 listed=1 confirmed_on=2019-01-27T01:28:52 confirmed_idx=1
+Guard in=default rsa_id=81C5227141CAFAC07263899FB432544C96E7555C nickname=vps247two sampled_on=2019-01-29T14:23:41 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=592031CFDBA17DD46E1E365E6C60AD1F81655033 nickname=araglaucogularis sampled_on=2019-02-01T00:44:55 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=68FBE72B0D411C314EC7F272CB5B3F14C2429246 nickname=TORminion sampled_on=2019-02-03T08:06:57 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=B5212DB685A2A0FCFBAE425738E478D12361710D nickname=firstor sampled_on=2019-01-30T00:14:38 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=EE010EF80A27AC0B02CDC2B8B214A6201BB02D2B nickname=luraleen sampled_on=2019-01-30T00:07:36 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=14400A5BD0B92A02E14A6DD88F9C2059AA381D8E nickname=Unnamed sampled_on=2019-01-27T04:59:43 sampled_by=0.3.5.7 listed=1
+Guard in=default rsa_id=909D6C34CDE3ECDF0BE6BEDEFA05B1EF82AF7B67 nickname=Noonesland sampled_on=2019-02-03T05:21:20 sampled_by=0.3.5.7 listed=1
+TorVersion Tor 0.3.5.7 (git-9beb085c10562a25)
+LastWritten 2019-02-12 19:01:37
+TotalBuildTimes 105
+CircuitBuildTimeBin 525 5
+CircuitBuildTimeBin 575 3
+CircuitBuildTimeBin 625 15
+CircuitBuildTimeBin 675 15
+CircuitBuildTimeBin 725 10
+CircuitBuildTimeBin 775 8
+CircuitBuildTimeBin 825 2
+CircuitBuildTimeBin 875 4
+CircuitBuildTimeBin 925 9
+CircuitBuildTimeBin 975 2
+CircuitBuildTimeBin 1025 3
+CircuitBuildTimeBin 1075 4
+CircuitBuildTimeBin 1125 6
+CircuitBuildTimeBin 1175 5
+CircuitBuildTimeBin 1225 3
+CircuitBuildTimeBin 1275 1
+CircuitBuildTimeBin 1425 1
+CircuitBuildTimeBin 1475 2
+CircuitBuildTimeBin 1625 1
+CircuitBuildTimeBin 1675 1
+CircuitBuildTimeBin 1775 1
+CircuitBuildTimeBin 2075 1
+CircuitBuildTimeBin 2575 1
+CircuitBuildTimeBin 3175 1
+CircuitBuildTimeBin 3975 1

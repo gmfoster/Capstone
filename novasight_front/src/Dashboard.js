@@ -1,16 +1,54 @@
 import React, { Component } from 'react';
-
 import './Style Sheets/site.min.css'
 import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
+import './Style Sheets/Dashboard.css'
 import firebase from './firebase.js';
+import ReactChartkick, { LineChart, AreaChart } from 'react-chartkick'
+import Chart from 'chart.js'
 
+ReactChartkick.addAdapter(Chart)
 
-var isPastebin = true;
-var isHaveIBeenPwnd = false;
+var isPastebin = false;
+var isHaveIBeenPwnd = true;
 
+var bubbleSensors =[
+    {
+        name:"bUUUUUUUUU",
+        key:"FDAF;ADF"
+    },
+    {
+        name:"LLLLLLLLL",
+        key:"FADF;OAD"
+    }
+]
 
-
+var lineChartData = {
+    "2019-01-01":10,
+    "2019-01-02":20,
+    "2019-01-03":13,
+    "2019-01-04":15,
+    "2019-01-05":2,
+    "2019-01-06":50,
+    "2019-01-07":10,
+    "2019-01-08":20,
+    "2019-01-09":13,
+    "2019-01-10":15,
+    "2019-01-11":2,
+    "2019-01-12":50,
+    "2019-01-13":10,
+    "2019-01-14":20,
+    "2019-01-15":13,
+    "2019-01-16":15,
+    "2019-01-17":2,
+    "2019-01-18":50,
+    "2019-01-19":10,
+    "2019-01-20":20,
+    "2019-01-21":13,
+    "2019-01-22":15,
+    "2019-01-23":2,
+    "2019-01-24":50
+}
 
 var pasteSensors = [
     {
@@ -33,6 +71,12 @@ var pwnedSensors = [
     {
         key:"64cbb14ec41478b5d9cdff67ee8320e0",
         string:"gmfoster@umail.ucsb.edu"
+    },{
+        key:"65dc726e67621fcca86b0c92a0700710",
+        string:"grahamimportantstuff96@gmail.com"
+    },{
+        key:"f4fad95f5b58463cd24ca59e35513874",
+        string:"grahammfoster96@gmail.com"
     }
 ];
 
@@ -42,6 +86,7 @@ class PastebinTable extends React.Component {
         super();
         this.pasteList = [];
         this.ref = firebase.database().ref('paste_search');
+        this.number = 0;
 
     }
 
@@ -102,7 +147,7 @@ class PastebinEntry extends React.Component{
         return(
             <tr>
                 <th scope="row">{this.props.Date}</th>
-                <td>{this.props.Link}</td>
+                <td><a href={this.props.Link}>{this.props.Link}</a></td>
                 <td>{this.props.Preview}</td>
             </tr>    
         );
@@ -116,6 +161,8 @@ class HaveIBeenPwndTable extends React.Component{
         super();
         this.pwndList = [];
         this.ref = firebase.database().ref('pwned_search');
+        this.noData = false;
+        this.number = 0;
     }
 
     componentDidMount(){
@@ -128,9 +175,10 @@ class HaveIBeenPwndTable extends React.Component{
             PWND_LIST = items[this.props.sensorKey]
 
             if (PWND_LIST["404"] != undefined){
+                this.noData = true;
                 this.pwndList = <HaveIBeenPwndEntry
                     Key={this.props.sensorString}
-                    Description={PWND_LIST["404"]}
+                    Description={"<font size='3' color='green'>" + PWND_LIST["404"] + "</font>"}
                 />
             }else{
                 console.log("Not undefined")
@@ -161,9 +209,15 @@ class HaveIBeenPwndTable extends React.Component{
                 <table className="table table-responsive small">
                     <thead>
                         <tr>
-                            <th scope="col">Breach Date</th>
-                            <th scope="col">Domain</th>
-                            <th scope="col">Name</th>
+                            {!this.noData &&
+                                <th scope="col">Breach Date</th>
+                            }
+                            {!this.noData &&
+                                <th scope="col">Domain</th>
+                            }
+                            {!this.noData &&
+                                <th scope="col">Name</th>
+                            }
                             <th scope="col">Description</th>
                         </tr>
                     </thead>
@@ -186,10 +240,75 @@ class HaveIBeenPwndEntry extends React.Component{
                 <th scope="row">{this.props.BreachDate}</th>
                 <td>{this.props.Domain}</td>
                 <td>{this.props.Name}</td>
-                <td>{this.props.Description}</td>
+                <td dangerouslySetInnerHTML={{__html: this.props.Description}}></td>
             </tr>    
         );
         
+    }
+}
+
+
+class Bubble extends React.Component{
+    render(){
+        return(
+            <div class="round-button">
+                <div class="round-button-circle">
+                    <a href="http://example.com" class="round-button">{this.props.name}</a>
+                </div>
+            </div>
+        )
+    }
+}
+
+class BubbleSensor extends React.Component { 
+    constructor(){
+        super();
+        this.list = [];
+        this.ref = firebase.database().ref('sensors').child('paste_sensors');
+        this.sensorList = []
+    }
+    
+    componentDidMount() { 
+        var sensorKeys = []; 
+        
+        this.ref.on('value', (snapshot) => { 
+
+            console.log(snapshot.val());
+            
+            for(var key in snapshot.val()) { 
+                var tempSensor = snapshot.val()[key]["sensor"];
+                sensorKeys.push(key);
+                console.log(tempSensor);
+                this.sensorList.push(tempSensor);
+            }
+            this.forceUpdate()
+        
+        }); 
+        console.log(this.sensorList);
+        
+    }
+    
+    componentWillUnmount() { 
+        this.ref.off(); 
+    }
+    render() { 
+
+        this.list = this.sensorList.map((entry) => (
+            <Bubble
+                name={entry}
+                key={entry}
+            /> 
+        )); 
+
+        return (
+            <div class="container-outer">
+                <div class="container-inner">
+                    <div class="wrapper">
+                        {this.list}
+                    </div>
+                </div>
+            </div>
+        ); 
     }
 }
 
@@ -221,18 +340,31 @@ class Dashboard extends React.Component {
 
         return (
             <div>
-                <div className="nav-scroller bg-white shadow-sm">
+                {/* <div className="nav-scroller bg-white shadow-sm">
                     <nav className="nav nav-underline">
                         <a className="nav-link active" href="#">This Link</a>
                         <a className="nav-link active" href="#">That Link</a>
                         <a className="nav-link active" href="#">The Other Link</a>
                     </nav>
-                </div>
+                </div> */}
+                <main role="main" className="container">
+                    <h2>My Sensors </h2> 
+                </main>
+                
+                <main>
+                    <BubbleSensor/>
+                </main> 
+
+                <main role="main" className="container">
+                    <AreaChart title="Paste Dump" colors={["#007bff", "#666"]} data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
+                </main>
 
                 <main role="main" className="container">
                     {SENSORS}
                 </main>
+                
             </div>
+            
         );
     }
 }
