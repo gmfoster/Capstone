@@ -113,7 +113,7 @@ class PastebinGoogle_Module():
             nextPage = None
 
             ###WAIT PERIOD FOR PAGE TO LOAD###
-            time.sleep(3)
+            #time.sleep(3)
 
             #Finds the number of pages that return the results of the search
             #pagesRemaining = self.getPagesRemaining()
@@ -129,7 +129,7 @@ class PastebinGoogle_Module():
             nextPage = self.getNextPage()
 
             if(pagesRemaining > 0 and nextPage is not None):
-                time.sleep(20)
+                #time.sleep(20)
                 nextPage.click()
 
             

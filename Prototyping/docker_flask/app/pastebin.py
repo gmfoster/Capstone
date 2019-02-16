@@ -69,16 +69,19 @@ class Pastebin_Module():
         try: 
             pageSelector = self.browser.find_element_by_class_name("gsc-cursor")
             pagesElementsArray = pageSelector.find_elements_by_css_selector("*")
-            currentPage = pageSelector.find_element_by_class_name("gsc-cursor-current-page")
+            currentPage = self.browser.find_element_by_class_name("gsc-cursor-current-page")
             pageAfterCurrent = False
+            currentPageNumber = 1
             
             for page in pagesElementsArray:
                 if(page == currentPage):
                     pageAfterCurrent = True
                 elif(pageAfterCurrent == True):
                     return page
+                currentPageNumber = currentPageNumber + 1
 
         except NoSuchElementException:
+            print("currentPageNumber: " + str(currentPageNumber))
             print(NoSuchElementException)
             return None
 
@@ -89,7 +92,7 @@ class Pastebin_Module():
         self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
 
         ###WAIT PERIOD FOR PAGE TO LOAD###
-        #time.sleep(5)
+        time.sleep(2)
 
         #Finds the number of pages that return the results of the search
         pagesRemaining = self.getPagesRemaining()
@@ -97,19 +100,29 @@ class Pastebin_Module():
 
         #Finds urls and adds them to a list before iterating to next page if necesary
         while(pagesRemaining > 0):
-            elementRoots = []
-            elementRoots = self.browser.find_elements_by_css_selector(".gs-webResult.gs-result")
+            time.sleep(2)
+            elementRoots = self.browser.find_elements_by_class_name("gs-visible-long")
+            
+            #urlElements = self.browser.find_elements_by_class_name("gs-result")
          
+
+            # for element in elementRoots:
+            #     try:
+            #         e = element.find_element_by_class_name("gs-visibleUrl-long")
+            #         print(e.text)
+            #         urls.append(str(e.text))
+            try: 
+                #elements = self.browser.find_element_by_class_name("gs-visible-long")
+                for element in elementRoots:
+                    print(element.text)
+                    urls.append(str(element.text))
+            except StaleElementReferenceException:
+                print("No urls because search results returned a stale page")
+            except NoSuchElementException:
+                print("No such element exception")
+
             #Find the next page
             nextPage = self.getNextPage()
-
-            for element in elementRoots:
-                try:
-                    e = element.find_element_by_css_selector(".gs-bidi-start-align.gs-visibleUrl.gs-visibleUrl-long")
-                    urls.append(str(e.text))
-                except StaleElementReferenceException:
-                   print("No urls because search results returned a stale page")
-
 
             if(pagesRemaining > 1):
                 try:
