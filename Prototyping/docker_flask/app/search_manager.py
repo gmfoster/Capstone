@@ -1,21 +1,21 @@
 import time
-from app import pwned
-#import pwned
+#from app import pwned
+import pwned
 import pyrebase
 import hashlib
-from app import alert
-#import alert
-from app import dread
-#import dread
-from app import pastebin
-#import pastebin
-from app import user
-
+#from app import alert
+import alert
+#from app import dread
+import dread
+#from app import pastebin
+import pastebin
+#from app import user
+import user
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
-    def __init__(self, user):
-        self.user = user()
+    def __init__(self):
+        self.user = user.user()
         #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -39,7 +39,7 @@ class Search_Manager():
         self.db = self.firebase.database()
 
 
-    def getPasteSensors(self):
+    def getPasteSensors_old(self):
         self.paste_sensors = self.db.child("sensors").child("paste_sensors").get().val()
         seen = set(self.paste_keywords)
         for k, v in self.paste_sensors.items():
@@ -49,7 +49,20 @@ class Search_Manager():
                     self.paste_keywords.append(v1)
         print(self.paste_keywords)
 
-    def getPwnedSensors(self):
+    def getPasteSensors(self):
+        self.sensors = self.db.child("sensors").get().val()
+        seen = set(self.paste_keywords)
+        for k,v in self.sensors.items():
+            for k1, v1 in v.items():
+                if k1 == "paste_sensors":
+                    for k2, v2 in v1.items():
+                        for k3, v3 in v2.items():
+                            if v3 not in seen:
+                                seen.add(v3)
+                                self.paste_keywords.append(v3)
+        print(self.paste_keywords)
+
+    def getPwnedSensors_old(self):
         self.pwned_sensors = self.db.child("sensors").child("pwned_sensors").get().val()
         seen = set(self.pwned_keywords)
         for k, v in self.pwned_sensors.items():
@@ -59,15 +72,42 @@ class Search_Manager():
                     self.pwned_keywords.append(v1)
         print(self.pwned_keywords)
 
-        def getDarkSensors(self):
-            self.dark_sensors = self.db.child("sensors").child("dark_sensors").get().val()
-            seen = set(self.dark_keywords)
-            for k, v in self.dark_sensors.items():
-                for k1,v1 in v.items():
-                    if v1 not in seen:
-                        seen.add(v1)
-                        self.dark_keywords.append(v1)
-            print(self.dark_keywords)
+    def getPwnedSensors(self):
+        self.sensors = self.db.child("sensors").get().val()
+        seen = set(self.pwned_keywords)
+        for k,v in self.sensors.items():
+            for k1, v1 in v.items():
+                if k1 == "pwned_sensors":
+                    for k2, v2 in v1.items():
+                        for k3, v3 in v2.items():
+                            if v3 not in seen:
+                                seen.add(v3)
+                                self.pwned_keywords.append(v3)
+        print(self.pwned_keywords)
+                
+                
+    def getDarkSensors_old(self):
+        self.dark_sensors = self.db.child("sensors").child("dark_sensors").get().val()
+        seen = set(self.dark_keywords)
+        for k, v in self.dark_sensors.items():
+            for k1,v1 in v.items():
+                if v1 not in seen:
+                    seen.add(v1)
+                    self.dark_keywords.append(v1)
+        print(self.dark_keywords)
+
+    def getDarkSensors(self):
+        self.sensors = self.db.child("sensors").get().val()
+        seen = set(self.dark_keywords)
+        for k,v in self.sensors.items():
+            for k1, v1 in v.items():
+                if k1 == "dark_sensors":
+                    for k2, v2 in v1.items():
+                        for k3, v3 in v2.items():
+                            if v3 not in seen:
+                                seen.add(v3)
+                                self.dark_keywords.append(v3)
+        print(self.dark_keywords)
         
     def timedSearch(self):
         count = 0
@@ -107,7 +147,9 @@ class Search_Manager():
             time.sleep(15)
             firstTime = 0
 
-#if __name__ == "__main__":
-#    manager = Search_Manager()
-#    manager.timedSearch()
-#   manager.getPwnedSensors()
+if __name__ == "__main__":
+    manager = Search_Manager()
+    #    manager.timedSearch()
+    manager.getPwnedSensors()
+    manager.getDarkSensors()
+    manager.getPasteSensors()

@@ -57,7 +57,7 @@ def scan():
 
 @app.route('/new_user/<string:name>/<string:email>/<string:phone>/<string:frequency>', methods = ['GET'])
 def addNewUser(name, email, phone, keywords):
-    user = user.user(name,email,phone,keywords)
+    user = user.user(name,email,phone,frequency)
 
 @app.route('/')
 @app.route('/index')
