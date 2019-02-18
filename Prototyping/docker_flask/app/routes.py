@@ -41,16 +41,18 @@ def get_virus(url):
     return (jsonify(data))
 
 #testing
-@app.route('/add', methods = ['GET'])
+@app.route('/add/', methods = ['POST'])
 def add_sensor():
-    result = request.args
-    tag = result['sensorName']
-    type = result['sensorType']
-    sensor = result['snesorKeywords']
-    add = sensor_manager.Sensor_Manager()
-    add.addSensor(sensor,type,tag)
-    data = {"Message":"We've added your sensor"}
-    return (jsonify(data))
+    data = request.data
+    #result = request.args
+    #tag = result['sensorName']
+    #type = result['sensorType']
+    #sensor = result['snesorKeywords']
+    #add = sensor_manager.Sensor_Manager()
+    #add.addSensor(sensor,type,tag)
+    #data = {"Message":"We've added your sensor"}
+    #return (jsonify(data))
+    return (data)
 
 @app.route('/scan/', methods = ['GET'])
 def scan():
