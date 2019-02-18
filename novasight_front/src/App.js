@@ -9,7 +9,7 @@ import Sensors from './Sensors'
 import Login from './Login'
 import Redirect from './Redirect'
 import Profile from './Profile'
-
+import firebase from './firebase.js';
 
 
 import createHistory from 'history/createBrowserHistory'; 
@@ -51,13 +51,37 @@ class Router extends React.Component {
 
 }
 
-var isAuthenticated = true
+var isAuthenticated = false
 
 class App extends React.Component {
+
+  constructor(){
+    super()
+    this.ref = firebase.database().ref('users');
+  }
+
+  componentDidMount(){
+    console.log("App is being mounted")
+    this.ref.on('value', (snapshot) => {
+      let items = snapshot.val();
+      console.log(items)
+      if(items["isLoggedIn"] == true){
+        isAuthenticated = true
+      }else{
+        isAuthenticated = false
+      }
+      this.forceUpdate()
+      
+  });
+
+  }
+
   handleLogout(){
     isAuthenticated = false
     this.forceUpdate();
-    console.log("Handle Louto")
+    this.ref.update({
+      isLoggedIn:false     
+    })
   }
 
   render(){
@@ -123,7 +147,7 @@ class App extends React.Component {
           <Redirect to='/login'/>
         }
         {isAuthenticated && 
-          <Redirect to='/home'/>
+          <Redirect to='/dashboard'/>
         }
         <Route path='/home' component={Home}/>
         <Route path='/dashboard' component={Dashboard}/>

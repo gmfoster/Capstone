@@ -5,17 +5,25 @@ import './Style Sheets/site.min.css'
 import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
 import Redirect from './Redirect'
+import firebase from './firebase.js';
 
 class Login extends React.Component{
 
+    constructor(){
+        super()
+        this.ref = firebase.database().ref('users')
 
+    }
     handleClick(e){
-        console.log("print")
-        return (
-            <Redirect to='/dashboard'/>
-        );
+       
+        this.ref.update({
+            isLoggedIn:true     
+        })
     }
 
+    componentWillUnmount(){
+        this.ref.off()
+    }
     //class="btn btn-lg btn-primary btn-block" type="submit"
 
     render(){
@@ -33,7 +41,7 @@ class Login extends React.Component{
                         <input type="checkbox" value="remember-me"/> Remember me
                         </label>
                     </div>
-                    <button className="btn btn-lg btn-primary btn-block" onClick={this.handleClick}>
+                    <button className="btn btn-lg btn-primary btn-block" onClick={this.handleClick.bind(this)}>
                         Sign in
                     </button>
                     <p className="mt-5 mb-3 text-muted">Copyright &copy; Capstone 2019</p>

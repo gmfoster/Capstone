@@ -9,8 +9,8 @@ import Chart from 'chart.js'
 
 ReactChartkick.addAdapter(Chart)
 
-var isPastebin = false;
-var isHaveIBeenPwnd = true;
+var isPastebin = true;
+var isHaveIBeenPwnd = false;
 
 var bubbleSensors =[
     {
@@ -360,7 +360,7 @@ class Dashboard extends React.Component {
                 </main>
 
                 <main role="main" className="container">
-                    {SENSORS}
+                {/*SENSORS*/}
                 </main>
                 
             </div>
