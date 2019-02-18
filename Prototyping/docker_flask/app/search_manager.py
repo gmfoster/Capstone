@@ -1,22 +1,22 @@
 import time
-#from app import pwned
-import pwned
+from app import pwned
+#import pwned
 import pyrebase
 import hashlib
-#from app import alert
-import alert
-#from app import dread
-import dread
-#from app import pastebin
-import pastebin
-#from app import user
-import user
+from app import alert
+#import alert
+from app import dread
+#import dread
+from app import pastebin
+#import pastebin
+from app import user
+#import user
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
     def __init__(self):
         self.user = user.user()
-        #self.pastebin_module = pastebin.Pastebin_Module()
+        self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
         self.pwned_sensors = dict() #dict to store hashed values of pwned keywords
@@ -113,7 +113,9 @@ class Search_Manager():
         count = 0
         pasteCount = 0
         darkCoutn = 0
-        found, pwnedCount = 0, newCount
+        found = 0
+        pwnedCount = 0
+        newCount = 0
         firstTime = 1
         while(1):
         #start infinite loop                                                                          
@@ -149,7 +151,7 @@ class Search_Manager():
 
 if __name__ == "__main__":
     manager = Search_Manager()
-    #    manager.timedSearch()
     manager.getPwnedSensors()
     manager.getDarkSensors()
     manager.getPasteSensors()
+    manager.timedSearch()
