@@ -43,14 +43,14 @@ def get_virus(url):
 #testing
 @app.route('/add/', methods = ['POST'])
 def add_sensor():
-    #data = request.data
-    result = request.form
-    tag = result['sensorName']
-    type = result['sensorType']
-    sensor = result['snesorKeywords']
-    add = sensor_manager.Sensor_Manager()
-    add.addSensor(sensor,type,tag)
-    data = {"Message":"We've added your sensor"}
+    data = request.data
+    #result = request.args
+    #tag = result['sensorName']
+    #type = result['sensorType']
+    #sensor = result['snesorKeywords']
+    #add = sensor_manager.Sensor_Manager()
+    #add.addSensor(sensor,type,tag)
+    #data = {"Message":"We've added your sensor"}
     return (jsonify(data))
     #return (data)
 
