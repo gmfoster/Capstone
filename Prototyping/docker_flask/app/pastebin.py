@@ -9,6 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException,StaleElementReferenceException
 from sys import platform
+from sys import argv
 import os
 import time
 
@@ -19,7 +20,11 @@ class Pastebin_Module():
         dirPath = os.path.dirname(os.path.realpath(__file__))
         self.moduleName = "Pastebin"
         if platform == "linux" or platform == "linux2":
-            subDir = "linux/chromedriver"
+            if("wsl" in argv):
+                print("Took wsl branch")
+                subDir = "windows/chromedriver.exe"
+            else:
+                subDir = "linux/chromedriver"
         elif platform == "darwin":
             subDir = "mac/chromedriver"
         elif platform == "win32":
