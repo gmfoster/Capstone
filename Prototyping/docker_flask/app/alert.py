@@ -1,6 +1,6 @@
 import smtplib
-from email.MIMEMultipart import MIMEMultipart
-from email.MIMEText import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from twilio.rest import Client
 
 class alert():
@@ -13,7 +13,9 @@ class alert():
         message = client.messages.create(
             body = " " +name+ "\nYou are being alerted because a sensor from NovaSight has been triggered",
             from_ = '+19152283110',
-            to = phone)
+            to = '+17147475699')
+            # need to authorize a phone number with twilio before you're able to send to it
+            
         print(message.sid)
 
     def sendEmail(self, name, email):
@@ -33,4 +35,3 @@ class alert():
         server.login(fromaddr, "30261316Sss")
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
-

@@ -56,6 +56,7 @@ class Manager():
     def timedSearch(self):
         int count = 0;
         int pasteCount = 0
+        int firstTime = 1
         while(1):
         #start infinite loop
             self.getPasteSensors() #get paste sensors
@@ -73,7 +74,7 @@ class Manager():
             newCount = pwnedCount + pasteCount
             found = newCount-count
             count =  newCount
-            if(found > 5):
+            if(found > 5&& firstTime = 0):
                 self.alertUser.sendEmail(self.name, self.email)
                 self.alertUser.sendText(self.phone)
             pasteCount = 0;
@@ -81,6 +82,7 @@ class Manager():
             found = 0;
             print("Sleeping for 15 seconds")
             time.sleep(15)
+            firstTime = 0
     
 
 if __name__ == "__main__":

@@ -2,3 +2,4 @@ npm install node-sass
 npm install bootstrap
 npm install jquery popper.js
 npm install firebase --only=dev
+npm install react-chartkick chart.js
