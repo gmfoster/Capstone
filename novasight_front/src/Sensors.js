@@ -106,18 +106,20 @@ class Sensors extends React.Component {
             </tbody>
           </table>
           <h6 class="border-bottom border-gray pb-2 mt-5 mb-3">New Rule</h6>
-          {/*<form action="http://localhost:5000/add/" method="get">*/}
+          <form action={"http://localhost:5000/add/"} method="get">
             <div class="form-group">
               <label>Sensor Name</label>
               <input type="text" class="form-control" name="sensorName" placeholder="" onChange={e => this.handleChange(e)}></input>
-            </div>
+            {/*</div>
             <div class="form-group">
+            */}
               <label>Search Terms</label>
+              
               <input type="text" class="form-control" name="sensorKeywords" onChange={e => this.handleChange(e)} placeholder=""></input>
               <small id="passwordHelpBlock"  class="form-text text-muted">
                 Enter keywords separated by comma.
               </small>
-            </div>
+            {/*</div>*/}
             {/*
             <label>Event Time</label>
             <div class="form-group clearfix">
@@ -142,9 +144,10 @@ class Sensors extends React.Component {
               <input type="text" class="form-control" placeholder="Anytime"></input>
             </div>
             */}
-            <div class="form-group">
+            {/*<div class="form-group">*/}
               <label for="exampleFormControlSelect1" >Source Type</label>
-              <select value={this.state.sensorType} class="form-control custom-select " name="sensorType" onChange={e => this.handleChange(e)}>
+              <select class="form-control custom-select " name="sensorType" onChange={e => this.handleChange(e)}>
+                <option>Select One</option>
                 <option>paste</option>
                 <option>pwnd</option>
                 <option>dark</option>
@@ -169,8 +172,8 @@ class Sensors extends React.Component {
               <input type="text" class="form-control" placeholder="Anywhere"></input>
             </div>
             */}
-            <button type="submit" onClick={this.submitSensor.bind(this)} class="btn btn-primary">Create</button>
-          {/*</form>*/}
+            <button type="submit"  class="btn btn-primary">Create</button>
+          </form>
         </div>
       </main>
     );
