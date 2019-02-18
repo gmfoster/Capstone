@@ -4,10 +4,12 @@ from tbselenium.utils import launch_tbb_tor_with_stem
 from tbselenium.utils import start_xvfb, stop_xvfb
 from pyvirtualdisplay import Display
 from time import sleep
+from PIL import Image
 import pyrebase
 import hashlib
 import os
 
+CAPTCHA_PAGE = 1
 
 class Dread_Module():
     def __init__(self):
@@ -27,6 +29,41 @@ class Dread_Module():
         self.firebase = pyrebase.initialize_app(self.config)
         self.db = self.firebase.database()
 
+    def WhichIsCurrentPage(self, driver):    
+        #On Initial Capthca Page
+        try: 
+            driver.find_element_by_class_name("ddos_form")
+            return CAPTCHA_PAGE
+        except:
+            pass;
+
+    def solveCaptchaPage(self, driver):
+        print ("Solving Captcha Page")
+
+        try:
+            
+            currentPage = driver.find_element_by_tag_name('html');
+            
+            driver.find_elements_by_tag_name("img")[0].get_attribute("src")   
+            driver.get_screenshot_as_file('captcha.png')
+            
+            img = Image.open('captcha.png')
+            img.show() 
+            captcha = input("Solve Captcha:")
+            
+
+            driver.find_element_by_name('ddos_challenge').send_keys(captcha);
+            #driver.find_element_by_name('verify').click()
+            #driver.find_element_by_xpath("//input[@type='submit']").click()
+            driver.find_element_by_xpath("//button[@type='submit']").click()
+            self.waitTillPageIsLoaded(currentPage,driver)
+            
+        except Exception as e:
+            print ("Exception on Second Page:",e)
+            pass;
+
+
+        
     #Because for some dumb reason driver won't wait until new page is loaded after click.
     def waitTillPageIsLoaded(self,currentPage,driver):
             newPage = currentPage
@@ -49,14 +86,11 @@ class Dread_Module():
 
         tor_process = launch_tbb_tor_with_stem(tbb_path=self.tbb_dir)
         with TorBrowserDriver(self.tbb_dir, tor_cfg=cm.USE_STEM) as driver:
-
-        #for testing
-        #with TorBrowserDriver(tbb_dir) as driver:
-
+        
             driver.load_url(self.search_url)
 
-            #if (WhichIsCurrentPage(driver) == SEARCH_PAGE):
-
+            if (self.WhichIsCurrentPage(driver) == CAPTCHA_PAGE):
+                self.solveCaptchaPage(driver)
 
             for q in queries:
                 nextPage = True
@@ -111,10 +145,10 @@ class Dread_Module():
         print(resultCount)
         return resultCount
 
-#if __name__ == '__main__':
-#    print("searching Dread")
-#    ds = Dread_Module()
-#    queries = ['netflix accounts']
-#    dread_results = ds.run(queries=queries, wait_time=0)
+if __name__ == '__main__':
+    print("searching Dread")
+    ds = Dread_Module()
+    queries = ['netflix accounts']
+    dread_results = ds.run(queries=queries, wait_time=0)
 
 

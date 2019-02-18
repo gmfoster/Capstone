@@ -60,7 +60,8 @@ class Pwned_Module():
         elif status == 404:
             error = {'404' : 'Congratulations you have not been pwned'}
             self.db.child("pwned_search").child(id).set(error)
-            return (0)
+            num = 0
+            return (num)
         elif status == 409:
             error = {'developerMessage' : 'Conflict'}
             return(error)
@@ -70,7 +71,7 @@ class Pwned_Module():
 
     
 #testing
-if __name__ == "__main__":
-    pwned = Pwned_Module()
-    pwned.search("gfoster831@gmail.com")
+#if __name__ == "__main__":
+#    pwned = Pwned_Module()
+#    pwned.search("gfoster831@gmail.com")
     
