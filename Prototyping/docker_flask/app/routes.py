@@ -41,8 +41,12 @@ def get_virus(url):
     return (jsonify(data))
 
 #testing
-@app.route('/add/<string:sensor>/<string:type>/<string:tag>', methods = ['GET'])
-def add_sensor(sensor,type,tag):
+@app.route('/add', methods = ['GET'])
+def add_sensor():
+    result = request.args
+    tag = result['sensorName']
+    type = result['sensorType']
+    sensor = result['snesorKeywords']
     add = sensor_manager.Sensor_Manager()
     add.addSensor(sensor,type,tag)
     data = {"Message":"We've added your sensor"}

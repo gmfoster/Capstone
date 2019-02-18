@@ -112,7 +112,7 @@ class Search_Manager():
     def timedSearch(self):
         count = 0
         pasteCount = 0
-        darkCoutn = 0
+        darkCount = 0
         found = 0
         pwnedCount = 0
         newCount = 0
