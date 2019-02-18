@@ -63,7 +63,7 @@ class Pastebin_Module():
                 elif(futurePage == True):
                     pagesRemaining = pagesRemaining + 1
 
-            print("pagesRemaining: " + str(pagesRemaining))
+            #print("pagesRemaining: " + str(pagesRemaining))
             return pagesRemaining
         except NoSuchElementException:
             print(NoSuchElementException)
@@ -107,7 +107,7 @@ class Pastebin_Module():
         #Finds urls and adds them to a list before iterating to next page if necesary
         while(pagesRemaining > 0):
             time.sleep(2)
-            elementRoots = self.browser.find_elements_by_class_name("gs-visible-long")
+            #elementRoots = self.browser.find_elements_by_class_name("gs-visible-long")
             
             #urlElements = self.browser.find_elements_by_class_name("gs-result")
          
@@ -118,9 +118,10 @@ class Pastebin_Module():
             #         print(e.text)
             #         urls.append(str(e.text))
             try: 
-                #elements = self.browser.find_element_by_class_name("gs-visible-long")
+                elementRoots = self.browser.find_elements_by_class_name("gs-visibleUrl-long")
+                time.sleep(3)
                 for element in elementRoots:
-                    print(element.text)
+                    #print(element.text)
                     urls.append(str(element.text))
             except StaleElementReferenceException:
                 print("No urls because search results returned a stale page")
@@ -134,16 +135,9 @@ class Pastebin_Module():
                 try:
                     nextPage.click()
                 except:
-                    print("Stale link/pastebin error")
-            getValue = self.getPagesRemaining()
-            expectedValue = pagesRemaining - 1
-
-            print("getValue = " + str(getValue))
-            print("expectedValue = " + str(expectedValue))
-
-            if(getValue != expectedValue):
-                print("pastebin was terribly implemented and cannot count how many pages of results there are.")
-
+                    print("Stale link/pastebin error/end of pages")
+            #getValue = self.getPagesRemaining()
+            #print(getValue)
             pagesRemaining = pagesRemaining - 1
 
         self.browser.close()
@@ -183,6 +177,6 @@ class Pastebin_Module():
         return results
         
                                       
-#if __name__ == "__main__":
-#    paste = Pastebin_Module()
-#    paste.search("ucsb")
+if __name__ == "__main__" and "test" in argv:
+    paste = Pastebin_Module()
+    paste.search("ucsb")
