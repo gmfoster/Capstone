@@ -41,7 +41,7 @@ def get_virus(url):
     return (jsonify(data))
 
 #testing
-@app.route('/add/', methods = ['POST'])
+@app.route('/add/', methods = ['GET', 'POST'])
 def add_sensor():
     #data = request.data
     result = request.form
