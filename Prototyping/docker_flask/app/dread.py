@@ -9,6 +9,8 @@ import pyrebase
 import hashlib
 import os
 
+#key for dread: howogoduqidobupinadurediwebupatufocetowe
+
 CAPTCHA_PAGE = 1
 
 class Dread_Module():

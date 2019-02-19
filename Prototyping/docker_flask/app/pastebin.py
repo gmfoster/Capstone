@@ -32,7 +32,7 @@ class Pastebin_Module():
         self.driverDirectory = dirPath + "/chromedriver/" + subDir
         print(self.driverDirectory)
         self.chrome_options = Options()
-        self.chrome_options.add_argument('headless')
+        #self.chrome_options.add_argument('headless')
         self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
     
         #Firebase Config
@@ -179,4 +179,4 @@ class Pastebin_Module():
                                       
 if __name__ == "__main__" and "test" in argv:
     paste = Pastebin_Module()
-    paste.search("ucsb")
+    paste.search("gfoster831@gmail.com")
