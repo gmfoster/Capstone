@@ -249,13 +249,22 @@ class HaveIBeenPwndEntry extends React.Component{
 
 
 class Bubble extends React.Component{
+    popTables(id) { 
+        console.log("Testing");
+        console.log(id);
+    }
+
     render(){
+        //console.log(this.props.id);
         return(
             <div class="round-button">
                 <div class="round-button-circle">
-                    <a href="http://example.com" class="round-button">{this.props.name}</a>
+                    {/* onclick={this.popTables(this.props.id)} */}
+                    <a href = "#" className="round-button" id={this.props.id} onClick={this.popTables(this.props.id)}>{this.props.name}</a>
+                {/* href = "#" */}
                 </div>
             </div>
+            
         )
     }
 }
@@ -264,27 +273,36 @@ class BubbleSensor extends React.Component {
     constructor(){
         super();
         this.list = [];
-        this.ref = firebase.database().ref('sensors').child('paste_sensors');
+        //this.ref = firebase.database().ref('sensors').child('paste_sensors');
+        this.ref = firebase.database().ref('sensors'); 
         this.sensorList = []
+        this.sensorNames = []
     }
     
     componentDidMount() { 
-        var sensorKeys = []; 
+    
         
         this.ref.on('value', (snapshot) => { 
 
             console.log(snapshot.val());
-            
+            //var tempSensor = [];
             for(var key in snapshot.val()) { 
-                var tempSensor = snapshot.val()[key]["sensor"];
-                sensorKeys.push(key);
-                console.log(tempSensor);
+                //paste_sensors
+                var tempSensor = snapshot.val()[key]["sensors"];
+               
+                // var tempSensor = snapshot.val(); 
+                // tempSensor.key = snapshot.key;
+
+                
+          
+                this.sensorNames.push(key);
+                console.log(key);
                 this.sensorList.push(tempSensor);
             }
             this.forceUpdate()
         
         }); 
-        console.log(this.sensorList);
+        //console.log(this.sensorList);
         
     }
     
@@ -292,16 +310,20 @@ class BubbleSensor extends React.Component {
         this.ref.off(); 
     }
     render() { 
-
-        this.list = this.sensorList.map((entry) => (
+        var count = 0; 
+        this.list = this.sensorNames.map((entry) => (
             <Bubble
                 name={entry}
                 key={entry}
+                id={++count}
             /> 
         )); 
+        
+        
 
         return (
             <div class="container-outer">
+                {/* <h2>My Sensors </h2>  */}
                 <div class="container-inner">
                     <div class="wrapper">
                         {this.list}
@@ -348,7 +370,7 @@ class Dashboard extends React.Component {
                     </nav>
                 </div> */}
                 <main role="main" className="container">
-                    <h2>My Sensors </h2> 
+                    
                 </main>
                 
                 <main>
