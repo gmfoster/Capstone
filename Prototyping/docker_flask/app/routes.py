@@ -47,7 +47,7 @@ def add_sensor():
     result = request.form
     tag = result['sensorName']
     type = result['sensorType']
-    sensor = result['snesorKeywords']
+    sensor = result['sensorKeywords']
     add = sensor_manager.Sensor_Manager()
     add.addSensor(sensor,type,tag)
     data = {"Message":"We've added your sensor"}
