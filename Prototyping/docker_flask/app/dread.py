@@ -37,7 +37,7 @@ class Dread_Module():
             driver.find_element_by_class_name("ddos_form")
             return CAPTCHA_PAGE
         except:
-            pass;
+            pass
 
     def solveCaptchaPage(self, driver):
         print ("Solving Captcha Page")
@@ -62,7 +62,7 @@ class Dread_Module():
             
         except Exception as e:
             print ("Exception on Second Page:",e)
-            pass;
+            pass
 
 
         
@@ -76,7 +76,7 @@ class Dread_Module():
                 try:
                     newPage = driver.find_element_by_tag_name('html');
                 except:
-                    pass;
+                    pass
                 #print "NEW",newPage
             sleep(2)
 
@@ -150,7 +150,7 @@ class Dread_Module():
 if __name__ == '__main__':
     print("searching Dread")
     ds = Dread_Module()
-    queries = ['netflix accounts']
+    queries = ['credit card dump']
     dread_results = ds.run(queries=queries, wait_time=0)
 
 

@@ -59,8 +59,12 @@ def scan():
     data = {"Message":"Scanning"}
     return(jsonify(data))
 
-@app.route('/new_user/<string:name>/<string:email>/<string:phone>/<string:frequency>', methods = ['GET'])
+@app.route('/new_user/, methods = ['GET', 'POST'])
 def addNewUser(name, email, phone, keywords):
+    name = request.args['name']
+    email = request.args['email']
+    phone = request.args['phone']
+    frequency = request.args['frequency']
     user = user.user(name,email,phone,frequency)
 
 @app.route('/')

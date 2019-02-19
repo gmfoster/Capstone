@@ -32,7 +32,7 @@ class Recent_Pastes():
             i = items['scrape_url']
             #p = items['key']
             #scrape_data = scrape_data + p + '\n'
-            #print(items['scrape_url'])
+            print(items['scrape_url'])
             #if (p == keyword):
             #    print("match!")
             scrape = requests.get(i)
