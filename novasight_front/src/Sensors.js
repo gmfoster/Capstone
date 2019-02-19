@@ -9,7 +9,6 @@ import Redirect from './Redirect'
 
 
 
-
 const iFrameStyle = {
   width:0,
   height:0,
@@ -17,6 +16,11 @@ const iFrameStyle = {
   display:"none"
 };
 
+const pStyle= {
+  color:"green",
+  align:"center"
+
+};
 
 class Sensors extends React.Component {
   constructor(props){
@@ -26,6 +30,7 @@ class Sensors extends React.Component {
       sensorKeywords:"",
       sensorType:""
     };
+    this.submittedForm = false
 
     this.submitSensor = this.submitSensor.bind(this)
   }
@@ -41,9 +46,12 @@ class Sensors extends React.Component {
     var sensorForm = document.getElementById("sensorForm");
     
     sensorForm.submit();
-    console.log("In side the submit sensor formulat" + sensorForm.submit());
+    this.submittedForm = true
+    //console.log("In side the submit sensor formulat" + sensorForm.submit());
     sensorForm.reset();
+    this.forceUpdate()
     return false;
+
 
   }
 
@@ -51,12 +59,16 @@ class Sensors extends React.Component {
     return(
       <main role="main" class="container">
         <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <h6 class="border-bottom border-gray pb-2 mb-3">Sensors Configuration</h6>
+          <p  class="form-text "><b>Paste Suggested Keywords:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
+          <p  class="form-text "> <b>Pwnd Suggested Keywords:</b> Emails </p>
+          <p  class="form-text "><b>Dark Suggestued Keywors:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
+          
+          {/*<h6 class="border-bottom border-gray pb-2 mb-3">Sensors Configuration</h6>
           <div class="mb-3 clearfix">
             <button type="button" class="btn btn-light btn-sm float-left">Enable/Disable All</button>
             <button type="button" class="btn btn-light btn-sm float-right">Create New Rule</button>
-          </div>
-          <table class="table table-striped table-responsive-md small">
+          </div>*/}
+          {/*<table class="table table-striped table-responsive-md small">
             <thead>
               <tr>
                 <th scope="col"></th>
@@ -95,8 +107,12 @@ class Sensors extends React.Component {
                 <td>Manufacturing, PetroChina, 3M Company, Transportation, 3D Printing</td>
               </tr>
             </tbody>
-          </table>
+          </table>*/}
+
           <h6 class="border-bottom border-gray pb-2 mt-5 mb-3">New Rule</h6>
+          {this.submittedForm &&
+            <p  class="form-text " style={pStyle}> We have added your sensor</p>
+          }
           <form action={"http://localhost:5000/add/"} method="get" id="sensorForm" target={"hiddenFrame"} onSubmit={this.submitSensor.bind(this)}>
             <div class="form-group">
               <label>Sensor Name</label>

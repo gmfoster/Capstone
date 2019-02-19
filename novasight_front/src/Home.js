@@ -6,7 +6,7 @@ import './Style Sheets/MyInvestigation.css';
 import './Style Sheets/site.min.css';
 import './Style Sheets/site.min.css.map';
 import './Style Sheets/style.scss';
-import './images/a.png';
+import './images/a.jpeg';
 import './images/b.png'; 
 import './images/c.png';  
 
@@ -30,7 +30,7 @@ const Home = () => (
         <div className="container-fluid">
             <div className="row align-items-center px-3 py-5">
                 <div className="col-6">
-                    <img className="img-fluid rounded shadow" src={require('./images/a.png')}></img>
+                    <img className="img-fluid rounded shadow" src={require('./images/a.jpeg')}></img>
                 </div>
                 <div className="col-5 mx-auto">
                     <p className="lead text-muted text-uppercase">Brand Monitoring</p>

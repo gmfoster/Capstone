@@ -23,6 +23,14 @@ var bubbleSensors =[
     }
 ]
 
+
+var sensorsIndexMap = [{
+    "name":0
+}]
+
+var allSensors = []
+
+
 var lineChartData = {
     "2019-01-01":10,
     "2019-01-02":20,
@@ -50,35 +58,30 @@ var lineChartData = {
     "2019-01-24":50
 }
 
-var pasteSensors = [
+var currentPasteSensor = [
     {
-        key:"379ef4bd50c30e261ccfb18dfc626d9f",
+        key:"2aaf536256071e1520b0d92e288e57ae",
         string:"umail.ucsb.edu"
-    },{
-        key:"6ad75c3aae78269d8527095cbbcade29",
-        string:"derp"
-    },{
-        key:"c51cce226d131f8f263bd9561fcbe47a",
-        string:"graham"
     }
+    
 ]
 
-var pwnedSensors = [
+var currentPwnedSensors = [
+    
     {
+        key:"614a4e82f4c1d9b53955d5462b261730",
+        string:"ferna2291@gmail.com"
+    },{
         key:"cd861398247c70cc3d807cf7a978e976",
         string:"gfoster831@gmail.com"
-    },
-    {
-        key:"64cbb14ec41478b5d9cdff67ee8320e0",
-        string:"gmfoster@umail.ucsb.edu"
-    },{
-        key:"65dc726e67621fcca86b0c92a0700710",
-        string:"grahamimportantstuff96@gmail.com"
-    },{
-        key:"f4fad95f5b58463cd24ca59e35513874",
-        string:"grahammfoster96@gmail.com"
     }
+    
 ];
+
+
+
+var currentDarkSensors=[]
+
 
 
 class PastebinTable extends React.Component {
@@ -101,7 +104,8 @@ class PastebinTable extends React.Component {
                     Description={"No data found for keyword" + this.props.sensorString}
                 />
             }else{
-                this.pasteList = Object.entries(data).map(([key,val])=>(
+                
+                this.pasteList = Object.entries(data).slice(0,5).map(([key,val])=>(
                     <PastebinEntry
                     key={key}
                     Date={1}
@@ -249,9 +253,25 @@ class HaveIBeenPwndEntry extends React.Component{
 
 
 class Bubble extends React.Component{
+    constructor(){
+        super()
+        this.popTables = this.popTables.bind(this)
+    }
+
     popTables(id) { 
-        console.log("Testing");
-        console.log(id);
+        var pasteSensors = allSensors[this.props.name]["paste"]
+        //currentPasteSensor = pasteSensors
+
+        var pwnSensors = allSensors[this.props.name]["pwned"]
+        //currentPwnedSensors = pwnSensors
+        console.log("Pwned Senors")
+        console.log(pwnSensors)
+
+        console.log("Paste Senors")
+        console.log(pasteSensors)
+        
+        console.log("Pop Tables")
+        
     }
 
     render(){
@@ -260,7 +280,7 @@ class Bubble extends React.Component{
             <div class="round-button">
                 <div class="round-button-circle">
                     {/* onclick={this.popTables(this.props.id)} */}
-                    <a href = "#" className="round-button" id={this.props.id} onClick={this.popTables(this.props.id)}>{this.props.name}</a>
+                    <a className="round-button" id={this.props.id} onClick={this.popTables(this.props.id)}>{this.props.name}</a>
                 {/* href = "#" */}
                 </div>
             </div>
@@ -281,23 +301,95 @@ class BubbleSensor extends React.Component {
     
     componentDidMount() { 
     
-        
         this.ref.on('value', (snapshot) => { 
 
-            console.log(snapshot.val());
             //var tempSensor = [];
             for(var key in snapshot.val()) { 
+                allSensors[key] = {}
                 //paste_sensors
-                var tempSensor = snapshot.val()[key]["sensors"];
+                var tempPwnedSensor = snapshot.val()[key]["pwned_sensors"];
+                var tempPasteSensors = snapshot.val()[key]["paste_sensors"];
+                var tempDarkSensors = snapshot.val()[key]["dark_sensors"]
                
                 // var tempSensor = snapshot.val(); 
                 // tempSensor.key = snapshot.key;
 
                 
-          
                 this.sensorNames.push(key);
+                console.log("KEY");
                 console.log(key);
-                this.sensorList.push(tempSensor);
+                console.log("Pwnd Sensor")
+                console.log(tempPwnedSensor)
+                console.log("Paste Sensor")
+                console.log(tempPasteSensors)
+                console.log("DarkSensors")
+                console.log(tempDarkSensors)
+                console.log("\n\n")
+
+                if(tempPwnedSensor != undefined){
+
+                    
+                    for (var sensorKey in tempPwnedSensor){
+                            var tempDict = {}
+                            var sensorVal = tempPwnedSensor[sensorKey]
+                            console.log("Sensor Key")
+                            console.log(sensorKey)
+                            console.log("Sensor Value")
+                            console.log(sensorVal["sensor"])
+                            tempDict["string"] = sensorVal["sensor"]
+                            tempDict["key"] = sensorKey
+                            
+                            if (allSensors[key]["pwned"] == undefined){
+                                allSensors[key]["pwned"] = []
+                            }
+                            
+                            allSensors[key]["pwned"].push(tempDict)
+
+                            
+                    }
+                }
+                if(tempPasteSensors != undefined){
+                    
+                    for (var sensorKey in tempPasteSensors){
+                            var tempDict = {}
+                            var sensorVal = tempPasteSensors[sensorKey]
+                            console.log("Sensor Key")
+                            console.log(sensorKey)
+                            console.log("Sensor Value")
+                            console.log(sensorVal["sensor"])
+                            tempDict["string"] = sensorVal["sensor"]
+                            tempDict["key"] = sensorKey
+                            
+                            if(allSensors[key]["paste"] == undefined){
+                                allSensors[key]["paste"] = []
+                            }
+                            allSensors[key]["paste"].push(tempDict)
+                    }
+                }
+                if(tempDarkSensors != undefined){
+                    
+                    for (var sensorKey in tempDarkSensors){
+                            var tempDict = {}
+                            var sensorVal = tempDarkSensors[sensorKey]
+                            console.log("Sensor Key")
+                            console.log(sensorKey)
+
+                            console.log("Sensor Value")
+                            console.log(sensorVal["sensor"])
+                            tempDict["string"] = sensorVal["sensor"]
+                            tempDict["key"] = sensorKey
+                            
+                            if(allSensors[key]["dark"] == undefined){
+                                allSensors[key]["dark"] = []
+                            }
+                            allSensors[key]["dark"].push(tempDict)
+                    }
+                }
+
+                console.log("All Sensors")
+                console.log(allSensors)
+                this.sensorList.push(snapshot.val()[key]);
+
             }
             this.forceUpdate()
         
@@ -316,6 +408,7 @@ class BubbleSensor extends React.Component {
                 name={entry}
                 key={entry}
                 id={++count}
+                
             /> 
         )); 
         
@@ -335,22 +428,27 @@ class BubbleSensor extends React.Component {
 }
 
 class Dashboard extends React.Component {
+    handler(){
+        this.forceUpdate()
+        console.log("Force update dashboard")
+    }
 
     render(){
-        var SENSORS = [];
+        var pwndSensor = [];
+        var pastSensors = []
 
-        if(isPastebin){
-            SENSORS = pasteSensors.map((sensor)=>(
+        
+            pwndSensor = currentPasteSensor.map((sensor)=>(
                 <PastebinTable
                 key={sensor.key}
                 sensorKey={sensor.key}
                 sensorString={sensor.string}
                 />
             ));
-        }
+        
 
-        if(isHaveIBeenPwnd){
-            SENSORS = pwnedSensors.map((sensor)=>(
+        
+            pastSensors = currentPwnedSensors.map((sensor)=>(
                 <HaveIBeenPwndTable
                 key={sensor.key}
                 sensorKey={sensor.key}
@@ -358,7 +456,7 @@ class Dashboard extends React.Component {
                 />
                 
             ));
-        }
+        
 
         return (
             <div>
@@ -383,6 +481,9 @@ class Dashboard extends React.Component {
 
                 <main role="main" className="container">
                 {/*SENSORS*/}
+                
+                {pastSensors}
+                {pwndSensor}
                 </main>
                 
             </div>

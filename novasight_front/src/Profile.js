@@ -33,12 +33,12 @@ class Profile extends React.Component {
                     </div>
                     <h6 class="border-bottom border-gray pb-2 mt-4 mb-3">Set Threshold</h6>
                     <div class="form-group">
-                        <label>Severity Match</label>
+                        <label>Priority</label>
                         <select class="custom-select" id = "frequency">
                             <option selected>Set Severity</option>
-                            <option value="1">Low</option>
+                            <option value="15">Low</option>
                             <option value="5">Medium</option>
-                            <option value="15">High</option>
+                            <option value="1">High</option>
                         </select>
                     </div>
                     <button onClick={this.handler}  class="btn btn-primary" >Save</button>

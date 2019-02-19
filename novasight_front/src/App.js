@@ -14,6 +14,15 @@ import firebase from './firebase.js';
 
 import createHistory from 'history/createBrowserHistory'; 
 
+
+
+const iFrameStyle = {
+  width:0,
+  height:0,
+  border:0,
+  display:"none"
+};
+
 const Route = ({ path, component}, {location}) => {
   const pathname = location.pathname;
   if (pathname.match(path)) {
@@ -61,6 +70,10 @@ class App extends React.Component {
   }
 
   componentDidMount(){
+
+    var submit = document.getElementById("scanForm")
+    submit.submit()
+
     console.log("App is being mounted")
     this.ref.on('value', (snapshot) => {
       let items = snapshot.val();
@@ -147,15 +160,19 @@ class App extends React.Component {
           <Redirect to='/login'/>
         }
         {isAuthenticated && 
-          <Redirect to='/dashboard'/>
+          <Redirect to='/home'/>
         }
         <Route path='/home' component={Home}/>
         <Route path='/dashboard' component={Dashboard}/>
         <Route path='/sensors' component={Sensors}/>
         <Route path='/login' component={Login}/>
         <Route path='/profile'component={Profile}/>
-
+        <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"post"}>
+          
+        </form>
+        <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
       </Router>
+      
     );
   }
 }
