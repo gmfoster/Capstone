@@ -65,7 +65,11 @@ def addNewUser():
     email = request.args['email']
     phone = request.args['phone']
     frequency = request.args['frequency']
-    user = user.user(name,email,phone,frequency)
+    new_user = user.user()
+    new_user.setEmail(email)
+    new_user.setFrequency(frequency)
+    new_user.setName(name)
+    new_user.setPhone(phone)
 
 @app.route('/')
 @app.route('/index')
