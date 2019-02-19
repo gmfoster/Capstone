@@ -5,9 +5,17 @@ import './Style Sheets/index.css';
 import './Style Sheets/StartInvestigation.css';
 import { link } from 'fs';
 import HaveIBeenPwnd from './HaveIBeenPwnd';
+import Redirect from './Redirect' 
 
 
 
+
+const iFrameStyle = {
+  width:0,
+  height:0,
+  border:0,
+  display:"none"
+};
 
 
 class Sensors extends React.Component {
@@ -18,41 +26,24 @@ class Sensors extends React.Component {
       sensorKeywords:"",
       sensorType:""
     };
+
+    this.submitSensor = this.submitSensor.bind(this)
   }
 
   handleChange = (e) => {
-    console.log(e.target.name)
-    this.state[e.target.name] = e.target.value
+    console.log(e.target.name);
+    this.state[e.target.name] = e.target.value;
   }
 
-  handleClick() {
+
+  submitSensor(e){
+    e.preventDefault();
+    var sensorForm = document.getElementById("sensorForm");
     
-    //TODO: REST Api call and User input checker
-    return(
-      <div> 
-      
-        < Link to='/investigationprogress'>
-
-          </Link>
-        </div>
-
-    );
-  }
-
-  submitSensor(){
-    var oReq = new XMLHttpRequest();
-    //oReq.onload = dialResponse;
-    var sensorNameInput = document.getElementById("sensorName")
-    var sensorKeword = document.getElementById("searchTerms")
-    
-    console.log(this.state.sensorName )
-    console.log(this.state.sensorKeywords)
-
-
-    
-    oReq.open("get", "http://localhost:5000/add/" + this.state.sensorName+ "/" + this.state.sensorType  + "/" + this.state.sensorKeywords, true);
-    //oReq.open("get","http://localhost:5000",true)
-    oReq.send();
+    sensorForm.submit();
+    console.log("In side the submit sensor formulat" + sensorForm.submit());
+    sensorForm.reset();
+    return false;
 
   }
 
@@ -106,7 +97,7 @@ class Sensors extends React.Component {
             </tbody>
           </table>
           <h6 class="border-bottom border-gray pb-2 mt-5 mb-3">New Rule</h6>
-          <form action={"http://localhost:5000/add/"} method="get">
+          <form action={"http://localhost:5000/add/"} method="get" id="sensorForm" target={"hiddenFrame"} onSubmit={this.submitSensor.bind(this)}>
             <div class="form-group">
               <label>Sensor Name</label>
               <input type="text" class="form-control" name="sensorName" placeholder="" onChange={e => this.handleChange(e)}></input>
@@ -149,7 +140,7 @@ class Sensors extends React.Component {
               <select class="form-control custom-select " name="sensorType" onChange={e => this.handleChange(e)}>
                 <option>Select One</option>
                 <option>paste</option>
-                <option>pwnd</option>
+                <option>pwned</option>
                 <option>dark</option>
               </select>
             </div>
@@ -172,9 +163,10 @@ class Sensors extends React.Component {
               <input type="text" class="form-control" placeholder="Anywhere"></input>
             </div>
             */}
-            <button type="submit"  class="btn btn-primary">Create</button>
+            <button type="submit"  class="btn btn-primary" >Create</button>
           </form>
         </div>
+        <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
       </main>
     );
   }
