@@ -33,8 +33,8 @@ class Search_Manager():
         self.user = user.user()
         self.user.setName("stub")
         self.user.setEmail("stub")
-        self.user.setFrequency("stub")
-        self.user.setphone("stub")
+        self.user.setFrequency(1)
+        self.user.setPhone("stub")
 
         self.alert = alert.alert()
     #Firebase Config                                                                
@@ -134,17 +134,17 @@ class Search_Manager():
             if (len(self.paste_keywords) != 0):
                 pasteCount = 0
                 for i in range(len(self.paste_keywords)):             
-                if (firstTime == 1):
-                    pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
-                else:
-                    pasteCount = pasteCount + self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                    if (firstTime == 1):
+                        pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
+                    else:
+                        pasteCount = pasteCount + self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
             self.getPwnedSensors() #get pwned sensors                                                 
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
                     pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
 
             self.getDarkSensors()
-            if (len(self.dark_keywords) != 0):
+            #if (len(self.dark_keywords) != 0):
                 #darkCount = darkCount + self.dark_module.run(self.dark_keywords) #currently broken due to captcah bullshit
 
             newCount = pwnedCount + darkCount
@@ -152,11 +152,13 @@ class Search_Manager():
             count =  newCount
 
             if(found > self.user.frequency and firstTime == 0):
-                self.alert.sendEmail(self.user.name, self.user.email)
-                self.alert.sendText(self.user.phone)
+                #self.alert.sendEmail(self.user.name, self.user.email)
+                #self.alert.sendText(self.user.name, self.user.phone)
+                print("sending alert")
             if(pasteCount > 0):
-                self.alert.sendEmail(self.user.name, self.user.email)
-                self.alert.sendText(self.user.phone) 
+                #self.alert.sendEmail(self.user.name, self.user.email)
+                #self.alert.sendText(self.user.name, self.user.phone)
+                print("sending alert") 
             pasteCount = 0
             pwnedCount = 0
             darkCount = 0

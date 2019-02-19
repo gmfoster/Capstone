@@ -174,7 +174,7 @@ class Pastebin_Module():
             self.db.child("paste_search").child(id).child(keys[i]).set(data)
         
         results = self.scrapingApiFromKeys(keys, id)
-        return results
+        return len(keys)
         
                                       
 if __name__ == "__main__" and "test" in argv:
