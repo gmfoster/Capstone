@@ -52,3 +52,6 @@ class Recent_Pastes():
 #if __name__ == "__main__":
 #    paste = Recent_Pastes()
 #    paste.search('TEST')
+#    keyword = "5973"
+#    id = hashlib.md5(keyword.encode()).hexdigest()
+#    print(id)
