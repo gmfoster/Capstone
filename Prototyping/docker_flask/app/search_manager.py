@@ -11,11 +11,12 @@ from app import pastebin
 #import pastebin
 from app import user
 #import user
+from app import recentPastes
+#import recentPastes
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
     def __init__(self):
-        self.user = user.user()
         self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
@@ -23,11 +24,21 @@ class Search_Manager():
         self.pwned_keywords = [] #array to store pwned keywords for search
         self.dark_sensors = dict() #dict to store hashed valuse of darknet keywords
         self.dark_keywords = [] #array to store darknet keywords
+
         self.pwned_module = pwned.Pwned_Module()
         self.dark_module = dread.Dread_Module()
-        self.paste_module = pastebin.Pastebin_Module()
+        #self.paste_module = pastebin.Pastebin_Module()
+        self.recent_pastes = recentPastes.Recent_Pastes()
+
+        self.user = user.user()
+        self.user.setName("stub")
+        self.user.setEmail("stub")
+        self.user.setFrequency("stub")
+        self.user.setphone("stub")
+
+        self.alert = alert.alert()
     #Firebase Config                                                                
-        config = {
+        self.config = {
             "apiKey": "AIzaSyCGkOiKMSxR9NRM-d1WkC2kEYOGp2d8j5k",
             "authDomain": "novacoast-capstone.firebaseapp.com",
             "databaseURL": "https://novacoast-capstone.firebaseio.com",
@@ -35,7 +46,7 @@ class Search_Manager():
             "storageBucket": "novacoast-capstone.appspot.com",
             "messagingSenderId": "1039131724249"
         }
-        self.firebase = pyrebase.initialize_app(config)
+        self.firebase = pyrebase.initialize_app(self.config)
         self.db = self.firebase.database()
 
 
@@ -122,9 +133,11 @@ class Search_Manager():
             self.getPasteSensors() #get paste sensors                                                 
             if (len(self.paste_keywords) != 0):
                 pasteCount = 0
-                for i in range(len(self.paste_keywords)):
-                    #pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i])              
-                    print("searching paste: " + self.paste_keywords[i])
+                for i in range(len(self.paste_keywords)):             
+                if (firstTime == 1):
+                    pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
+                else:
+                    pasteCount = pasteCount + self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
             self.getPwnedSensors() #get pwned sensors                                                 
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
@@ -132,15 +145,18 @@ class Search_Manager():
 
             self.getDarkSensors()
             if (len(self.dark_keywords) != 0):
-                darkCount = darkCount + self.dark_module.run(self.dark_keywords)
+                #darkCount = darkCount + self.dark_module.run(self.dark_keywords) #currently broken due to captcah bullshit
 
-            newCount = pwnedCount + pasteCount + darkCount
+            newCount = pwnedCount + darkCount
             found = newCount-count
             count =  newCount
 
-            if(found > self.frequency and firstTime == 0):
-                self.alertUser.sendEmail(self.name, self.email)
-                self.alertUser.sendText(self.phone)
+            if(found > self.user.frequency and firstTime == 0):
+                self.alert.sendEmail(self.user.name, self.user.email)
+                self.alert.sendText(self.user.phone)
+            if(pasteCount > 0):
+                self.alert.sendEmail(self.user.name, self.user.email)
+                self.alert.sendText(self.user.phone) 
             pasteCount = 0
             pwnedCount = 0
             darkCount = 0
@@ -149,9 +165,9 @@ class Search_Manager():
             time.sleep(15)
             firstTime = 0
 
-if __name__ == "__main__":
-    manager = Search_Manager()
-    manager.getPwnedSensors()
-    manager.getDarkSensors()
-    manager.getPasteSensors()
-    manager.timedSearch()
+#if __name__ == "__main__":
+#    manager = Search_Manager()
+#    manager.getPwnedSensors()
+#    manager.getDarkSensors()
+#    manager.getPasteSensors()
+#    manager.timedSearch()
