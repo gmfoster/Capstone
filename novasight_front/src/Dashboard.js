@@ -24,8 +24,6 @@ var bubbleSensors =[
 ]
 
 
-
-
 var sensorsIndexMap = [{
     "name":0
 }]
@@ -60,26 +58,9 @@ var lineChartData = {
     "2019-01-24":50
 }
 
-var currentPasteSensors = [
-    {
-        key:"2aaf536256071e1520b0d92e288e57ae",
-        string:"umail.ucsb.edu"
-    }
-    
-]
+var currentPasteSensors = undefined
 
-var currentPwnedSensors = [
-    
-    {
-        key:"614a4e82f4c1d9b53955d5462b261730",
-        string:"ferna2291@gmail.com"
-    },{
-        key:"cd861398247c70cc3d807cf7a978e976",
-        string:"gfoster831@gmail.com"
-    }
-    
-];
-
+var currentPwnedSensors = undefined
 
 
 var currentDarkSensors=[]
@@ -127,7 +108,7 @@ class PastebinTable extends React.Component {
 
     render(){
         return (
-            <div className="my-3 p-3 rounded shadow-sm paste" >
+            <div className="my-3 p-3 rounded_25 shadow-sm paste" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -213,7 +194,7 @@ class HaveIBeenPwndTable extends React.Component{
     
     render(){
         return (
-            <div className="my-3 p-3  rounded shadow-sm pwnd" >
+            <div className="my-3 p-3  rounded_25 shadow-sm pwnd" >
                 <h6 className="border-bottom border-gray pb-2 mb-0" >{this.props.sensorString} </h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -313,6 +294,7 @@ class BubbleSensor extends React.Component {
         this.ref.on('value', (snapshot) => { 
 
             //var tempSensor = [];
+            var i = 0;
             for(var key in snapshot.val()) { 
                 allSensors[key] = {}
                 //paste_sensors
@@ -353,8 +335,12 @@ class BubbleSensor extends React.Component {
                             }
                             
                             allSensors[key]["pwned"].push(tempDict)
+                            
 
                             
+                    }
+                    if (i == 0){
+                        currentPwnedSensors = allSensors[key]["pwned"]
                     }
                 }
                 if(tempPasteSensors != undefined){
@@ -373,6 +359,11 @@ class BubbleSensor extends React.Component {
                                 allSensors[key]["paste"] = []
                             }
                             allSensors[key]["paste"].push(tempDict)
+                            
+                             
+                    }
+                    if (i == 0){
+                        currentPasteSensors = allSensors[key]["paste"]
                     }
                 }
                 if(tempDarkSensors != undefined){
@@ -393,12 +384,15 @@ class BubbleSensor extends React.Component {
                             }
                             allSensors[key]["dark"].push(tempDict)
                     }
+                    if (i == 0){
+                        currentDarkSensors = allSensors[key]["dark"]
+                    }
                 }
 
                 console.log("All Sensors")
                 console.log(allSensors)
                 this.sensorList.push(snapshot.val()[key]);
-
+                i = i + 1
             }
             this.forceUpdate()
         

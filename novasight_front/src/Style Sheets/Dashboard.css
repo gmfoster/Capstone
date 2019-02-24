@@ -80,15 +80,13 @@
 
 }
 
-table.pwnd {
-  background-color: #73C2FB;
-
+div.rounded_25{
+  border-radius: 25px;
 }
-
 div.pwnd{
-  background-color: #73C2FB;
+  background-color: #B0DFE5;
 }
 
 div.paste{
-  background-color: #7EF9FF;
+  background-color: #95C8D8;
 }
