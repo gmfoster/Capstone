@@ -24,6 +24,8 @@ var bubbleSensors =[
 ]
 
 
+
+
 var sensorsIndexMap = [{
     "name":0
 }]
@@ -58,7 +60,7 @@ var lineChartData = {
     "2019-01-24":50
 }
 
-var currentPasteSensor = [
+var currentPasteSensors = [
     {
         key:"2aaf536256071e1520b0d92e288e57ae",
         string:"umail.ucsb.edu"
@@ -125,7 +127,7 @@ class PastebinTable extends React.Component {
 
     render(){
         return (
-            <div className="my-3 p-3 bg-white rounded shadow-sm">
+            <div className="my-3 p-3 rounded shadow-sm paste" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -159,6 +161,9 @@ class PastebinEntry extends React.Component{
 }
 
 
+const pwnedStyles = {
+    "background-color":"turquoise"
+};
 
 class HaveIBeenPwndTable extends React.Component{
     constructor(){
@@ -208,8 +213,8 @@ class HaveIBeenPwndTable extends React.Component{
     
     render(){
         return (
-            <div className="my-3 p-3 bg-white rounded shadow-sm">
-                <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
+            <div className="my-3 p-3  rounded shadow-sm pwnd" >
+                <h6 className="border-bottom border-gray pb-2 mb-0" >{this.props.sensorString} </h6>
                 <table className="table table-responsive small">
                     <thead>
                         <tr>
@@ -263,14 +268,18 @@ class Bubble extends React.Component{
         //currentPasteSensor = pasteSensors
 
         var pwnSensors = allSensors[this.props.name]["pwned"]
+
+        currentPwnedSensors = pwnSensors
+        currentPasteSensors = pasteSensors
         //currentPwnedSensors = pwnSensors
+        console.log("Pop Tables")
         console.log("Pwned Senors")
         console.log(pwnSensors)
 
         console.log("Paste Senors")
         console.log(pasteSensors)
         
-        console.log("Pop Tables")
+        
         
     }
 
@@ -280,7 +289,7 @@ class Bubble extends React.Component{
             <div class="round-button">
                 <div class="round-button-circle">
                     {/* onclick={this.popTables(this.props.id)} */}
-                    <a className="round-button" id={this.props.id} onClick={this.popTables(this.props.id)}>{this.props.name}</a>
+                    <a href="#" className="round-button" id={this.props.id} onClick={this.popTables}>{this.props.name}</a>
                 {/* href = "#" */}
                 </div>
             </div>
@@ -437,17 +446,19 @@ class Dashboard extends React.Component {
         var pwndSensor = [];
         var pastSensors = []
 
-        
-            pwndSensor = currentPasteSensor.map((sensor)=>(
+        if (currentPasteSensors != undefined ){
+            pwndSensor = currentPasteSensors.map((sensor)=>(
                 <PastebinTable
                 key={sensor.key}
                 sensorKey={sensor.key}
                 sensorString={sensor.string}
                 />
             ));
+        }
+            
         
 
-        
+        if(currentPwnedSensors != undefined){
             pastSensors = currentPwnedSensors.map((sensor)=>(
                 <HaveIBeenPwndTable
                 key={sensor.key}
@@ -456,6 +467,7 @@ class Dashboard extends React.Component {
                 />
                 
             ));
+        }
         
 
         return (
@@ -475,9 +487,11 @@ class Dashboard extends React.Component {
                     <BubbleSensor/>
                 </main> 
 
+                {/*
                 <main role="main" className="container">
                     <AreaChart title="Paste Dump" colors={["#007bff", "#666"]} data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
                 </main>
+                */}
 
                 <main role="main" className="container">
                 {/*SENSORS*/}

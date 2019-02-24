@@ -2,7 +2,7 @@
     overflow: scroll; 
     width: auto; 
     height: 230px; 
-    background: #E8E3E3;
+    background: white;/*#E8E3E3;*/
     padding-left: auto; 
     padding-right: auto; 
 }
@@ -10,7 +10,7 @@
 .temp {
     padding-top: 75px;
     padding-bottom: 75px;
-    background: #E8E3E3;
+    background: white;/*#E8E3E3;*/
     height:75px;
     background-color: lightblue;
   }
@@ -25,7 +25,7 @@
     }
 
     .wrapper > div{
-      background:#E8E3E3;
+      background: white;/*#E8E3E3;*/
       /* #EEE */
       padding:1em;
 
@@ -69,7 +69,26 @@
     text-decoration:none;
 }
 
+.round-button:hover{
+  color: white;
+  text-decoration: none;
+}
+
+
 .sensor_intro { 
   background: #E8E3E3;
 
+}
+
+table.pwnd {
+  background-color: #73C2FB;
+
+}
+
+div.pwnd{
+  background-color: #73C2FB;
+}
+
+div.paste{
+  background-color: #7EF9FF;
 }
