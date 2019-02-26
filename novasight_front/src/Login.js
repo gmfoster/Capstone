@@ -6,6 +6,7 @@ import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
 import Redirect from './Redirect'
 import firebase from './firebase.js';
+import './Style Sheets/login.css';
 
 class Login extends React.Component{
 
@@ -36,11 +37,21 @@ class Login extends React.Component{
                     <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
                     <label htmlFor="inputPassword" clasclassNames="sr-only">Password</label>
                     <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
+                    
+
                     <div className="checkbox mb-3">
                         <label>
                         <input type="checkbox" value="remember-me"/> Remember me
                         </label>
+                        <div className="outerDivCreateAccount">
+                            <div className="createAccount">
+                                <a href="#" className="nav-link">First timer? Create new account</a> 
+                            </div> 
+                        </div>  
                     </div>
+
+                    
+
                     <button className="btn btn-lg btn-primary btn-block" onClick={this.handleClick.bind(this)}>
                         Sign in
                     </button>

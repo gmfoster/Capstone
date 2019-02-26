@@ -9,12 +9,43 @@ import './Style Sheets/style.scss';
 import './images/a.jpeg';
 import './images/b.png'; 
 import './images/c.png'; 
+import PropTypes from "prop-types";
 import './images/ezgif-3-88d63871ccb9.gif';  
+import Sensors from './Sensors'
+import Login from './Login'
+import Redirect from './Redirect'
+import Router from './App.js'
+import Route from './App.js'
 
+
+
+import createHistory from 'history/createBrowserHistory'; 
 
 let styles = { 
     height: '150px'
 }
+
+const iFrameStyle = {
+    width:0,
+    height:0,
+    border:0,
+    display:"none"
+  };
+
+// const Route = ({ path, component}, {location}) => {
+//     const pathname = location.pathname;
+//     if (pathname.match(path)) {
+//       return (
+//         React.createElement(component)
+//   );
+//   } else {
+//       return null;
+//     }
+//   };
+  
+//   Route.contextTypes = {
+//     location: PropTypes.object,
+//   };
 
 class Home extends React.Component { 
     linkBtn() { 
@@ -43,7 +74,20 @@ class Home extends React.Component {
             <div class="inner-grid"> 
                 <div><h1 className="display-4">Welcome to Novasight</h1></div>
                 <div><p className="lead">The real time online security feed and monitoring application.</p></div>   
-                <div className="getStartedDiv"> <a href="#" class="nav-link"> Get Started </a>    </div>
+                <div className="getStartedDiv"> 
+                    <a href="/sensor" class="nav-link">Get Started</a>
+                    
+                    
+                    {/* <Router>   
+                        <Link to={{pathname:'/sensors',class:"nav-link"}}>
+                        Get Started
+                        </Link>
+                        <Route path='/sensors' component={Sensors}/>
+                        <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"post"}>
+                        </form>
+                        <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
+                    </Router> */}
+                </div>
             </div> 
         </div>
 

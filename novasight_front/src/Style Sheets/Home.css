@@ -10,7 +10,7 @@ background-color: lightgray;
 
 .grid-container {
     display: grid;
-    grid-template-columns: 300px auto;
+    grid-template-columns: 350px auto;
     grid-template-rows: 300px;
     grid-gap: 1px;
     background-color: #1473fa;
@@ -21,7 +21,7 @@ background-color: lightgray;
   }
 
 img.resize {
-    width:300px; /* you can use % */
+    width:350px; /* you can use % */
     height: 300px;
     image-rendering: inherit;
     border-image: 0%;
