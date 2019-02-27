@@ -90,3 +90,20 @@ div.pwnd{
 div.paste{
   background-color: #95C8D8;
 }
+
+div.bg_theme{
+  background-color: #007bff;
+}
+
+p.white_text{
+  color: white;
+}
+
+h3.center{
+  display: inline;
+  vertical-align: middle;
+}
+
+div.bg_complement{
+  background-color: #89CFF0;
+}

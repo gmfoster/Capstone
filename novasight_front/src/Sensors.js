@@ -58,10 +58,10 @@ class Sensors extends React.Component {
   render() { 
     return(
       <main role="main" class="container">
-        <div class="my-3 p-3 bg-white rounded shadow-sm">
-          <p  class="form-text "><b>Paste Suggested Keywords:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
-          <p  class="form-text "> <b>Pwnd Suggested Keywords:</b> Emails </p>
-          <p  class="form-text "><b>Dark Suggestued Keywors:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
+        <div class="my-3 p-3 rounded_25 shadow-sm bg_theme">
+          <p  class="form-text white_text "><b>Paste Suggested Keywords:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
+          <p  class="form-text white_text"> <b>Pwnd Suggested Keywords:</b> Emails </p>
+          <p  class="form-text white_text"><b>Dark Suggestued Keywors:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
           
           {/*<h6 class="border-bottom border-gray pb-2 mb-3">Sensors Configuration</h6>
           <div class="mb-3 clearfix">
@@ -108,7 +108,8 @@ class Sensors extends React.Component {
               </tr>
             </tbody>
           </table>*/}
-
+          </div>
+          <div class="my-3 p-3 rounded_25 shadow-sm  bg_complement">
           <h6 class="border-bottom border-gray pb-2 mt-5 mb-3">New Rule</h6>
           {this.submittedForm &&
             <p  class="form-text " style={pStyle}> We have added your sensor</p>

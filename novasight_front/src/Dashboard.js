@@ -23,6 +23,7 @@ var bubbleSensors =[
     }
 ]
 
+var currentID = ""
 
 var sensorsIndexMap = [{
     "name":0
@@ -91,9 +92,9 @@ class PastebinTable extends React.Component {
                 this.pasteList = Object.entries(data).slice(0,5).map(([key,val])=>(
                     <PastebinEntry
                     key={key}
-                    Date={1}
+                    //Date={1}
                     Link={"http://pastebin.com/" + key}
-                    Preview={"Route, like everything else in React Router, is a component. The supplied path prop is matched against the browser’s location. If it matches, Route will return the component. If not, Route will return null, rendering nothing"}
+                    //Preview={""}
                     />
                 ));
             }
@@ -113,9 +114,9 @@ class PastebinTable extends React.Component {
                 <table className="table table-responsive small">
                     <thead>
                         <tr>
-                            <th scope="col">Date</th>
+                            {/*<th scope="col">Date</th>*/}
                             <th scope="col">Link</th>
-                            <th scope="col">Preview</th>
+                            {/*<th scope="col">Preview</th>*/}
                         </tr>
                     </thead>
                     <tbody>
@@ -252,6 +253,8 @@ class Bubble extends React.Component{
 
         currentPwnedSensors = pwnSensors
         currentPasteSensors = pasteSensors
+
+        currentID = this.props.name
         //currentPwnedSensors = pwnSensors
         console.log("Pop Tables")
         console.log("Pwned Senors")
@@ -341,6 +344,7 @@ class BubbleSensor extends React.Component {
                     }
                     if (i == 0){
                         currentPwnedSensors = allSensors[key]["pwned"]
+                        currentID = key
                     }
                 }
                 if(tempPasteSensors != undefined){
@@ -364,6 +368,7 @@ class BubbleSensor extends React.Component {
                     }
                     if (i == 0){
                         currentPasteSensors = allSensors[key]["paste"]
+                        currentID = key
                     }
                 }
                 if(tempDarkSensors != undefined){
@@ -383,9 +388,11 @@ class BubbleSensor extends React.Component {
                                 allSensors[key]["dark"] = []
                             }
                             allSensors[key]["dark"].push(tempDict)
+
                     }
                     if (i == 0){
                         currentDarkSensors = allSensors[key]["dark"]
+                        currentID = key
                     }
                 }
 
@@ -480,7 +487,7 @@ class Dashboard extends React.Component {
                 <main>
                     <BubbleSensor/>
                 </main> 
-
+                <center><h3 className="center">{currentID}</h3></center>
                 {/*
                 <main role="main" className="container">
                     <AreaChart title="Paste Dump" colors={["#007bff", "#666"]} data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>

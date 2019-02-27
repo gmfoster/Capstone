@@ -17,7 +17,7 @@ class Profile extends React.Component {
     render(){
         return(
             <main role="main" class="container">
-                <div class="my-3 p-3 bg-white rounded shadow-sm">
+                <div class="my-3 p-3 bg_complement rounded_25 shadow-sm">
                     <h6 class="border-bottom border-gray pb-2 mb-3">Profile Information</h6>
                     <div class="form-group">
                         <label>Name</label>
