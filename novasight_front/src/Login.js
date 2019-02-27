@@ -6,6 +6,7 @@ import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
 import Redirect from './Redirect'
 import firebase from './firebase.js';
+import './Style Sheets/login.css';
 
 class Login extends React.Component{
 
@@ -29,22 +30,35 @@ class Login extends React.Component{
     render(){
         return (
             <div>
-                <form className="form-signin">
-                    <h1 className="display-4 text-primary">Nova Sight</h1>
-                    <h6 className="mb-3 font-weight-normal">Please sign in</h6>
-                    <label htmlFor="inputEmail" className="sr-only">Email address</label>
-                    <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
-                    <label htmlFor="inputPassword" clasclassNames="sr-only">Password</label>
-                    <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
-                    <div className="checkbox mb-3">
+                <form className="MY_form-signin">
+                    <div className="outerDivCreateAccount"> <h1 className="display-4 text-primary">Nova Sight</h1> </div>
+                    <div className="UsernameDiv">
+                        <h6 className="mb-3 font-weight-normal">Please sign in</h6>
+                        <label htmlFor="inputEmail" className="sr-only">Email address</label>
+                        <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
+                    </div>
+                    <div className="PasswordDiv"> 
+                        <label htmlFor="inputPassword" clasclassNames="sr-only">Password</label>
+                        <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
                         <label>
-                        <input type="checkbox" value="remember-me"/> Remember me
+                            <input type="checkbox" value="remember-me"/> Remember me
                         </label>
                     </div>
-                    <button className="btn btn-lg btn-primary btn-block" onClick={this.handleClick.bind(this)}>
-                        Sign in
-                    </button>
-                    <p className="mt-5 mb-3 text-muted">Copyright &copy; Capstone 2019</p>
+                    
+                    <div className="outerButtonDiv">
+                        <button className="btn btn-lg btn-primary btn-block" onClick={this.handleClick.bind(this)}>
+                            Sign in
+                        </button>
+                        <div className="checkbox mb-3">
+                            <div className="outerDivCreateAccount">
+                                <div className="createAccount">
+                                    <a href="#" className="nav-link">First timer? Create new account</a> 
+                                </div> 
+                            </div>  
+                        </div>
+                        <p className="mt-5 mb-3 text-muted">Copyright &copy; Capstone 2019</p>
+                    </div> 
+                    
                 </form>
             </div>
         );

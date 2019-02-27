@@ -2,29 +2,93 @@
 import React, { Component } from 'react';
 import Link from './Link';
 import './Style Sheets/App.css';
-import './Style Sheets/MyInvestigation.css';
+import './Style Sheets/Home.css';
 import './Style Sheets/site.min.css';
 import './Style Sheets/site.min.css.map';
 import './Style Sheets/style.scss';
 import './images/a.jpeg';
 import './images/b.png'; 
-import './images/c.png';  
+import './images/c.png'; 
+import PropTypes from "prop-types";
+import './images/ezgif-3-88d63871ccb9.gif';  
+import Sensors from './Sensors'
+import Login from './Login'
+import Redirect from './Redirect'
+import Router from './App.js'
+import Route from './App.js'
 
+
+
+import createHistory from 'history/createBrowserHistory'; 
 
 let styles = { 
     height: '150px'
 }
 
-const Home = () => (
+const iFrameStyle = {
+    width:0,
+    height:0,
+    border:0,
+    display:"none"
+  };
+
+// const Route = ({ path, component}, {location}) => {
+//     const pathname = location.pathname;
+//     if (pathname.match(path)) {
+//       return (
+//         React.createElement(component)
+//   );
+//   } else {
+//       return null;
+//     }
+//   };
+  
+//   Route.contextTypes = {
+//     location: PropTypes.object,
+//   };
+
+class Home extends React.Component { 
+    linkBtn() { 
+
+       
+
+    }
+
+    render() { 
+        return( 
     <div>
-        <div className="jumbotron jumbotron-fluid bg-primary text-light">
-            <div className="container">
+         {/* <div className="jumbotron jumbotron-fluid bg-primary text-light"> */}
+             {/* <div className="container"> */}
             {/* <p class="lead text-uppercase">Name, Text & Layout Pending</p> */}
-            <h1 className="display-4">Welcome to Novasight</h1>
+            {/* <h1 className="display-4">Welcome to Novasight</h1> */}
             {/* <p class="lead">Intelligence relevant to your organization is out there — from compromised credentials, customer data, and payment card information, to new vulnerabilities and exploits. But relying on open source tools or ad hoc approaches to monitor for this information will likely be time-consuming, generate noisy false positives, and miss hard-to-reach sources.</p> */}
-            <p className="lead">The real time online security feed and monitoring application.</p> 
+            {/* <p className="lead">The real time online security feed and monitoring application.</p>  */}
             
+            {/* <button type="submit" onclick="linkBtn()" className="btn" >Get Started</button> */}
+          {/* </div>    */}
+        {/* </div>  */}
+        <div class="grid-container">
+            <div>
+            <img className="resize" src={require('./images/ezgif-3-88d63871ccb9.gif')}></img>
             </div>
+            <div class="inner-grid"> 
+                <div><h1 className="display-4">Welcome to Novasight</h1></div>
+                <div><p className="lead">The real time online security feed and monitoring application.</p></div>   
+                <div className="getStartedDiv"> 
+                    <a href="/sensor" class="nav-link">Get Started</a>
+                    
+                    
+                    {/* <Router>   
+                        <Link to={{pathname:'/sensors',class:"nav-link"}}>
+                        Get Started
+                        </Link>
+                        <Route path='/sensors' component={Sensors}/>
+                        <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"post"}>
+                        </form>
+                        <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
+                    </Router> */}
+                </div>
+            </div> 
         </div>
 
         <div className="container-fluid">
@@ -70,10 +134,10 @@ const Home = () => (
             <div className="row">
                 <form className="form-inline mx-auto" style={styles}>
                     <div className="form-group mr-3">
-                        <label htmlFor="businessEmail" className="sr-only">Enter your business email</label>
-                        <input type="password" className="form-control form-control-lg" id="businessEmail" placeholder="Enter your business email"></input>
+                        {/* <label htmlFor="businessEmail" className="sr-only">Enter your business email</label> */}
+                        {/* <input type="password" className="form-control form-control-lg" id="businessEmail" placeholder="Enter your business email"></input> */}
                     </div>
-                    <button type="submit" className="btn btn-primary">Get Started</button>
+                    {/* <button type="submit" className="btn btn-primary">Get Started</button> */}
                 </form>
             </div>
         </div>
@@ -101,7 +165,7 @@ const Home = () => (
         </div>
     </div>
    
-  );
+  ); }} 
 
   class InvestigationList extends React.Component {
     render() {
