@@ -110,7 +110,7 @@ class Sensors extends React.Component {
           </table>*/}
           </div>
           <div class="my-3 p-3 rounded_25 shadow-sm  bg_complement">
-          <h6 class="border-bottom border-gray pb-2 mt-5 mb-3">New Rule</h6>
+          <h6 class="border-bottom border-gray pb-2  mb-3">New Rule</h6>
           {this.submittedForm &&
             <p  class="form-text " style={pStyle}> We have added your sensor</p>
           }
@@ -180,7 +180,7 @@ class Sensors extends React.Component {
               <input type="text" class="form-control" placeholder="Anywhere"></input>
             </div>
             */}
-            <button type="submit"  class="btn btn-primary" >Create</button>
+            <center><button type="submit"  class="btn btn-primary" >Create</button></center>
           </form>
         </div>
         <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>

@@ -41,7 +41,7 @@ class Profile extends React.Component {
                             <option value="1">High</option>
                         </select>
                     </div>
-                    <button onClick={this.handler}  class="btn btn-primary" >Save</button>
+                    <center><button onClick={this.handler}  class="btn btn-primary" >Save</button></center>
                 </div>
             </main>
         );
