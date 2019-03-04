@@ -74,6 +74,7 @@ class App extends React.Component {
     var submit = document.getElementById("scanForm")
     submit.submit()
 
+
     console.log("App is being mounted")
     this.ref.on('value', (snapshot) => {
       let items = snapshot.val();
@@ -167,7 +168,7 @@ class App extends React.Component {
         <Route path='/sensors' component={Sensors}/>
         <Route path='/login' component={Login}/>
         <Route path='/profile'component={Profile}/>
-        <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"post"}>
+        <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"get"}>
           
         </form>
         <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>

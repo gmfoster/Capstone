@@ -2,23 +2,53 @@ import React, { Component } from 'react';
 import './Style Sheets/site.min.css'
 import './Style Sheets/site.min.css.map'
 import './Style Sheets/style.scss'
+import { format } from 'url';
+
+
+    const pStyle= {
+    color:"green",
+    align:"center"
+  
+  };
+
+  const iFrameStyle = {
+    width:0,
+    height:0,
+    border:0,
+    display:"none"
+  };
 
 class Profile extends React.Component {
+    constructor(props){
+        super(props)
+        this.submittedForm = false
+    }
+
 
     handler(){
         var name = document.getElementById("name");
         var email = document.getElementById("email");
         var phone = document.getElementById("phone");
         var frequency = document.getElementById("frequency")
-        console.log(name.value, email.value, phone.value, frequency.value);
+        this.submittedForm = true
+        var profileForm = document.getElementById("profileForm")
+        profileForm.reset()
+        this.forceUpdate()
+        
+        
 
     }
 
     render(){
         return(
             <main role="main" class="container">
+                
+                <form action="#" target={"hiddenFrame"} id="profileForm">
                 <div class="my-3 p-3 bg_complement rounded_25 shadow-sm">
                     <h6 class="border-bottom border-gray pb-2 mb-3">Profile Information</h6>
+                    {this.submittedForm &&
+                        <p  class="form-text " style={pStyle}> Notification infomation has been saved and activated</p>
+                    }
                     <div class="form-group">
                         <label>Name</label>
                         <input type="name" class="form-control" id="name" placeholder="Enter name"></input>
@@ -41,8 +71,10 @@ class Profile extends React.Component {
                             <option value="1">High</option>
                         </select>
                     </div>
-                    <button onClick={this.handler}  class="btn btn-primary" >Save</button>
+                    <center><button onClick={this.handler.bind(this)}  class="btn btn-primary" >Save</button></center>
                 </div>
+                </form>
+                <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
             </main>
         );
     }

@@ -92,6 +92,7 @@ class PastebinTable extends React.Component {
                 this.pasteList = Object.entries(data).slice(0,5).map(([key,val])=>(
                     <PastebinEntry
                     key={key}
+                    Key={key}
                     //Date={1}
                     Link={"http://pastebin.com/" + key}
                     //Preview={""}
@@ -109,12 +110,12 @@ class PastebinTable extends React.Component {
 
     render(){
         return (
-            <div className="my-3 p-3 rounded_25 shadow-sm paste" >
+            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
                         <tr>
-                            {/*<th scope="col">Date</th>*/}
+                            <th scope="col">Key</th>
                             <th scope="col">Link</th>
                             {/*<th scope="col">Preview</th>*/}
                         </tr>
@@ -134,9 +135,9 @@ class PastebinEntry extends React.Component{
     render(){
         return(
             <tr>
-                <th scope="row">{this.props.Date}</th>
-                <td><a href={this.props.Link}>{this.props.Link}</a></td>
-                <td>{this.props.Preview}</td>
+                <td scope="row">{this.props.Key}</td>
+                <td scope="row"><a href={this.props.Link}>{this.props.Link}</a></td>
+                {/*<td>{this.props.Preview}</td>*/}
             </tr>    
         );
     }
@@ -195,7 +196,7 @@ class HaveIBeenPwndTable extends React.Component{
     
     render(){
         return (
-            <div className="my-3 p-3  rounded_25 shadow-sm pwnd" >
+            <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
                 <h6 className="border-bottom border-gray pb-2 mb-0" >{this.props.sensorString} </h6>
                 <table className="table table-responsive small">
                     <thead>

@@ -75,8 +75,10 @@ class Home extends React.Component {
                 <div><h1 className="display-4">Welcome to Novasight</h1></div>
                 <div><p className="lead">The real time online security feed and monitoring application.</p></div>   
                 <div className="getStartedDiv"> 
-                    <a href="/sensor" class="nav-link">Get Started</a>
                     
+                    <Link to={{pathname:'/sensors',class:"nav-link"}}>
+                    Get Started
+                    </Link>
                     
                     {/* <Router>   
                         <Link to={{pathname:'/sensors',class:"nav-link"}}>

@@ -46,7 +46,7 @@
     border:1px solid #cfdcec;
     overflow:hidden;
     /* background: #4679BD; */
-    background: #007bff;
+    background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
     box-shadow: 0 0 3px gray;
   }
   .round-button-circle:hover {
@@ -105,5 +105,5 @@ h3.center{
 }
 
 div.bg_complement{
-  background-color: #89CFF0;
+  background-color: #D3D3D3;/*#A9A9A9;/*#89CFF0;*/
 }
