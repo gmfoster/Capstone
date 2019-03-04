@@ -110,7 +110,9 @@ class Sensors extends React.Component {
           </table>*/}
           </div>
           <div class="my-3 p-3 rounded_25 shadow-sm  bg_complement">
+
           <h6 class="border-bottom border-gray pb-2 mb-3">New Rule</h6>
+
           {this.submittedForm &&
             <p  class="form-text " style={pStyle}> We have added your sensor</p>
           }

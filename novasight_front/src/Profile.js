@@ -71,7 +71,9 @@ class Profile extends React.Component {
                             <option value="1">High</option>
                         </select>
                     </div>
+
                     <center><button onClick={this.handler.bind(this)}  class="btn btn-primary" >Save</button></center>
+
                 </div>
                 </form>
                 <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
