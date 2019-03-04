@@ -32,6 +32,7 @@ var sensorsIndexMap = [{
 var allSensors = []
 
 
+
 var lineChartData = {
     "2019-01-01":10,
     "2019-01-02":20,
@@ -66,6 +67,98 @@ var currentPwnedSensors = undefined
 
 var currentDarkSensors=[]
 
+var pwnedPicStyle = {
+    width:"75px",
+    height:"75px",
+    "object-fit":"contain"
+}
+
+class DarkWebTable extends React.Component{
+    constructor(props){
+        super(props)
+        this.darkList = []
+        this.foundData = false
+        this.ref = firebase.database().ref('dark_search');
+    }
+
+
+    componentDidMount(){
+        this.ref.on('value',(snapshot) =>{
+            let items = snapshot.val();
+            var data = items[this.props.sensorKey]
+
+            
+
+            if (data == undefined){
+                this.foundData = false
+                this.darkList = <DarkwebEntry
+                    key={this.props.sensorKey}
+                    foundData={false}
+                />
+            }else{
+                this.foundData = true
+                this.darkList = Object.entries(data).map(([key,val]) =>(
+                    <DarkwebEntry
+                    key={key}
+                    title={val["title"]}
+                    link={val["link"]}
+                    foundData={true}
+                    />
+                ));
+            }
+            this.forceUpdate();
+        })
+    }
+    render(){
+        return(
+            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
+                <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
+                <table className="table table-responsive small">
+                    <thead>
+                        <tr>
+                            {this.foundData &&
+                                <th scope="col">Title</th>
+                            }
+                            {this.foundData &&
+                                <th scope="col">Link</th>
+                            }
+                            {!this.foundData &&
+                                <th scope="col">Description</th>
+                            }
+                            
+                            
+                            {/*<th scope="col">Preview</th>*/}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.darkList}
+                    </tbody>
+                </table>
+            </div>
+        )  
+    }
+}
+
+
+class DarkwebEntry extends React.Component{
+    render(){
+        
+        return(
+            <tr>
+                {this.props.foundData &&
+                    <td scope="row">{this.props.title}</td>
+                }
+                {this.props.foundData &&
+                    <td scope="row">{this.props.link}</td>
+                }
+                {!this.props.foundData &&
+                    <td scope="row">No data found for this keyword</td>
+                }
+                
+            </tr>    
+        );
+    }
+}
 
 
 class PastebinTable extends React.Component {
@@ -165,25 +258,29 @@ class HaveIBeenPwndTable extends React.Component{
             let items = snapshot.val();
             
             PWND_LIST = items[this.props.sensorKey]
-
-            if (PWND_LIST["404"] != undefined){
-                this.noData = true;
-                this.pwndList = <HaveIBeenPwndEntry
-                    Key={this.props.sensorString}
-                    Description={"<font size='3' color='green'>" + PWND_LIST["404"] + "</font>"}
-                />
-            }else{
-                console.log("Not undefined")
-                this.pwndList = PWND_LIST.map((entry)=>(
-                    <HaveIBeenPwndEntry
-                        key={entry.Description}
-                        BreachDate={entry.BreachDate}
-                        Domain={entry.Domain}
-                        Name={entry.Name}
-                        Description={entry.Description}
+            if(PWND_LIST != undefined){
+                if (PWND_LIST["404"] != undefined){
+                    this.noData = true;
+                    this.pwndList = <HaveIBeenPwndEntry
+                        Key={this.props.sensorString}
+                        Description={"<font size='3' color='green'>" + PWND_LIST["404"] + "</font>"}
+                        Breached={false}
                     />
-                ));
+                }else{
+                    console.log("Not undefined")
+                    this.pwndList = PWND_LIST.map((entry)=>(
+                        <HaveIBeenPwndEntry
+                            key={entry.Description}
+                            BreachDate={entry.BreachDate}
+                            Domain={entry.LogoPath}
+                            Name={entry.Name}
+                            Description={entry.Description}
+                            Breached={true}
+                        />
+                    ));
+                }
             }
+            
             this.forceUpdate()
             
 
@@ -229,9 +326,17 @@ class HaveIBeenPwndEntry extends React.Component{
     render(){
         return(
             <tr>
-                <th scope="row">{this.props.BreachDate}</th>
-                <td>{this.props.Domain}</td>
-                <td>{this.props.Name}</td>
+                
+                {this.props.Breached &&
+                    <th scope="row">{this.props.BreachDate}</th>
+                }
+                {this.props.Breached &&
+                    <td><img src={this.props.Domain} style={pwnedPicStyle}/></td>
+                }
+                {this.props.Breached &&
+                    <td>{this.props.Name}</td>
+                }
+                
                 <td dangerouslySetInnerHTML={{__html: this.props.Description}}></td>
             </tr>    
         );
@@ -251,9 +356,12 @@ class Bubble extends React.Component{
         //currentPasteSensor = pasteSensors
 
         var pwnSensors = allSensors[this.props.name]["pwned"]
+        var darkSensors = allSensors[this.props.name]["dark"]
 
         currentPwnedSensors = pwnSensors
         currentPasteSensors = pasteSensors
+        currentDarkSensors = darkSensors
+
 
         currentID = this.props.name
         //currentPwnedSensors = pwnSensors
@@ -446,7 +554,8 @@ class Dashboard extends React.Component {
 
     render(){
         var pwndSensor = [];
-        var pastSensors = []
+        var pastSensors = [];
+        var darkSensors = [];
 
         if (currentPasteSensors != undefined ){
             pwndSensor = currentPasteSensors.map((sensor)=>(
@@ -468,6 +577,16 @@ class Dashboard extends React.Component {
                 sensorString={sensor.string}
                 />
                 
+            ));
+        }
+
+        if (currentDarkSensors != undefined){
+            darkSensors = currentDarkSensors.map((sensor)=>(
+               <DarkWebTable
+               key={sensor.key}
+               sensorKey={sensor.key}
+               sensorString={sensor.string}
+               />     
             ));
         }
         
@@ -500,6 +619,7 @@ class Dashboard extends React.Component {
                 
                 {pastSensors}
                 {pwndSensor}
+                {darkSensors}
                 </main>
                 
             </div>
