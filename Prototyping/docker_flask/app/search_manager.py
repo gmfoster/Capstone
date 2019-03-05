@@ -121,6 +121,7 @@ class Search_Manager():
         print(self.dark_keywords)
         
     def timedSearch(self):
+        sent = 0
         count = 0
         pasteCount = 0
         darkCount = 0
@@ -137,7 +138,9 @@ class Search_Manager():
                     if (firstTime == 1):
                         pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
                     else:
-                        pasteCount = pasteCount + self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                        paste = self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                        pasteCount = paste[0] + pasteCount
+                        link = paste[1]
                 if(firstTime == 1):
                     self.pastebin_module.close()
             self.getPwnedSensors() #get pwned sensors                                                 
@@ -157,10 +160,11 @@ class Search_Manager():
                 #self.alert.sendEmail(self.user.name, self.user.email)
                 #self.alert.sendText(self.user.name, self.user.phone)
                 print("sending alert")
-            if(pasteCount > 0):
+            if(pasteCount > 0 and sent = 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
-                self.alert.sendText(self.user.name, self.user.phone)
-                print("sending alert") 
+                self.alert.sendText(self.user.name, self.user.phone,link)
+                print("sending alert")
+                sent = 1
             pasteCount = 0
             pwnedCount = 0
             darkCount = 0

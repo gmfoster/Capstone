@@ -11,11 +11,11 @@ class alert():
         #AUTH_TOKEN = "35625b83cdca34b25a358e9fd2aea4c9" #graham
         self.client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
-    def sendText(self, name, phone):
+    def sendText(self, name, phone,link):
         message = self.client.messages.create(
-            body = " " +name+ "\nYou are being alerted because a sensor from NovaSight has been triggered",
+            body = " " +name+ "\nYou are being alerted because a sensor from NovaSight has been triggered by: " + link,
             from_ = '+19152283110',
-            to = '+18315885783')
+            to = '+17147475699')
             # need to authorize a phone number with twilio before you're able to send to it
             
         print(message.sid)
@@ -38,6 +38,6 @@ class alert():
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
 
-if __name__ == "__main__":
-    alert = alert()
-    alert.sendText("graham", "+18315885781")
+#if __name__ == "__main__":
+#    alert = alert()
+#    alert.sendText("graham", "+18315885781")

@@ -44,10 +44,12 @@ class Recent_Pastes():
                 self.keys.append(items['key'])
             time.sleep(.7)
         #print(self.keys)
+        link = ''
         for l in self.keys:
             data = {"link":"http://pastebin.com/" + l}
+            link = "http://pastebin.com/" + l
             self.db.child("paste_search").child(id).child(l).set(data)
-        return(len(self.keys))
+        return(len(self.keys),link)
         
 
 #if __name__ == "__main__":

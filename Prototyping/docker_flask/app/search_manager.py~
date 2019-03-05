@@ -1,18 +1,18 @@
 import time
-#from app import pwned
-import pwned
+from app import pwned
+#import pwned
 import pyrebase
 import hashlib
-#from app import alert
-import alert
-#from app import dread
-import dread
-#from app import pastebin
-import pastebin
-#from app import user
-import user
-#from app import recentPastes
-import recentPastes
+from app import alert
+#import alert
+from app import dread
+#import dread
+from app import pastebin
+#import pastebin
+from app import user
+#import user
+from app import recentPastes
+#import recentPastes
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
@@ -137,7 +137,9 @@ class Search_Manager():
                     if (firstTime == 1):
                         pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
                     else:
-                        pasteCount = pasteCount + self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                        paste = self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                        pasteCount = paste[0] + pasteCount
+                        link = paste[1]
                 if(firstTime == 1):
                     self.pastebin_module.close()
             self.getPwnedSensors() #get pwned sensors                                                 
@@ -159,7 +161,7 @@ class Search_Manager():
                 print("sending alert")
             if(pasteCount > 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
-                self.alert.sendText(self.user.name, self.user.phone)
+                self.alert.sendText(self.user.name, self.user.phone,link)
                 print("sending alert") 
             pasteCount = 0
             pwnedCount = 0
