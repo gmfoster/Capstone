@@ -1,18 +1,18 @@
 import time
-#from app import pwned
-import pwned
+from app import pwned
+#import pwned
 import pyrebase
 import hashlib
-#from app import alert
-import alert
-#from app import dread
-import dread
-#from app import pastebin
-import pastebin
-#from app import user
-import user
-#from app import recentPastes
-import recentPastes
+from app import alert
+#import alert
+from app import dread
+#import dread
+from app import pastebin
+#import pastebin
+from app import user
+#import user
+from app import recentPastes
+#import recentPastes
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
