@@ -51,15 +51,15 @@ class Profile extends React.Component {
                     }
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="name" class="form-control" id="name" placeholder="Enter name"></input>
+                        <input type="name" class="form-control" id="name" placeholder="Omer Cohen"></input>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email"></input>
+                        <input type="email" class="form-control" id="email" placeholder="omer@gmail.com"></input>
                     </div>
                     <div class="form-group">
                         <label>SMS</label>
-                        <input type="text" class="form-control" id="phone" placeholder="Enter your SMS number"></input>
+                        <input type="text" class="form-control" id="phone" placeholder="619-991-9097"></input>
                     </div>
                     <h6 class="border-bottom border-gray pb-2 mt-4 mb-3">Set Threshold</h6>
                     <div class="form-group">

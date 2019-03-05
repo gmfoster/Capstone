@@ -92,7 +92,13 @@ class Home extends React.Component {
                 </div>
             </div> 
         </div>
-
+        
+        {/*
+        ******************* 
+            GRID LAYOUT  
+        *******************
+        */}
+        
         <div className="container-fluid">
             <div className="row align-items-center px-3 py-5">
                 <div className="col-6">
