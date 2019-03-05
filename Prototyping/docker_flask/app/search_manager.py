@@ -160,7 +160,7 @@ class Search_Manager():
                 #self.alert.sendEmail(self.user.name, self.user.email)
                 #self.alert.sendText(self.user.name, self.user.phone)
                 print("sending alert")
-            if(pasteCount > 0 and sent = 0):
+            if(pasteCount > 0 and sent == 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
                 self.alert.sendText(self.user.name, self.user.phone,link)
                 print("sending alert")
