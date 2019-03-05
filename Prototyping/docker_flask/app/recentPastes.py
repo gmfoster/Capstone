@@ -9,7 +9,7 @@ import time
 
 class Recent_Pastes():
     def __init__(self):
-        self.url = 'https://scrape.pastebin.com/api_scraping.php?limit=250'
+        self.url = 'https://scrape.pastebin.com/api_scraping.php?limit=25'
         self.keys = []
         self.config = {
             "apiKey": "AIzaSyCGkOiKMSxR9NRM-d1WkC2kEYOGp2d8j5k",
@@ -25,6 +25,7 @@ class Recent_Pastes():
         
     def search(self, keyword):
         response = requests.get(self.url)
+        #print(response.text)
         json_response = response.json()
         id = hashlib.md5(keyword.encode()).hexdigest()
         scrape_data = ""
@@ -38,10 +39,10 @@ class Recent_Pastes():
             scrape = requests.get(i)
             text = scrape.text
             if (text.find(keyword) != -1):
-                #print("Found Word In Paste: ", items['key'])
-                #print(scrape.text)
+                print("Found Word In Paste: ", items['key'])
+                print(scrape.text)
                 self.keys.append(items['key'])
-            time.sleep(1)
+            time.sleep(.7)
         #print(self.keys)
         for l in self.keys:
             data = {"link":"http://pastebin.com/" + l}

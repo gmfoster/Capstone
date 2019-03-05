@@ -1,18 +1,18 @@
 import time
-from app import pwned
-#import pwned
+#from app import pwned
+import pwned
 import pyrebase
 import hashlib
-from app import alert
-#import alert
-from app import dread
-#import dread
-from app import pastebin
-#import pastebin
-from app import user
-#import user
-from app import recentPastes
-#import recentPastes
+#from app import alert
+import alert
+#from app import dread
+import dread
+#from app import pastebin
+import pastebin
+#from app import user
+import user
+#from app import recentPastes
+import recentPastes
 #Store sensors in database, in infinite look query database for all sensors 
 
 class Search_Manager():
@@ -127,7 +127,7 @@ class Search_Manager():
         found = 0
         pwnedCount = 0
         newCount = 0
-        firstTime = 1
+        firstTime = 0
         while(1):
         #start infinite loop                                                                          
             self.getPasteSensors() #get paste sensors                                                 
@@ -138,10 +138,12 @@ class Search_Manager():
                         pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
                     else:
                         pasteCount = pasteCount + self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                if(firstTime == 1):
+                    self.pastebin_module.close()
             self.getPwnedSensors() #get pwned sensors                                                 
-            if (len(self.pwned_keywords) != 0):
-                for i in range(len(self.pwned_keywords)):
-                    pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
+            #if (len(self.pwned_keywords) != 0):
+                #for i in range(len(self.pwned_keywords)):
+                    #pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
 
             self.getDarkSensors()
             #if (len(self.dark_keywords) != 0):
@@ -150,26 +152,26 @@ class Search_Manager():
             newCount = pwnedCount + darkCount
             found = newCount-count
             count =  newCount
-
+            print("paste count = ", pasteCount)
             if(found > self.user.frequency and firstTime == 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
                 #self.alert.sendText(self.user.name, self.user.phone)
                 print("sending alert")
             if(pasteCount > 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
-                #self.alert.sendText(self.user.name, self.user.phone)
+                self.alert.sendText(self.user.name, self.user.phone)
                 print("sending alert") 
             pasteCount = 0
             pwnedCount = 0
             darkCount = 0
             found = 0
-            print("Sleeping for 15 seconds")
-            time.sleep(15)
             firstTime = 0
+            print("Sleeping for 0 second")
+            #time.sleep(1)
 
-#if __name__ == "__main__":
-#    manager = Search_Manager()
+if __name__ == "__main__":
+    manager = Search_Manager()
 #    manager.getPwnedSensors()
 #    manager.getDarkSensors()
 #    manager.getPasteSensors()
-#    manager.timedSearch()
+    manager.timedSearch()
