@@ -2,3 +2,13 @@ Prototyping/docker_flask/app/__pycache__/alert.cpython-37.pyc
 Prototyping/docker_flask/app/__pycache__/dread.cpython-37.pyc
 Prototyping/docker_flask/app/__pycache__/recentPastes.cpython-37.pyc
 Prototyping/docker_flask/app/__pycache__/user.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/__init__.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/dnscheck.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/get_data.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/pastebin.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/pwned.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/routes.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/search_manager.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/sensor_manager.cpython-37.pyc
+Prototyping/docker_flask/app/__pycache__/user.cpython-37.pyc
+

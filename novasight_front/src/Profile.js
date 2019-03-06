@@ -18,6 +18,10 @@ import { format } from 'url';
     display:"none"
   };
 
+var textFieldName = "Omer Cohen";
+var textFieldEmail = "omer@gmail.com";
+var textFieldPhoneNumber = "619-991-9097";
+
 class Profile extends React.Component {
     constructor(props){
         super(props)
@@ -29,6 +33,18 @@ class Profile extends React.Component {
         var name = document.getElementById("name");
         var email = document.getElementById("email");
         var phone = document.getElementById("phone");
+
+        if (name.value != ""){
+            textFieldName = name.value
+        }
+        if (email.value != ""){
+            textFieldEmail = email.value
+        }
+        if(phone.value != ""){
+            textFieldPhoneNumber = phone.value
+        }
+
+
         var frequency = document.getElementById("frequency")
         this.submittedForm = true
         var profileForm = document.getElementById("profileForm")
@@ -51,15 +67,15 @@ class Profile extends React.Component {
                     }
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="name" class="form-control" id="name" placeholder="Omer Cohen"></input>
+                        <input type="name" class="form-control" id="name" placeholder={textFieldName}></input>
                     </div>
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="omer@gmail.com"></input>
+                        <input type="email" class="form-control" id="email" placeholder={textFieldEmail}></input>
                     </div>
                     <div class="form-group">
                         <label>SMS</label>
-                        <input type="text" class="form-control" id="phone" placeholder="619-991-9097"></input>
+                        <input type="text" class="form-control" id="phone" placeholder={textFieldPhoneNumber}></input>
                     </div>
                     <h6 class="border-bottom border-gray pb-2 mt-4 mb-3">Set Threshold</h6>
                     <div class="form-group">
