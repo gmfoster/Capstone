@@ -121,13 +121,14 @@ class Search_Manager():
         print(self.dark_keywords)
         
     def timedSearch(self):
+        sent = 0
         count = 0
         pasteCount = 0
         darkCount = 0
         found = 0
         pwnedCount = 0
         newCount = 0
-        firstTime = 1
+        firstTime = 0
         while(1):
         #start infinite loop                                                                          
             self.getPasteSensors() #get paste sensors                                                 
@@ -137,11 +138,15 @@ class Search_Manager():
                     if (firstTime == 1):
                         pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
                     else:
-                        pasteCount = pasteCount + self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                        paste = self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 250 most recent pastes
+                        pasteCount = paste[0] + pasteCount
+                        link = paste[1]
+                if(firstTime == 1):
+                    self.pastebin_module.close()
             self.getPwnedSensors() #get pwned sensors                                                 
-            if (len(self.pwned_keywords) != 0):
-                for i in range(len(self.pwned_keywords)):
-                    pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
+            #if (len(self.pwned_keywords) != 0):
+                #for i in range(len(self.pwned_keywords)):
+                    #pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
 
             self.getDarkSensors()
             #if (len(self.dark_keywords) != 0):
@@ -150,26 +155,27 @@ class Search_Manager():
             newCount = pwnedCount + darkCount
             found = newCount-count
             count =  newCount
-
+            print("paste count = ", pasteCount)
             if(found > self.user.frequency and firstTime == 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
                 #self.alert.sendText(self.user.name, self.user.phone)
                 print("sending alert")
-            if(pasteCount > 0):
+            if(pasteCount > 0 and sent == 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
-                #self.alert.sendText(self.user.name, self.user.phone)
-                print("sending alert") 
+                self.alert.sendText(self.user.name, self.user.phone,link)
+                print("sending alert")
+                sent = 1
             pasteCount = 0
             pwnedCount = 0
             darkCount = 0
             found = 0
-            print("Sleeping for 15 seconds")
-            time.sleep(15)
             firstTime = 0
+            print("Sleeping for 0 second")
+            #time.sleep(1)
 
-#if __name__ == "__main__":
-#    manager = Search_Manager()
+if __name__ == "__main__":
+    manager = Search_Manager()
 #    manager.getPwnedSensors()
 #    manager.getDarkSensors()
 #    manager.getPasteSensors()
-#    manager.timedSearch()
+    manager.timedSearch()

@@ -140,7 +140,7 @@ class Pastebin_Module():
             #print(getValue)
             pagesRemaining = pagesRemaining - 1
 
-        self.browser.close()
+        #self.browser.close()
 
         #Finds pasteKey from url
         for resultURL in urls:
@@ -175,8 +175,10 @@ class Pastebin_Module():
         
         results = self.scrapingApiFromKeys(keys, id)
         return len(keys)
-        
+
+    def close(self):
+        self.browser.close()
                                       
 if __name__ == "__main__" and "test" in argv:
     paste = Pastebin_Module()
-    paste.search("gfoster831@gmail.com")
+    paste.search("Omer Cohen")
