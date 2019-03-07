@@ -1,3 +1,4 @@
+import datetime
 import pyrebase
 import hashlib
 import re
@@ -24,9 +25,13 @@ class Recent_Pastes():
 
         
     def search(self, keyword):
-        response = requests.get(self.url)
-        #print(response.text)
-        json_response = response.json()
+        try:
+            response = requests.get(self.url)
+            print(response.text)
+            json_response = response.json()
+        except Exception as e:
+            print("Exception: ",e)
+            pass
         id = hashlib.md5(keyword.encode()).hexdigest()
         scrape_data = ""
         for items in json_response:
@@ -46,7 +51,9 @@ class Recent_Pastes():
         #print(self.keys)
         link = ''
         for l in self.keys:
-            data = {"link":"http://pastebin.com/" + l}
+            currentDT = datetime.datetime.now()
+            currentTime = currentDT.strftime("%d:%I:%M:%S")
+            data = {"link":"http://pastebin.com/" + l, "time(day:hour:minute:second)":currentTime}
             link = "http://pastebin.com/" + l
             self.db.child("paste_search").child(id).child(l).set(data)
         return(len(self.keys),link)
