@@ -346,8 +346,9 @@ class HaveIBeenPwndEntry extends React.Component{
 
 
 class Bubble extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
+        this.handler = this.props.handler
         this.popTables = this.popTables.bind(this)
     }
 
@@ -372,7 +373,7 @@ class Bubble extends React.Component{
         console.log("Paste Senors")
         console.log(pasteSensors)
         
-        
+        this.handler()
         
     }
 
@@ -382,7 +383,7 @@ class Bubble extends React.Component{
             <div class="round-button">
                 <div class="round-button-circle">
                     {/* onclick={this.popTables(this.props.id)} */}
-                    <a href="#" className="round-button" id={this.props.id} onClick={this.popTables}>{this.props.name}</a>
+                    <a  className="round-button" id={this.props.id} onClick={this.popTables}>{this.props.name}</a>
                 {/* href = "#" */}
                 </div>
             </div>
@@ -392,13 +393,14 @@ class Bubble extends React.Component{
 }
 
 class BubbleSensor extends React.Component { 
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.list = [];
         //this.ref = firebase.database().ref('sensors').child('paste_sensors');
         this.ref = firebase.database().ref('sensors'); 
         this.sensorList = []
         this.sensorNames = []
+        this.handler = this.props.handler
     }
     
     componentDidMount() { 
@@ -435,10 +437,7 @@ class BubbleSensor extends React.Component {
                     for (var sensorKey in tempPwnedSensor){
                             var tempDict = {}
                             var sensorVal = tempPwnedSensor[sensorKey]
-                            console.log("Sensor Key")
-                            console.log(sensorKey)
-                            console.log("Sensor Value")
-                            console.log(sensorVal["sensor"])
+                            
                             tempDict["string"] = sensorVal["sensor"]
                             tempDict["key"] = sensorKey
                             
@@ -461,10 +460,7 @@ class BubbleSensor extends React.Component {
                     for (var sensorKey in tempPasteSensors){
                             var tempDict = {}
                             var sensorVal = tempPasteSensors[sensorKey]
-                            console.log("Sensor Key")
-                            console.log(sensorKey)
-                            console.log("Sensor Value")
-                            console.log(sensorVal["sensor"])
+                            
                             tempDict["string"] = sensorVal["sensor"]
                             tempDict["key"] = sensorKey
                             
@@ -485,11 +481,7 @@ class BubbleSensor extends React.Component {
                     for (var sensorKey in tempDarkSensors){
                             var tempDict = {}
                             var sensorVal = tempDarkSensors[sensorKey]
-                            console.log("Sensor Key")
-                            console.log(sensorKey)
-
-                            console.log("Sensor Value")
-                            console.log(sensorVal["sensor"])
+                        
                             tempDict["string"] = sensorVal["sensor"]
                             tempDict["key"] = sensorKey
                             
@@ -527,7 +519,7 @@ class BubbleSensor extends React.Component {
                 name={entry}
                 key={entry}
                 id={++count}
-                
+                handler={this.handler}
             /> 
         )); 
         
@@ -547,9 +539,14 @@ class BubbleSensor extends React.Component {
 }
 
 class Dashboard extends React.Component {
+    constructor(props){
+        super(props)
+        this.handler = this.handler.bind(this)
+    }
+
     handler(){
         this.forceUpdate()
-        console.log("Force update dashboard")
+        console.log("Force update dashboa rd")
     }
 
     render(){
@@ -605,7 +602,7 @@ class Dashboard extends React.Component {
                 </main>
                 
                 <main>
-                    <BubbleSensor/>
+                    <BubbleSensor handler={this.handler}/>
                 </main> 
                 <center><h3 className="center">{currentID}</h3></center>
                 {/*
