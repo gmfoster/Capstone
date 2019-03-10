@@ -1,3 +1,4 @@
+import datetime
 import urllib
 import urllib.request
 import requests
@@ -168,9 +169,11 @@ class Pastebin_Module():
         results = []
         keys = self.seleniumSearch(keyword)
         id = hashlib.md5(keyword.encode()).hexdigest()
+        currentDT = datetime.datetime.now()
+        currentTime = currentDT.strftime("%d:%I:%M:%S")
         #data = ""
         for i in range(len(keys)):
-            data = {"link":"http://pastebin.com/" + keys[i]}
+            data = {"link":"http://pastebin.com/" + keys[i], "time(day:hour:minute:second)":currentTime}
             self.db.child("paste_search").child(id).child(keys[i]).set(data)
         
         results = self.scrapingApiFromKeys(keys, id)
