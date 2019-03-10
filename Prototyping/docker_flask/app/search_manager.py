@@ -128,7 +128,7 @@ class Search_Manager():
         found = 0
         pwnedCount = 0
         newCount = 0
-        firstTime = 0
+        firstTime = 1
         while(1):
         #start infinite loop                                                                          
             self.getPasteSensors() #get paste sensors                                                 
@@ -144,9 +144,9 @@ class Search_Manager():
                 if(firstTime == 1):
                     self.pastebin_module.close()
             self.getPwnedSensors() #get pwned sensors                                                 
-            #if (len(self.pwned_keywords) != 0):
-                #for i in range(len(self.pwned_keywords)):
-                    #pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
+            if (len(self.pwned_keywords) != 0):
+                for i in range(len(self.pwned_keywords)):
+                    pwnedCount = pwnedCount + self.pwned_module.search(self.pwned_keywords[i])
 
             self.getDarkSensors()
             #if (len(self.dark_keywords) != 0):
@@ -162,7 +162,7 @@ class Search_Manager():
                 print("sending alert")
             if(pasteCount > 0 and sent == 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
-                self.alert.sendText(self.user.name, self.user.phone,link)
+                #self.alert.sendText(self.user.name, self.user.phone,link)
                 print("sending alert")
                 sent = 1
             pasteCount = 0

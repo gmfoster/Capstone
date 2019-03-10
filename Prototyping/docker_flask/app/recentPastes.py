@@ -53,7 +53,7 @@ class Recent_Pastes():
         for l in self.keys:
             currentDT = datetime.datetime.now()
             currentTime = currentDT.strftime("%d:%I:%M:%S")
-            data = {"link":"http://pastebin.com/" + l, "time(day:hour:minute:second)":currentTime}
+            data = {"link":"http://pastebin.com/" + l, "time discovered(day:hour:minute:second)":currentTime}
             link = "http://pastebin.com/" + l
             self.db.child("paste_search").child(id).child(l).set(data)
         return(len(self.keys),link)

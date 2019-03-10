@@ -173,7 +173,7 @@ class Pastebin_Module():
         currentTime = currentDT.strftime("%d:%I:%M:%S")
         #data = ""
         for i in range(len(keys)):
-            data = {"link":"http://pastebin.com/" + keys[i], "time(day:hour:minute:second)":currentTime}
+            data = {"link":"http://pastebin.com/" + keys[i], "time discovered(day:hour:minute:second)":currentTime}
             self.db.child("paste_search").child(id).child(keys[i]).set(data)
         
         results = self.scrapingApiFromKeys(keys, id)
