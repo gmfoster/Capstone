@@ -5,7 +5,7 @@ import './Style Sheets/index.css';
 import './Style Sheets/Sensors.css';
 import { link } from 'fs';
 import HaveIBeenPwnd from './HaveIBeenPwnd';
-import Redirect from './Redirect' 
+import Redirect from './Redirect'
 
 const iFrameStyle = {
   width:0,
@@ -42,7 +42,7 @@ class Sensors extends React.Component {
   submitSensor(e){
     e.preventDefault();
     var sensorForm = document.getElementById("sensorForm");
-    
+
     sensorForm.submit();
     this.submittedForm = true
     //console.log("In side the submit sensor formulat" + sensorForm.submit());
@@ -53,12 +53,12 @@ class Sensors extends React.Component {
 
   }
 
-  close() { 
+  close() {
     //this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;
-    //this.refs.example.visible = false; 
+    //this.refs.example.visible = false;
   }
 
-  render() { 
+  render() {
     return(
       <main role="main" class="container">
         <div id="example" class="my-3 p-3 rounded_25 my-shadow bg_theme">
@@ -66,7 +66,7 @@ class Sensors extends React.Component {
           <p  class="form-text black_text "><b>Paste-Sites Suggested Keywords:</b> Account Usernamess, emails, IP addresses, Names </p>
           <p  class="form-text black_text"> <b>Breached Database Suggested Keywords:</b> Emails </p>
           <p  class="form-text black_text"><b>Dark Web Sweep Keywords:</b> Account Usernamess, emails, comapany name, API Keys </p>
-          
+
           {/*<h6 class="border-bottom border-gray pb-2 mb-3">Sensors Configuration</h6>
           <div class="mb-3 clearfix">
             <button type="button" class="btn btn-light btn-sm float-left">Enable/Disable All</button>
@@ -128,7 +128,7 @@ class Sensors extends React.Component {
             <div class="form-group">
             */}
               <label>Search Terms</label>
-              
+
               <input type="text" class="form-control" name="sensorKeywords" onChange={e => this.handleChange(e)} placeholder=""></input>
               <small id="passwordHelpBlock"  class="form-text text-muted">
                 Enter keywords separated by comma.
@@ -167,12 +167,12 @@ class Sensors extends React.Component {
                 <option>dark</option>
               </select>
             </div>
-            {/* 
+            {/*
             <div class="form-group">
               <label>Source</label>
               <input type="text" class="form-control" placeholder="Any source"></input>
             </div>
-            
+
             <div class="form-group">
               <label>Authors</label>
               <input type="text" class="form-control" placeholder="Any person"></input>

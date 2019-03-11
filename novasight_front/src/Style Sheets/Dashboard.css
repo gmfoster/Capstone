@@ -1,16 +1,16 @@
-.container-outer { 
-    overflow: scroll; 
-    width: auto; 
-    height: 230px; 
-    background: white;/*#E8E3E3;*/
-    padding-left: auto; 
-    padding-right: auto; 
+.container-outer {
+    overflow: scroll;
+    width: auto;
+    height: 230px;
+    background: transparent;
+    padding-left: auto;
+    padding-right: auto;
 }
 .container-inner { width: 1000px; }
 .temp {
     padding-top: 75px;
     padding-bottom: 75px;
-    background: white;/*#E8E3E3;*/
+    background: trans;/*#E8E3E3;*/
     height:75px;
     background-color: lightblue;
   }
@@ -25,7 +25,7 @@
     }
 
     .wrapper > div{
-      background: white;/*#E8E3E3;*/
+      background: transparent;/*#E8E3E3;*/
       /* #EEE */
       padding:1em;
 
@@ -75,7 +75,7 @@
 }
 
 
-.sensor_intro { 
+.sensor_intro {
   background: #E8E3E3;
 
 }
@@ -105,11 +105,12 @@ h3.center{
   vertical-align: middle;
   padding-left:80px;
   font-family: "Times New Roman", Times, serif;
-  
+
 }
 
 div.bg_complement{
-  background-color: #D3D3D3;/*#A9A9A9;/*#89CFF0;*/
+  /* background-color: #D3D3D3;/*#A9A9A9;/*#89CFF0;*/
+    background-color: white;
 }
 
 div.scrollable{
@@ -118,6 +119,7 @@ div.scrollable{
   overflow: auto;
 }
 
-div.my-shadow { 
+div.my-shadow {
   box-shadow:  3px 3px 3px 0px #ccc;
+  background: white;
 }

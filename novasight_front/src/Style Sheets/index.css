@@ -20,9 +20,13 @@ div.centered_div {
   /*background-color: #FF6600;*/
   padding-top: 50px;
   padding-bottom: 50px;
-  
+
 }
 
+body.root-class{
+  background-image:url("http://riverbreak.com/wp-content/uploads/background-waves-01.png");
+  padding-bottom: 30px;
+}
 
 
 a.button {
@@ -35,17 +39,17 @@ a.button {
 
 
 label {
-  
+
   width:100%;
   text-align: left;
-  
-  
+
+
 }
 
 div.padded {
   padding-top: 50px;
   padding-bottom: 50px;
-  
+
   text-align: center;
 }
 
@@ -54,7 +58,7 @@ div.left_div {
   padding-left: 100px;
   width: 50%;
   margin:auto;
-  
+
 
 }
 label.white{
@@ -92,10 +96,10 @@ div.navigation_header{
 }
 
 a.undecorated{
-  margin:auto; 
+  margin:auto;
   text-decoration:none;
   color:white;
-  
+
 }
 
 
@@ -103,7 +107,7 @@ a.undecorated{
 code.button_link{
   margin:auto;
   color:white;
-  
+
 }
 
 div.button_link{
@@ -115,6 +119,3 @@ div.button_link{
   padding-right:10px;
   display:inline;
 }
-
-
-
