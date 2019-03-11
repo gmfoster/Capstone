@@ -185,7 +185,9 @@ class Pastebin_Module():
             for term in searchTerms:
                 if(term in responseScrape):
                     searchTerm = term
+            print("checkpoint 1.1")
             stringResponse = responseScrape.text.replace("\n", " ").replace("\t", " ").split(searchTerm)
+            print("checkpoint1.2")
             stringResponseBefore = stringResponse[0]
             print("checkpoint2")
             stringResponseAfter = stringResponse[1]
