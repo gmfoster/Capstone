@@ -61,7 +61,9 @@ var lineChartData = {
 }
 
 var allData = [
-    {"name":""}
+    {"name":"Pastebin", "data":[]},
+    {"name":"Have I Been Pwned", "data":[]},
+    {"name":"Darkweb", "data":[]}
 ];
 
 var currentPasteSensors = undefined
@@ -177,7 +179,10 @@ class PastebinTable extends React.Component {
     componentDidMount(){
         this.ref.on('value', (snapshot) => {
             let items = snapshot.val();
-            
+            if (snapshot.val() == undefined){
+                return
+            }
+
             var data = items[this.props.sensorKey]
             if(data == undefined){
                 this.pasteList = <PastebinEntry
@@ -194,7 +199,7 @@ class PastebinTable extends React.Component {
                     
                     //var date = new Date(1000 * Number(data[key]["time posted"]))
                     tempDict["time posted"] = data[key]["time posted"]//date.toLocaleDateString()
-                    console.log(" Key " + key)
+                    //console.log(" Key " + key)
                     //console.log("Date " +  date)
                     tempDict["link"] = data[key]["link"]
                     tempList.push(tempDict)
@@ -455,6 +460,7 @@ class BubbleSensor extends React.Component {
 
                 
                 this.sensorNames.push(key);
+                /*
                 console.log("KEY");
                 console.log(key);
                 console.log("Pwnd Sensor")
@@ -464,6 +470,7 @@ class BubbleSensor extends React.Component {
                 console.log("DarkSensors")
                 console.log(tempDarkSensors)
                 console.log("\n\n")
+                */
 
                 if(tempPwnedSensor != undefined){
 
@@ -531,8 +538,8 @@ class BubbleSensor extends React.Component {
                     }
                 }
 
-                console.log("All Sensors")
-                console.log(allSensors)
+                //console.log("All Sensors")
+                //console.log(allSensors)
                 this.sensorList.push(snapshot.val()[key]);
                 i = i + 1
             }
@@ -572,10 +579,82 @@ class BubbleSensor extends React.Component {
     }
 }
 
+class ChartAll extends React.Component{
+    constructor(){
+        super()
+        //super(props)
+        this.pasteRef = firebase.database().ref("paste_search") 
+        //this.pwndRef = firebase.database().ref("pwned_search")
+        //this.darkRef = firebase.database().ref("dark_search")
+    }
+
+    componentDidMount(){
+        this.pasteRef.on('value', (snapshot) => {
+            //let items = snapshot.val();
+            
+            console.log("Chart all")
+            console.log(this.props.PasteSensors)
+            
+            var allData = []
+            for (var i in this.props.PasteSensors){
+                var key = this.props.PasteSensors[i]["key"]
+                //var name = this.props.PasteSensors[i]["string"]
+                var tempData = snapshot.val()[key]
+                if (tempData != undefined){
+                    for(var key in tempData){
+                        var tempDict = {}
+                        tempDict["key"] = key
+                        tempDict["link"] = tempData[key]["link"]
+                        tempDict["time posted"] = tempData[key]["time posted"]
+                        tempDict["time discovered"] = tempData[key]["time discovered(day:hour:minute:second)"]
+                        tempDict["preview"] = tempData[key]["preview"]
+                        allData.push(tempDict)
+                    }
+                }
+            }
+
+            allData.sort(function(a,b){
+                if (a["time posted"] == ""){
+                    a["time posted"] = 0
+                }
+
+                if (b["time posted"] == ""){
+                    b["time posted"] = 0
+                }
+
+                return  Number(b["time posted"]) - Number(a["time posted"])
+            })
+             
+            for (var paste in allData){
+                console.log(paste)
+                var date = new Date(Number(allData[paste]["time posted"]))
+                var lastSixMonths = new Date()
+                lastSixMonths.setMonth(lastSixMonths.getMonth, -6)
+                
+                
+            }
+            
+            this.forceUpdate()
+        });
+    }
+
+    
+    render(){
+        return (
+            <main role="main" className="container">
+                <LineChart title="Paste Dump"  data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
+            </main>   
+        );
+
+    }
+}
+
+
 class Dashboard extends React.Component {
     constructor(props){
         super(props)
         this.handler = this.handler.bind(this)
+        this.chart =[]
     }
 
     handler(){
@@ -588,13 +667,26 @@ class Dashboard extends React.Component {
         var pastSensors = [];
         var darkSensors = [];
 
+
+
         if (currentPasteSensors != undefined ){
+            //console.log("Current Paste Sensors")
+            //console.log(currentPasteSensors)
+            
+            this.chart = <ChartAll
+                key = {currentPasteSensors[0]["key"]}
+                PasteSensors={currentPasteSensors}
+            />
+            
+
             pwndSensor = currentPasteSensors.map((sensor)=>(
                 <PastebinTable
                 key={sensor.key}
                 sensorKey={sensor.key}
                 sensorString={sensor.string}
                 />
+
+                
             ));
         }
             
@@ -640,10 +732,7 @@ class Dashboard extends React.Component {
                 </main> 
                 <h3 className="center" >{currentID}</h3>
                 
-                
-                <main role="main" className="container">
-                    <AreaChart title="Paste Dump" colors={["#007bff", "#666"]} data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
-                </main>
+                {this.chart}
                 
 
                 <main role="main" className="container">
@@ -659,6 +748,8 @@ class Dashboard extends React.Component {
         );
     }
 }
+
+
 
 
 
