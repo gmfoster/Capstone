@@ -184,7 +184,7 @@ class Pastebin_Module():
             print("checkpoint1")
             print(searchTerms)
             for term in searchTerms:
-                if(term in responseScrape.text and not ""):
+                if(term in responseScrape.text and term):
                     print("checkpoint1.01")
                     searchTerm = term
             print("checkpoint 1.1")
