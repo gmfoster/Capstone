@@ -37,7 +37,7 @@ class Pastebin_Module():
         #self.chrome_options.add_argument('headless')
         #self.chrome_options.add_argument('--disable-gpu')
         #self.chrome_options.add_argument('window-size=0,0')
-        self.browser
+        self.browser = None
     
         #Firebase Config
         self.config = {
@@ -104,7 +104,7 @@ class Pastebin_Module():
         previews = []
 
         self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
-        self.browser.minimize_window()
+        #self.browser.minimize_window()
         time.sleep(2)
         self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
 
@@ -170,7 +170,7 @@ class Pastebin_Module():
 
     def scrapingApiFromKeys(self, pasteKey, keyword):
         timePosted = "0"
-        preview = "No Preview Avaliable"
+        preview = ""
         keyword = keyword.strip()
         #print(pasteKey)
         try:

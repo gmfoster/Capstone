@@ -146,8 +146,8 @@ class Search_Manager():
                         paste = self.recent_pastes.search(self.paste_keywords[i]) #otherwise we scrape 25 most recent pastes
                         pasteCount = paste[0] + pasteCount
                         link = paste[1]
-                if(firstTime == 1):
-                    self.pastebin_module.close()
+                #if(firstTime == 1):
+                #    self.pastebin_module.close()
             self.getPwnedSensors() #get pwned sensors                                                 
             if (len(self.pwned_keywords) != 0):
                 for i in range(len(self.pwned_keywords)):
