@@ -53,10 +53,16 @@ class Sensors extends React.Component {
 
   }
 
+  close() { 
+    //this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;
+    //this.refs.example.visible = false; 
+  }
+
   render() { 
     return(
       <main role="main" class="container">
-        <div class="my-3 p-3 rounded_25 my-shadow bg_theme">
+        <div id="example" class="my-3 p-3 rounded_25 my-shadow bg_theme">
+         <span id='close' onclick={this.close()}>x</span>
           <p  class="form-text black_text "><b>Paste-Sites Suggested Keywords:</b> Account Usernamess, emails, IP addresses, Names </p>
           <p  class="form-text black_text"> <b>Breached Database Suggested Keywords:</b> Emails </p>
           <p  class="form-text black_text"><b>Dark Web Sweep Keywords:</b> Account Usernamess, emails, comapany name, API Keys </p>
