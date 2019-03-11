@@ -2,7 +2,7 @@
     overflow: scroll;
     width: auto;
     height: 230px;
-    background: white;/*#E8E3E3;*/
+    background: transparent;
     padding-left: auto;
     padding-right: auto;
 }
@@ -10,7 +10,7 @@
 .temp {
     padding-top: 75px;
     padding-bottom: 75px;
-    background: white;/*#E8E3E3;*/
+    background: trans;/*#E8E3E3;*/
     height:75px;
     background-color: lightblue;
   }
@@ -25,7 +25,7 @@
     }
 
     .wrapper > div{
-      background: white;/*#E8E3E3;*/
+      background: transparent;/*#E8E3E3;*/
       /* #EEE */
       padding:1em;
 
