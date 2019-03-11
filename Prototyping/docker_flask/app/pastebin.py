@@ -37,8 +37,7 @@ class Pastebin_Module():
         #self.chrome_options.add_argument('headless')
         #self.chrome_options.add_argument('--disable-gpu')
         #self.chrome_options.add_argument('window-size=0,0')
-        self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
-        self.browser.minimize_window()
+        self.browser
     
         #Firebase Config
         self.config = {
@@ -104,6 +103,9 @@ class Pastebin_Module():
         times = []
         previews = []
 
+        self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
+        self.browser.minimize_window()
+        time.sleep(2)
         self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
 
         ###WAIT PERIOD FOR PAGE TO LOAD###
@@ -222,6 +224,7 @@ class Pastebin_Module():
                 print("checkpoint6")
                 #preview = preview.lstrip()
             else:
+<<<<<<< HEAD
                 print("checkpointFound1")
                 splitPreview = stringRequestResponse.split(" ")
                 if(len(splitPreview) > 20):
@@ -239,6 +242,26 @@ class Pastebin_Module():
                         #should never get executed
                         preview = "No Preview Available"
 
+=======
+                startIndex = len(wordsBefore) - 10
+            if(len(wordsAfter) < 10):
+                endIndex = len(wordsAfter) - 1
+            else: 
+                endIndex = 9
+            firstLoop = True
+            print("checkpoint4")
+            preview = ""
+            for i in wordsBefore[startIndex:]:
+                if(i):
+                    preview = preview + " " + i.strip()
+            print("checkpoint5")
+            preview = preview + searchTerm
+            for i in wordsAfter[:endIndex]:
+                if(i):
+                    preview = preview + " " + i.lstrip().rstrip()
+            print("checkpoint6")
+            #preview = preview.lstrip()
+>>>>>>> d5e227df7bbbfa45a15180aa4ff985cc56f08c0c
         except Exception as e:
             print("Exception2: ",e)
             pass
