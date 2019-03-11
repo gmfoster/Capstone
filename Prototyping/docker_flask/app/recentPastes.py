@@ -13,6 +13,7 @@ class Recent_Pastes():
         self.url = 'https://scrape.pastebin.com/api_scraping.php?limit=25'
         self.keys = []
         self.times = []
+        self.previews = []
         self.config = {
             "apiKey": "AIzaSyCGkOiKMSxR9NRM-d1WkC2kEYOGp2d8j5k",
             "authDomain": "novacoast-capstone.firebaseapp.com",
@@ -49,15 +50,33 @@ class Recent_Pastes():
             if (text.find(keyword) != -1):
                 print("Found Word In Paste: ", items['key'])
                 print(scrape.text)
+                
+                keywordSplit = keyword.split()
+                keywordSplitText = keywordSplit[0]
+                split = text.split()
+                location = split.index(keywordSplitText)
+                start = location - 5
+                if (start < 0):
+                    start = 0
+                end = location + 5 + len(keywordSplit) - 1
+                if (end > len(split)):
+                    end = len(split)
+                preview = split[start:end]
+                previewText = ""
+                for word in preview:
+                    previewText = previewText + " " + word
+                print("Preview: ", previewText)
+                
+                self.previews.append[previewText]
                 self.keys.append(items['key'])
                 self.times.append(date)
             time.sleep(.7)
         #print(self.keys)
         link = ''
-        for l,t in zip(self.keys, self.times):
+        for l,t,p in zip(self.keys, self.times, self.previews):
             currentDT = datetime.datetime.now()
             currentTime = currentDT.strftime("%d:%I:%M:%S")
-            data = {"link":"http://pastebin.com/" + l, "time discovered(day:hour:minute:second)":currentTime, "time posted":t}
+            data = {"link":"http://pastebin.com/" + l, "time discovered(day:hour:minute:second)":currentTime, "time posted":t, "preview":p}
             link = "http://pastebin.com/" + l
             self.db.child("paste_search").child(id).child(l).set(data)
         return(len(self.keys),link)
@@ -66,7 +85,7 @@ class Recent_Pastes():
 if __name__ == "__main__":
     paste = Recent_Pastes()
     while(1):
-        paste.search('TEST')
+        paste.search('Graham Test')
 #    keyword = "5973"
 #    id = hashlib.md5(keyword.encode()).hexdigest()
 #    print(id)

@@ -128,10 +128,15 @@ class Search_Manager():
         found = 0
         pwnedCount = 0
         newCount = 0
-        firstTime = 1
+        firstTime = 0
+        numPastes = 0
         while(1):
         #start infinite loop                                                                          
-            self.getPasteSensors() #get paste sensors                                                 
+            self.getPasteSensors() #get paste sensors
+            if (len(self.paste_keywords) > numPastes):
+                firstTime = 1
+                numPastes = len(self.paste_keywords)
+                
             if (len(self.paste_keywords) != 0):
                 pasteCount = 0
                 for i in range(len(self.paste_keywords)):             

@@ -168,7 +168,7 @@ class Pastebin_Module():
 
     def scrapingApiFromKeys(self, pasteKey, keyword):
         timePosted = "0"
-        preview = ""
+        preview = "No Preview Avaliable"
         keyword = keyword.rstrip()
         #print(pasteKey)
         try:
