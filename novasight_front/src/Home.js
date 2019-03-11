@@ -60,7 +60,7 @@ class Home extends React.Component {
          {/* <div className="jumbotron jumbotron-fluid bg-primary text-light"> */}
              {/* <div className="container"> */}
             {/* <p class="lead text-uppercase">Name, Text & Layout Pending</p> */}
-            {/* <h1 className="display-4">Welcome to Novasight</h1> */}
+            {/* <h1 className="display-4">Welcome to NovaSight</h1> */}
             {/* <p class="lead">Intelligence relevant to your organization is out there — from compromised credentials, customer data, and payment card information, to new vulnerabilities and exploits. But relying on open source tools or ad hoc approaches to monitor for this information will likely be time-consuming, generate noisy false positives, and miss hard-to-reach sources.</p> */}
             {/* <p className="lead">The real time online security feed and monitoring application.</p>  */}
             
@@ -100,7 +100,7 @@ class Home extends React.Component {
         */}
         
         <div className="container-fluid">
-            <div className="row align-items-center px-3 py-3">
+            <div className="row align-items-center px-3 py-5">
                 <div className="col-6">
                     <img className="img-fluid rounded shadow" src={require('./images/noti.png')}></img>
                 </div>
@@ -113,7 +113,7 @@ class Home extends React.Component {
         </div>
 
         <div className="container-fluid">
-            <div className="row align-items-center px-3 py-3">
+            <div className="row align-items-center px-3 py-5">
                 <div className="col-5 mx-auto">
                     <p className="lead text-muted text-uppercase">Build your sensors</p>
                     <h1>A Sensor on the Widest Breadth of Sources</h1>
@@ -126,9 +126,9 @@ class Home extends React.Component {
         </div>
 
         <div className="container-fluid">
-            <div className="row align-items-center px-3 py-3">
+            <div className="row align-items-center px-3 py-5">
                 <div className="col-6">
-                    <img className="img-fluid rounded shadow" src={require('./images/a.jpeg')}></img>
+                    <img className="img-fluid rounded shadow" src={require('./images/noti.png')}></img>
                 </div>
                 <div className="col-5 mx-auto">
                     <p className="lead text-muted text-uppercase">Brand Monitoring</p>
@@ -138,7 +138,7 @@ class Home extends React.Component {
             </div>
         </div>
 
-        <div className="container-fluid px-3 py-5">
+        <div className="container-fluid px-3 py-3">
             <div className="row">
                 <form className="form-inline mx-auto" style={styles}>
                     <div className="form-group mr-3">
@@ -155,16 +155,19 @@ class Home extends React.Component {
             <div className="container">
                 <div className="row align-items-center">
                     <div className="col-6">
-                        <h1 className="display-4">Novasight</h1>
+                        <h1 className="display-4">NovaSight</h1>
                     </div>
                     <div className="col">
                         <a href="#" className="text-reset">About Us</a>
                     </div>
                     <div className="col">
-                        <a href="#" className="text-reset">That Link</a>
+                        <a href="#" className="text-reset">Pricing</a>
                     </div>
                     <div className="col">
-                        <a href="#" className="text-reset">The Other Link</a>
+                        <a href="#" className="text-reset">Locations</a>
+                    </div>
+                    <div className="col">
+                        <a href="#" className="text-reset">Careers</a>
                     </div>
                 </div>
                 <hr className="border-light"></hr>
