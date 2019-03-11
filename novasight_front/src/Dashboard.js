@@ -625,14 +625,83 @@ class ChartAll extends React.Component{
                 return  Number(b["time posted"]) - Number(a["time posted"])
             })
              
+            
+            
+
+            var lastMonth = new Date()
+            lastMonth.setMonth(lastMonth.getMonth() - 1)
+            var lastMonthNumber = lastMonth.getTime()
+            var lastMonthCount = 0
+
+            var last2Month = new Date()
+            last2Month.setMonth(last2Month.getMonth() - 2)
+            var last2MonthNumber = last2Month.getTime()
+            var last2MonthCount = 0
+
+            var last3Months = new Date()
+            last3Months.setMonth(last3Months.getMonth() - 3)
+            var last3MonthsNumber = last3Months.getTime()
+            var last3MonthsCount = 0
+
+
+            var last4Months = new Date()
+            last4Months.setMonth(last4Months.getMonth() - 4)
+            var last4MonthsNumber = last4Months.getTime()
+            var last4MonthsCount = 0
+
+            var last5Months = new Date()
+            last5Months.setMonth(last5Months.getMonth() - 5)
+            var last5MonthsNumber = last5Months.getTime()
+            var last5MonthsCount = 0
+
+            var last6Months = new Date()
+            last6Months.setMonth(last6Months.getMonth() - 6)
+            var last6MonthsNumber = last6Months.getTime()
+            var last6MonthsCount = 0
+            console.log("Last Six Months")
+            console.log(last6Months.toLocaleString())
+            console.log(last6Months.getTime())
+
             for (var paste in allData){
-                console.log(paste)
-                var date = new Date(Number(allData[paste]["time posted"]))
-                var lastSixMonths = new Date()
-                lastSixMonths.setMonth(lastSixMonths.getMonth, -6)
+                //console.log(paste)
+                var date = new Date(1000 * Number(allData[paste]["time posted"]))
+                //
+                if(date.getTime() >= lastMonthNumber){
+                    console.log("Paste " + paste)
+                    console.log("Last month")
+                    console.log(date)
+                    lastMonthCount = lastMonthCount + 1
+                }
+
+                if(date.getTime() < lastMonthNumber && date.getTime() >= last2MonthNumber){
+                    last2MonthCount = last2MonthCount + 1
+
+                }else if(date.getTime() < last2MonthNumber && date.getTime() >= last3MonthsNumber){
+                    last3MonthsCount = last3MonthsCount + 1
+
+                }else if(date.getTime() < last3MonthsNumber && date.getTime() >= last4MonthsNumber){
+                    last4MonthsCount = last4MonthsCount + 1
+
+                }else if(date.getTime() < last4MonthsNumber && date.getTime() >= last5MonthsNumber){
+                    last5MonthsCount = last5MonthsCount + 1
+
+                }else if (date.getTime() < last5MonthsNumber && date.getTime() >= last6MonthsNumber){
+                    last6MonthsCount = last6MonthsCount + 1
+
+                }
+                else{
+                    break
+                }
                 
                 
             }
+            console.log("Number of pastes in last month")
+            console.log(lastMonthCount)
+            console.log(last2MonthCount)
+            console.log(last3MonthsCount)
+            console.log(last4MonthsCount)
+            console.log(last5MonthsCount)
+            console.log(last6MonthsCount)
             
             this.forceUpdate()
         });
