@@ -36,7 +36,7 @@ class Pastebin_Module():
         self.chrome_options = Options()
         #self.chrome_options.add_argument('headless')
         #self.chrome_options.add_argument('--disable-gpu')
-        self.chrome_options.add_argument('window-size=0,0')
+        #self.chrome_options.add_argument('window-size=0,0')
         self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
         self.browser.minimize_window()
     
@@ -79,6 +79,7 @@ class Pastebin_Module():
     def getNextPage(self):
         currentPageNumber = 1
         try:
+            currentPageNumber = 1
             pageSelector = self.browser.find_element_by_class_name("gsc-cursor")
             pagesElementsArray = pageSelector.find_elements_by_css_selector("*")
             currentPage = self.browser.find_element_by_class_name("gsc-cursor-current-page")
@@ -168,6 +169,7 @@ class Pastebin_Module():
     def scrapingApiFromKeys(self, pasteKey, keyword):
         timePosted = ""
         preview = ""
+        #print(pasteKey)
         try:
             response = requests.get("http://scrape.pastebin.com/api_scrape_item_meta.php?i=" + pasteKey)
             json_response = response.json()
@@ -199,7 +201,7 @@ class Pastebin_Module():
             for i in wordsAfter[:endIndex]:
                 if(i):
                     preview = preview + " " + i.lstrip().rstrip()
-            preview = preview.lstrip()
+            #preview = preview.lstrip()
         except Exception as e:
             print("Exception2: ",e)
             pass
