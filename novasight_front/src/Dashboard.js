@@ -182,13 +182,53 @@ class PastebinTable extends React.Component {
                 />
             }else{
                 //.slice(0,5)
+                var tempList = []
+                for (var key in data){
+                    var tempDict = {}
+                    tempDict["key"] = key
+                    tempDict["preview"] = data[key]["preview"]
+                    
+                    //var date = new Date(1000 * Number(data[key]["time posted"]))
+                    tempDict["time posted"] = data[key]["time posted"]//date.toLocaleDateString()
+                    console.log(" Key " + key)
+                    //console.log("Date " +  date)
+                    tempDict["link"] = data[key]["link"]
+                    tempList.push(tempDict)
+                }
+
+                //var newList = sorted(tempList, key=lambda k, k['time posted']) 
+                tempList.sort(function(a,b){
+                    if (a["time posted"] == ""){
+                        a["time posted"] = 0
+                    }
+
+                    if (b["time posted"] == ""){
+                        b["time posted"] = 0
+                    }
+
+                    return  Number(b["time posted"]) - Number(a["time posted"])
+                })
+
+                
+                /*
                 this.pasteList = Object.entries(data).map(([key,val])=>(
                     <PastebinEntry
                     key={key}
                     Key={key}
                     //Date={1}
                     Link={"http://pastebin.com/" + key}
-                    //Preview={""}
+                    Preview={val["preview"]}
+                    />
+                ));
+                */
+
+                this.pasteList = tempList.map((val)=>(
+                    <PastebinEntry
+                    Date={ new Date(1000* Number(val["time posted"])).toLocaleDateString()}
+                    key={val["key"]}
+                    Key={val["key"]}
+                    Link={val["link"]}
+                    Preview={val["preview"]}
                     />
                 ));
             }
@@ -208,8 +248,10 @@ class PastebinTable extends React.Component {
                 <table className="table table-responsive small">
                     <thead>
                         <tr>
+                            <th scope="col">Date</th>
                             <th scope="col">Key</th>
                             <th scope="col">Link</th>
+                            <th scope="col">Preview</th>
                             {/*<th scope="col">Preview</th>*/}
                         </tr>
                     </thead>
@@ -228,9 +270,10 @@ class PastebinEntry extends React.Component{
     render(){
         return(
             <tr>
+                <td scope="row">{this.props.Date}</td>
                 <td scope="row">{this.props.Key}</td>
                 <td scope="row"><a href={this.props.Link}>{this.props.Link}</a></td>
-                {/*<td>{this.props.Preview}</td>*/}
+                <td>{this.props.Preview}</td>
             </tr>    
         );
     }
