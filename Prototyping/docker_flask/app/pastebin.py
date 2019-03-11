@@ -169,6 +169,7 @@ class Pastebin_Module():
     def scrapingApiFromKeys(self, pasteKey, keyword):
         timePosted = ""
         preview = ""
+        keyword = keyword.rstrip()
         #print(pasteKey)
         try:
             response = requests.get("http://scrape.pastebin.com/api_scrape_item_meta.php?i=" + pasteKey)
@@ -184,7 +185,7 @@ class Pastebin_Module():
             print("checkpoint1")
             print(searchTerms)
             for term in searchTerms:
-                if(term in responseScrape.text and term):
+                if(term in responseScrape.text):
                     print("checkpoint1.01")
                     searchTerm = term
             print("checkpoint 1.1")
