@@ -181,8 +181,8 @@ class PastebinTable extends React.Component {
                     Description={"No data found for keyword" + this.props.sensorString}
                 />
             }else{
-                
-                this.pasteList = Object.entries(data).slice(0,5).map(([key,val])=>(
+                //.slice(0,5)
+                this.pasteList = Object.entries(data).map(([key,val])=>(
                     <PastebinEntry
                     key={key}
                     Key={key}
@@ -203,7 +203,7 @@ class PastebinTable extends React.Component {
 
     render(){
         return (
-            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
+            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement scrollable" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
