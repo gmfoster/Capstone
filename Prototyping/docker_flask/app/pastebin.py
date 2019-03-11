@@ -167,7 +167,7 @@ class Pastebin_Module():
         return pasteKeys, times, previews
 
     def scrapingApiFromKeys(self, pasteKey, keyword):
-        timePosted = ""
+        timePosted = "0"
         preview = ""
         keyword = keyword.rstrip()
         #print(pasteKey)
