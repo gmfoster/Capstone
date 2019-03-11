@@ -41,7 +41,7 @@ class Pwned_Module():
             json_data = json.loads(json_string)
             #self.db.child("pwned_search").child(id).child("pwned").set(json_data)
             self.db.child("pwned_search").child(id).set(json_data)
-            #return (len(data))
+            return (len(data))
         elif status == 201:
             error = {"developerMessage" : "Created"} 
             return(error)
@@ -62,7 +62,7 @@ class Pwned_Module():
             #self.db.child("pwned_search").child(id).child("pwned").set(error)
             self.db.child("pwned_search").child(id).set(error)
             num = 0
-            #return (num)
+            return (num)
         elif status == 409:
             error = {'developerMessage' : 'Conflict'}
             return(error)
