@@ -34,8 +34,6 @@ class Pwned_Module():
         id = hashlib.md5(email.encode()).hexdigest()
         status = response.status_code
         print(response)
-        if not re.match("(\w+[-|.|\w])+@(\w+[.])+\w+", email, re.IGNORECASE):
-            status = 400
             
         if status == 200:
             data = response.json()
@@ -79,7 +77,10 @@ class Pwned_Module():
         id = hashlib.md5(email.encode()).hexdigest()
         status = response.status_code
         print(response)
-                  
+
+        #if not re.match("(\w+[-|.|\w])+@(\w+[.])+\w+", email, re.IGNORECASE):
+        #    status = 400
+
         if status == 200:
             data = response.json()
             json_string = json.dumps(data)
@@ -118,5 +119,5 @@ class Pwned_Module():
 #testing
 if __name__ == "__main__":
     pwned = Pwned_Module()
-    pwned.search("hdr29@hrcoffice.com")
+    pwned.search("test")
     
