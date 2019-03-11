@@ -38,7 +38,7 @@ class Pastebin_Module():
         #self.chrome_options.add_argument('--disable-gpu')
         self.chrome_options.add_argument('window-size=0,0')
         self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
-        #self.browser.minimize_window()
+        self.browser.minimize_window()
     
         #Firebase Config
         self.config = {
