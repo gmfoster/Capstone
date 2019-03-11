@@ -13,16 +13,17 @@ from sys import platform
 from sys import argv
 import os
 import time
+import traceback
 
 class Pastebin_Module():
     def __init__(self):
         #initialize something
-        print("This is a " + platform + "machine.")
+        #print("This is a " + platform + "machine.")
         dirPath = os.path.dirname(os.path.realpath(__file__))
         self.moduleName = "Pastebin"
         if platform == "linux" or platform == "linux2":
             if("wsl" in argv):
-                print("Took wsl branch")
+                #print("Took wsl branch")
                 subDir = "windows/chromedriver.exe"
             else:
                 subDir = "linux/chromedriver"
@@ -31,10 +32,13 @@ class Pastebin_Module():
         elif platform == "win32":
             subDir = "windows/chromedriver.exe"
         self.driverDirectory = dirPath + "/chromedriver/" + subDir
-        print(self.driverDirectory)
+        #print(self.driverDirectory)
         self.chrome_options = Options()
         #self.chrome_options.add_argument('headless')
+        #self.chrome_options.add_argument('--disable-gpu')
+        self.chrome_options.add_argument('window-size=0,0')
         self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
+        #self.browser.minimize_window()
     
         #Firebase Config
         self.config = {
@@ -67,18 +71,19 @@ class Pastebin_Module():
             #print("pagesRemaining: " + str(pagesRemaining))
             return pagesRemaining
         except NoSuchElementException:
-            print(NoSuchElementException)
-            print("Only one page")
+            #print(NoSuchElementException)
+            #print("Only one page")
             return 1
 
     #Finds the WebElement that is the next page to click
     def getNextPage(self):
-        try: 
+        currentPageNumber = 1
+        try:
             pageSelector = self.browser.find_element_by_class_name("gsc-cursor")
             pagesElementsArray = pageSelector.find_elements_by_css_selector("*")
             currentPage = self.browser.find_element_by_class_name("gsc-cursor-current-page")
             pageAfterCurrent = False
-            currentPageNumber = 1
+            
             
             for page in pagesElementsArray:
                 if(page == currentPage):
@@ -88,13 +93,15 @@ class Pastebin_Module():
                 currentPageNumber = currentPageNumber + 1
 
         except NoSuchElementException:
-            print("currentPageNumber: " + str(currentPageNumber))
-            print(NoSuchElementException)
+            #print("currentPageNumber: " + str(currentPageNumber))
+            #print(NoSuchElementException)
             return None
 
     def seleniumSearch(self, searchTerm):
         pasteKeys = []
-        urls = []   
+        urls = []
+        times = []
+        previews = []
 
         self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
 
@@ -103,7 +110,7 @@ class Pastebin_Module():
 
         #Finds the number of pages that return the results of the search
         pagesRemaining = self.getPagesRemaining()
-        print("PagesRemainingTop: " + str(pagesRemaining))
+        #print("PagesRemainingTop: " + str(pagesRemaining))
 
         #Finds urls and adds them to a list before iterating to next page if necesary
         while(pagesRemaining > 0):
@@ -141,7 +148,7 @@ class Pastebin_Module():
             #print(getValue)
             pagesRemaining = pagesRemaining - 1
 
-        #self.browser.close()
+        self.browser.close()
 
         #Finds pasteKey from url
         for resultURL in urls:
@@ -149,34 +156,73 @@ class Pastebin_Module():
                 pasteKeySplit = resultURL.split("pastebin.com/")
                 if(pasteKeySplit[1] not in pasteKeys):
                     pasteKeys.append(pasteKeySplit[1])
+                    timePosted, preview = self.scrapingApiFromKeys(pasteKeySplit[1], searchTerm)
+                    times.append(timePosted)
+                    previews.append(preview)
+
         
         #Print and return paste keys
-        print(pasteKeys)
-        return pasteKeys
+        #print(pasteKeys)
+        return pasteKeys, times, previews
 
-    def scrapingApiFromKeys(self, pasteKeys, id):
-        for i in range(len(pasteKeys)):
-            response = requests.get("http://scrape.pastebin.com/api_scrape_item.php?i=" + pasteKeys[i])
-            #data = {"content":response.text}
-            #data = response.json()
-            #self.db.child("paste_search").child(id).child(pasteKeys[i]).set(data)
-            #print(response.text)
-            #self.db.child("test").push({"links":response.text})
-            time.sleep(1)
-            return response
+    def scrapingApiFromKeys(self, pasteKey, keyword):
+        timePosted = ""
+        preview = ""
+        try:
+            response = requests.get("http://scrape.pastebin.com/api_scrape_item_meta.php?i=" + pasteKey)
+            json_response = response.json()
+            timePosted = json_response[0]['date']
+        except Exception as e:
+            print("Exception1: ",e)
+            pass
+        try:
+            responseScrape = requests.get("https://scrape.pastebin.com/api_scrape_item.php?i=" + pasteKey)
+            searchTerm = keyword.split(" ")[0] if " " in keyword else keyword
+            stringResponse = responseScrape.text.replace("\n", " ").replace("\t", " ").split(searchTerm)
+            stringResponseBefore = stringResponse[0]
+            stringResponseAfter = stringResponse[1]
+            wordsBefore = stringResponseBefore.split(" ")
+            wordsAfter = stringResponseAfter.split(" ")
+            if(len(wordsBefore) < 10):
+                startIndex = 0
+            else:
+                startIndex = len(wordsBefore) - 10
+            if(len(wordsAfter) < 10):
+                endIndex = len(wordsAfter) - 1
+            else: 
+                endIndex = 9
+            firstLoop = True
+            for i in wordsBefore[startIndex:]:
+                if(i):
+                    preview = preview + " " + i.strip()
+            preview = preview + searchTerm
+            for i in wordsAfter[:endIndex]:
+                if(i):
+                    preview = preview + " " + i.lstrip().rstrip()
+            preview = preview.lstrip()
+        except Exception as e:
+            print("Exception2: ",e)
+            pass
+
+        #print("Key: " + str(pasteKey))
+        #print("Time: " + timePosted)
+        #print("Preview: " + preview)
+
+        time.sleep(1)
+        return timePosted, preview
 
     def search(self, keyword):
         results = []
-        keys = self.seleniumSearch(keyword)
+        keys, timePosted, preview = self.seleniumSearch(keyword)
         id = hashlib.md5(keyword.encode()).hexdigest()
         currentDT = datetime.datetime.now()
         currentTime = currentDT.strftime("%d:%I:%M:%S")
         #data = ""
         for i in range(len(keys)):
-            data = {"link":"http://pastebin.com/" + keys[i], "time discovered(day:hour:minute:second)":currentTime}
+            data = {"link":"http://pastebin.com/" + keys[i], "time discovered(day:hour:minute:second)":currentTime, "time posted":timePosted[i], "preview":preview[i]}
             self.db.child("paste_search").child(id).child(keys[i]).set(data)
         
-        results = self.scrapingApiFromKeys(keys, id)
+        #results = self.scrapingApiFromKeys(keys, id)
         return len(keys)
 
     def close(self):
@@ -184,4 +230,4 @@ class Pastebin_Module():
                                       
 if __name__ == "__main__" and "test" in argv:
     paste = Pastebin_Module()
-    paste.search("Omer Cohen")
+    paste.search("ucsb blake")
