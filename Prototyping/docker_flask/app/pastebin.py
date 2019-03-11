@@ -183,7 +183,7 @@ class Pastebin_Module():
             searchTerms = keyword.split(" ")
             print("checkpoint1")
             for term in searchTerms:
-                if(term in responseScrape):
+                if(term in responseScrape and not ""):
                     searchTerm = term
             print("checkpoint 1.1")
             stringResponse = responseScrape.text.replace("\n", " ").replace("\t", " ").split(searchTerm)
