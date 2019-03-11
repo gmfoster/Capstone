@@ -10,7 +10,7 @@ import time
 
 class Recent_Pastes():
     def __init__(self):
-        self.url = 'https://scrape.pastebin.com/api_scraping.php?limit=25'
+        self.url = 'https://scrape.pastebin.com/api_scraping.php?limit=15'
         self.keys = []
         self.times = []
         self.previews = []
@@ -67,7 +67,7 @@ class Recent_Pastes():
                     previewText = previewText + " " + word
                 print("Preview: ", previewText)
                 
-                self.previews.append[previewText]
+                self.previews.append(previewText)
                 self.keys.append(items['key'])
                 self.times.append(date)
             time.sleep(.7)

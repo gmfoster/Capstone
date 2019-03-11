@@ -37,8 +37,7 @@ class Pastebin_Module():
         #self.chrome_options.add_argument('headless')
         #self.chrome_options.add_argument('--disable-gpu')
         #self.chrome_options.add_argument('window-size=0,0')
-        self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
-        self.browser.minimize_window()
+        self.browser
     
         #Firebase Config
         self.config = {
@@ -104,6 +103,9 @@ class Pastebin_Module():
         times = []
         previews = []
 
+        self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
+        self.browser.minimize_window()
+        time.sleep(2)
         self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
 
         ###WAIT PERIOD FOR PAGE TO LOAD###
@@ -149,7 +151,7 @@ class Pastebin_Module():
             #print(getValue)
             pagesRemaining = pagesRemaining - 1
 
-        #self.browser.close()
+        self.browser.close()
 
         #Finds pasteKey from url
         for resultURL in urls:
@@ -169,7 +171,7 @@ class Pastebin_Module():
     def scrapingApiFromKeys(self, pasteKey, keyword):
         timePosted = "0"
         preview = "No Preview Avaliable"
-        keyword = keyword.rstrip()
+        keyword = keyword.strip()
         #print(pasteKey)
         try:
             response = requests.get("http://scrape.pastebin.com/api_scrape_item_meta.php?i=" + pasteKey)
@@ -184,39 +186,61 @@ class Pastebin_Module():
             searchTerms = keyword.split(" ")
             print("checkpoint1")
             print(searchTerms)
+            found = False
             for term in searchTerms:
-                if(term in responseScrape.text):
-                    print("checkpoint1.01")
-                    searchTerm = term
-            print("checkpoint 1.1")
-            stringResponse = responseScrape.text.replace("\n", " ").replace("\t", " ").split(searchTerm)
-            print("checkpoint1.2")
-            stringResponseBefore = stringResponse[0]
-            print("checkpoint2")
-            stringResponseAfter = stringResponse[1]
-            print("checkpoint3")
-            wordsBefore = stringResponseBefore.split(" ")
-            wordsAfter = stringResponseAfter.split(" ")
-            if(len(wordsBefore) < 10):
-                startIndex = 0
+                if(term in responseScrape.text): 
+                    if(not found):
+                        print("checkpoint1.01")
+                        searchTerm = term
+                        found = True
+            stringRequestResponse = responseScrape.text.replace("\n", " ").replace("\t", " ")
+            if(found):
+                print("checkpoint 1.1")
+                stringResponse = stringRequestResponse.split(searchTerm)
+                print("checkpoint1.2")
+                stringResponseBefore = stringResponse[0]
+                print("checkpoint2")
+                stringResponseAfter = stringResponse[1]
+                print("checkpoint3")
+                wordsBefore = stringResponseBefore.split(" ")
+                wordsAfter = stringResponseAfter.split(" ")
+                if(len(wordsBefore) < 10):
+                    startIndex = 0
+                else:
+                    startIndex = len(wordsBefore) - 10
+                if(len(wordsAfter) < 10):
+                    endIndex = len(wordsAfter) - 1
+                else: 
+                    endIndex = 9
+                print("checkpoint4")
+                for i in wordsBefore[startIndex:]:
+                    if(i):
+                        preview = preview + " " + i.strip()
+                print("checkpoint5")
+                preview = preview + searchTerm
+                for i in wordsAfter[:endIndex]:
+                    if(i):
+                        preview = preview + " " + i.lstrip().rstrip()
+                print("checkpoint6")
+                #preview = preview.lstrip()
             else:
-                startIndex = len(wordsBefore) - 10
-            if(len(wordsAfter) < 10):
-                endIndex = len(wordsAfter) - 1
-            else: 
-                endIndex = 9
-            firstLoop = True
-            print("checkpoint4")
-            for i in wordsBefore[startIndex:]:
-                if(i):
-                    preview = preview + " " + i.strip()
-            print("checkpoint5")
-            preview = preview + searchTerm
-            for i in wordsAfter[:endIndex]:
-                if(i):
-                    preview = preview + " " + i.lstrip().rstrip()
-            print("checkpoint6")
-            #preview = preview.lstrip()
+                print("checkpointFound1")
+                splitPreview = stringRequestResponse.split(" ")
+                if(len(splitPreview) > 20):
+                    print("checkpointFound2")
+                    for word in splitPreview[:20]:
+                        preview = preview + word
+                else:
+                    print("checkpointFound3")
+                    if(len(splitPreview) != 0):
+                        print("checkpointFound4")
+                        for word in splitPreview:
+                            preview = preview + word
+                    else:
+                        print("checkpointFound5")
+                        #should never get executed
+                        preview = "No Preview Available"
+
         except Exception as e:
             print("Exception2: ",e)
             pass
