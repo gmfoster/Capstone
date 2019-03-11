@@ -60,6 +60,10 @@ var lineChartData = {
     "2019-01-24":50
 }
 
+var allData = [
+    {"name":""}
+];
+
 var currentPasteSensors = undefined
 
 var currentPwnedSensors = undefined
@@ -208,19 +212,6 @@ class PastebinTable extends React.Component {
 
                     return  Number(b["time posted"]) - Number(a["time posted"])
                 })
-
-                
-                /*
-                this.pasteList = Object.entries(data).map(([key,val])=>(
-                    <PastebinEntry
-                    key={key}
-                    Key={key}
-                    //Date={1}
-                    Link={"http://pastebin.com/" + key}
-                    Preview={val["preview"]}
-                    />
-                ));
-                */
 
                 this.pasteList = tempList.map((val)=>(
                     <PastebinEntry
@@ -647,12 +638,13 @@ class Dashboard extends React.Component {
                 <main>
                     <BubbleSensor handler={this.handler}/>
                 </main> 
-                <center><h3 className="center">{currentID}</h3></center>
-                {/*
+                <h3 className="center" >{currentID}</h3>
+                
+                
                 <main role="main" className="container">
                     <AreaChart title="Paste Dump" colors={["#007bff", "#666"]} data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
                 </main>
-                */}
+                
 
                 <main role="main" className="container">
                 {/*SENSORS*/}

@@ -103,6 +103,9 @@ p.white_text{
 h3.center{
   display: inline;
   vertical-align: middle;
+  padding-left:80px;
+  font-family: "Times New Roman", Times, serif;
+  
 }
 
 div.bg_complement{
