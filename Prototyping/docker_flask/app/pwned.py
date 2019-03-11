@@ -7,9 +7,10 @@ import requests
 import json
 
 class Pwned_Module():
-    def __init__(self, url_1 ="https://haveibeenpwned.com/api/v2/breachedaccount/", url_2 ="?includeUnverified=true"):
-        self.url_1 = url_1
-        self.url_2 = url_2
+    def __init__(self):
+        self.pwned_url_1 = "https://haveibeenpwned.com/api/v2/breachedaccount/"
+        self.pwned_url_2 = "?includeUnverified=true"
+        self.paste_url = "https://haveibeenpwned.com/api/v2/pasteaccount/"
         self.headers = {"User-Agent": "pwned-check-for-webapp"}
 #Firebase Config                                                                       
                                                                                       
@@ -27,9 +28,9 @@ class Pwned_Module():
 
 
     def search(self, email):
-        url = self.url_1 + email + self.url_2
-        print(url)
-        response = requests.get(url, headers=self.headers)
+        pwned_url = self.pwned_url_1 + email + self.pwned_url_2
+        print(pwned_url)
+        response = requests.get(pwned_url, headers=self.headers)
         id = hashlib.md5(email.encode()).hexdigest()
         status = response.status_code
         print(response)
@@ -40,7 +41,50 @@ class Pwned_Module():
             data = response.json()
             json_string = json.dumps(data)
             json_data = json.loads(json_string)
+            #self.db.child("pwned_search").child(id).child("pwned").set(json_data)
             self.db.child("pwned_search").child(id).set(json_data)
+            #return (len(data))
+        elif status == 201:
+            error = {"developerMessage" : "Created"} 
+            return(error)
+        elif status == 304:
+            error = {"developerMessage" : "Not Modified"}
+            return(error)
+        elif status == 400:
+            error = {'developerMessage' : 'Bad Request'}
+            return (error)
+        elif status == 401:
+            error = {'developerMessage' : 'Not Authorized'}
+            return(error)
+        elif status == 403:
+            error = {'Error 403' : 'No user agent has been specified in the request'}
+            return (error)
+        elif status == 404:
+            error = {'404' : 'Congratulations your account has not been leaked in any data breaches'}
+            #self.db.child("pwned_search").child(id).child("pwned").set(error)
+            self.db.child("pwned_search").child(id).set(error)
+            num = 0
+            #return (num)
+        elif status == 409:
+            error = {'developerMessage' : 'Conflict'}
+            return(error)
+        elif status == 500:
+            error = {'developerMessage' : 'Internal Server Error'}
+            return(error)
+
+
+'''        paste_url = self.paste_url + email
+        print(paste_url)
+        response = requests.get(paste_url, headers=self.headers)
+        id = hashlib.md5(email.encode()).hexdigest()
+        status = response.status_code
+        print(response)
+                  
+        if status == 200:
+            data = response.json()
+            json_string = json.dumps(data)
+            json_data = json.loads(json_string)
+            self.db.child("pwned_search").child(id).child("paste").set(json_data)
             return (len(data))
         elif status == 201:
             error = {"developerMessage" : "Created"} 
@@ -58,7 +102,7 @@ class Pwned_Module():
             error = {'Error 403' : 'No user agent has been specified in the request'}
             return (error)
         elif status == 404:
-            error = {'404' : 'Congratulations you have not been pwned'}
+            error = {'404' : 'Congratulations your account has not been found on any paste sites'}
             self.db.child("pwned_search").child(id).set(error)
             num = 0
             return (num)
@@ -67,11 +111,12 @@ class Pwned_Module():
             return(error)
         elif status == 500:
             error = {'developerMessage' : 'Internal Server Error'}
-            return(error)
+            return(error)'''
 
+        
     
 #testing
-#if __name__ == "__main__":
-#    pwned = Pwned_Module()
-#    pwned.search("gfoster831@gmail.com")
+if __name__ == "__main__":
+    pwned = Pwned_Module()
+    pwned.search("hdr29@hrcoffice.com")
     
