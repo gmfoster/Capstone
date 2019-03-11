@@ -104,7 +104,7 @@ class Pastebin_Module():
         previews = []
 
         self.browser = webdriver.Chrome(self.driverDirectory, options = self.chrome_options)
-        self.browser.minimize_window()
+        #self.browser.minimize_window()
         time.sleep(2)
         self.browser.get("https://www.pastebin.com/search?q="+searchTerm)
 
