@@ -37,6 +37,7 @@
 
   .round-button {
     width:100%;
+    color: white
   }
   .round-button-circle {
     width: 100%;
@@ -46,7 +47,7 @@
     border:1px solid #cfdcec;
     overflow:hidden;
     /* background: #4679BD; */
-    background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+    background: linear-gradient( #30588e, rgba(125,185,232,1)); 
     box-shadow: 0 0 3px gray;
   }
   .round-button-circle:hover {
