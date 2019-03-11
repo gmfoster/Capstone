@@ -180,9 +180,12 @@ class Pastebin_Module():
         try:
             responseScrape = requests.get("https://scrape.pastebin.com/api_scrape_item.php?i=" + pasteKey)
             searchTerm = keyword.split(" ")[0] if " " in keyword else keyword
+            print("checkpoint1")
             stringResponse = responseScrape.text.replace("\n", " ").replace("\t", " ").split(searchTerm)
             stringResponseBefore = stringResponse[0]
+            print("checkpoint2")
             stringResponseAfter = stringResponse[1]
+            print("checkpoint3")
             wordsBefore = stringResponseBefore.split(" ")
             wordsAfter = stringResponseAfter.split(" ")
             if(len(wordsBefore) < 10):
@@ -194,13 +197,16 @@ class Pastebin_Module():
             else: 
                 endIndex = 9
             firstLoop = True
+            print("checkpoint4")
             for i in wordsBefore[startIndex:]:
                 if(i):
                     preview = preview + " " + i.strip()
+            print("checkpoint4")
             preview = preview + searchTerm
             for i in wordsAfter[:endIndex]:
                 if(i):
                     preview = preview + " " + i.lstrip().rstrip()
+            print("checkpoint5")
             #preview = preview.lstrip()
         except Exception as e:
             print("Exception2: ",e)
