@@ -9,6 +9,8 @@ import './Style Sheets/style.scss';
 import './images/a.jpeg';
 import './images/b.png'; 
 import './images/c.png'; 
+import './images/sensor.png'; 
+import './images/noti.png'; 
 import PropTypes from "prop-types";
 import './images/ezgif-3-88d63871ccb9.gif';  
 import Sensors from './Sensors'
@@ -16,8 +18,6 @@ import Login from './Login'
 import Redirect from './Redirect'
 import Router from './App.js'
 import Route from './App.js'
-
-
 
 import createHistory from 'history/createBrowserHistory'; 
 
@@ -100,9 +100,9 @@ class Home extends React.Component {
         */}
         
         <div className="container-fluid">
-            <div className="row align-items-center px-3 py-5">
+            <div className="row align-items-center px-3 py-3">
                 <div className="col-6">
-                    <img className="img-fluid rounded shadow" src={require('./images/a.jpeg')}></img>
+                    <img className="img-fluid rounded shadow" src={require('./images/noti.png')}></img>
                 </div>
                 <div className="col-5 mx-auto">
                     <p className="lead text-muted text-uppercase">Brand Monitoring</p>
@@ -113,22 +113,22 @@ class Home extends React.Component {
         </div>
 
         <div className="container-fluid">
-            <div className="row align-items-center px-3 py-5">
+            <div className="row align-items-center px-3 py-3">
                 <div className="col-5 mx-auto">
-                    <p className="lead text-muted text-uppercase">Brand Monitoring</p>
+                    <p className="lead text-muted text-uppercase">Build your sensors</p>
                     <h1>A Sensor on the Widest Breadth of Sources</h1>
-                    <p>By configuring our technology to continuously monitor for threat-related references to your brand, industry, or technologies, you’ll have a sensor on the widest breadth of threat data sources, including paste sites and the dark web.</p>
+                    <p>By configuring our technology to continuously monitor for threat-related references to your brand, industry, or technologies, you’ll have a sensor on the widest breadth of threat data sources, including paste sites and the dark web. Click get started to create your unique sensor.</p>
                 </div>
                 <div className="col-6">
-                    <img className="img-fluid rounded shadow" src={require('./images/b.png')}></img>
+                    <img className="img-fluid rounded shadow" src={require('./images/sensor.png')}></img>
                 </div>
             </div>
         </div>
 
         <div className="container-fluid">
-            <div className="row align-items-center px-3 py-5">
+            <div className="row align-items-center px-3 py-3">
                 <div className="col-6">
-                    <img className="img-fluid rounded shadow" src={require('./images/c.png')}></img>
+                    <img className="img-fluid rounded shadow" src={require('./images/a.jpeg')}></img>
                 </div>
                 <div className="col-5 mx-auto">
                     <p className="lead text-muted text-uppercase">Brand Monitoring</p>
