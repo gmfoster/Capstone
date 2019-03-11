@@ -82,8 +82,10 @@ class App extends React.Component {
       console.log(items)
       if(items["isLoggedIn"] == true){
         isAuthenticated = true
+        onlyOnce = true
       }else{
         isAuthenticated = false
+        onlyOnce = false
       }
       this.forceUpdate()
       
@@ -161,9 +163,13 @@ class App extends React.Component {
         {!isAuthenticated && 
           <Redirect to='/login'/>
         }
-        {isAuthenticated && 
+        {isAuthenticated && !onlyOnce && 
           <Redirect to='/home'/>
         }
+        {isAuthenticated && onlyOnce &&
+          <Redirect to='/dashboard'/>
+        }
+
         <Route path='/home' component={Home}/>
         <Route path='/dashboard' component={Dashboard}/>
         <Route path='/sensors' component={Sensors}/>
@@ -173,7 +179,6 @@ class App extends React.Component {
           
         </form>
         <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
-        {onlyOnce = false}
       </Router>
       
     );
