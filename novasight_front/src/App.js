@@ -15,6 +15,7 @@ import firebase from './firebase.js';
 import createHistory from 'history/createBrowserHistory'; 
 
 
+var onlyOnce = true
 
 const iFrameStyle = {
   width:0,
@@ -172,6 +173,7 @@ class App extends React.Component {
           
         </form>
         <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
+        {onlyOnce = false}
       </Router>
       
     );
