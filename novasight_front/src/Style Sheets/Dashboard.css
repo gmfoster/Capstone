@@ -92,7 +92,8 @@ div.paste{
 }
 
 div.bg_theme{
-  background-color: #007bff;
+  /* stroke: #007bff; */
+  border: 5px solid #007bff;
 }
 
 p.white_text{
@@ -112,4 +113,8 @@ div.scrollable{
   margin: 0 auto;
   height: 400px;
   overflow: auto;
+}
+
+div.my-shadow { 
+  box-shadow:  3px 3px 3px 0px #ccc;
 }

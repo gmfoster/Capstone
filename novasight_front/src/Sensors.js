@@ -2,12 +2,10 @@ import React, { Component } from 'react';
 import Link from './Link';
 import './Style Sheets/App.css';
 import './Style Sheets/index.css';
-import './Style Sheets/StartInvestigation.css';
+import './Style Sheets/Sensors.css';
 import { link } from 'fs';
 import HaveIBeenPwnd from './HaveIBeenPwnd';
 import Redirect from './Redirect' 
-
-
 
 const iFrameStyle = {
   width:0,
@@ -55,13 +53,19 @@ class Sensors extends React.Component {
 
   }
 
+  close() { 
+    //this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode); return false;
+    //this.refs.example.visible = false; 
+  }
+
   render() { 
     return(
       <main role="main" class="container">
-        <div class="my-3 p-3 rounded_25 shadow-sm bg_theme">
-          <p  class="form-text white_text "><b>Paste Suggested Keywords:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
-          <p  class="form-text white_text"> <b>Pwnd Suggested Keywords:</b> Emails </p>
-          <p  class="form-text white_text"><b>Dark Suggestued Keywors:</b> Credit Card Numbers, Account Usernamess, Lat 4 of SSN</p>
+        <div id="example" class="my-3 p-3 rounded_25 my-shadow bg_theme">
+         <span id='close' onclick={this.close()}>x</span>
+          <p  class="form-text black_text "><b>Paste-Sites Suggested Keywords:</b> Account Usernamess, emails, IP addresses, Names </p>
+          <p  class="form-text black_text"> <b>Breached Database Suggested Keywords:</b> Emails </p>
+          <p  class="form-text black_text"><b>Dark Web Sweep Keywords:</b> Account Usernamess, emails, comapany name, API Keys </p>
           
           {/*<h6 class="border-bottom border-gray pb-2 mb-3">Sensors Configuration</h6>
           <div class="mb-3 clearfix">
@@ -111,7 +115,7 @@ class Sensors extends React.Component {
           </div>
           <div class="my-3 p-3 rounded_25 shadow-sm  bg_complement">
 
-          <h6 class="border-bottom border-gray pb-2 mb-3">New Rule</h6>
+          <h6 class="border-bottom border-gray pb-2 mb-3">Add New Sensor or Change Existing</h6>
 
           {this.submittedForm &&
             <p  class="form-text " style={pStyle}> We have added your sensor</p>
