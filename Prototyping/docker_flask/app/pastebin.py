@@ -149,7 +149,7 @@ class Pastebin_Module():
             #print(getValue)
             pagesRemaining = pagesRemaining - 1
 
-        self.browser.close()
+        #self.browser.close()
 
         #Finds pasteKey from url
         for resultURL in urls:
