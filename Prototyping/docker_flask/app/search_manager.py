@@ -17,7 +17,7 @@ from app import recentPastes
 
 class Search_Manager():
     def __init__(self):
-        self.pastebin_module = pastebin.Pastebin_Module()
+        #self.pastebin_module = pastebin.Pastebin_Module()
         self.paste_sensors = dict() #dict to store hashed values of paste keywords
         self.paste_keywords = [] #array to store paste keywords for search
         self.pwned_sensors = dict() #dict to store hashed values of pwned keywords
@@ -129,7 +129,7 @@ class Search_Manager():
         pwnedCount = 0
         newCount = 0
         firstTime = 0
-        numPastes = 0
+        numPastes = 9999
         while(1):
         #start infinite loop                                                                          
             self.getPasteSensors() #get paste sensors
@@ -167,7 +167,7 @@ class Search_Manager():
                 print("sending alert")
             if(pasteCount > 0 and sent == 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
-                #self.alert.sendText(self.user.name, self.user.phone,link)
+                self.alert.sendText(self.user.name, self.user.phone,link)
                 print("sending alert")
                 sent = 1
             pasteCount = 0
