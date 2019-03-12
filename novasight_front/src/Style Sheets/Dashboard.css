@@ -50,9 +50,15 @@
     background: linear-gradient( #30588e, rgba(125,185,232,1)); 
     box-shadow: 0 0 3px gray;
   }
-  .round-button-circle:hover {
+  .round-button-circle:hover{
     background:#30588e;
   }
+
+
+  .round-button-circle-click{
+    background:#30588e;
+  }
+
   .round-button a {
     display:block;
     float:left;

@@ -48,9 +48,9 @@ var lineChartData = {
 }
 
 var allChartData = [
-    {"name":"Pastebin", "data":{}},
-    {"name":"Breached Databases", "data":{}},
-    {"name":"DarkWeb", "data":{}}
+    {"name":"Pastesites", "data":{}},
+    {"name":"Breached Databases", "data":{}}
+    
 ];
 
 var currentPasteSensors = undefined
@@ -255,7 +255,7 @@ class ChartAll extends React.Component{
         for(var paste in allCurrentPasteData){
             var tempDate = new Date(1000 * Number(allCurrentPasteData[paste]["time posted"]))
             if (tempDate.getTime() >= last6MonthsNumber){
-                
+                //print("Date = " = tempDate)
                 if (pasteChartData[tempDate.toLocaleDateString()] == undefined){
                     pasteChartData[tempDate.toLocaleDateString()] = 0
                 }
@@ -268,9 +268,13 @@ class ChartAll extends React.Component{
         for(var i in allCurrentPwndData){
             var tempDate = allCurrentPwndData[i].BreachDate
             if (tempDate.getTime() >= last6MonthsNumber){
-                pwnedChartData[tempDate.toLocaleDateString()] = 0
+                if (pwnedChartData[tempDate.toLocaleDateString()] == undefined){
+                    pwnedChartData[tempDate.toLocaleDateString()] = 0
+                }
+                
+                pwnedChartData[tempDate.toLocaleDateString()] = pwnedChartData[tempDate.toLocaleDateString()] + 1
             }
-            pwnedChartData[tempDate.toLocaleDateString()] = pwnedChartData[tempDate.toLocaleDateString()] + 1
+            
         }
 
         allChartData[0]["data"] = pasteChartData
@@ -278,7 +282,7 @@ class ChartAll extends React.Component{
 
         return (
             <main role="main" className="container">
-                <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
+                <div className="my-3 p-3  shadow-sm bg_complement" >
                     {/* <div className="top_left_div"> <h1>{currentID}</h1> </div> */}
                     {/* <div className="top_right_div">  <h1 color={this.getColor()}>{this.getHealth()}</h1></div> */}
                     <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (2018-2019)" ytitle="Data"/>
@@ -564,6 +568,7 @@ class Bubble extends React.Component{
         super(props)
         this.handler = this.props.handler
         this.popTables = this.popTables.bind(this)
+        this.reClassifyBubbles = this.props.reClassifyBubbles
     }
 
     popTables(id) { 
@@ -597,7 +602,7 @@ class Bubble extends React.Component{
         //console.log(this.props.id);
         return(
             <div class="round-button">
-                <div class="round-button-circle">
+                <div class="round-button-circle" name="round_bubble">
                     {/* onclick={this.popTables(this.props.id)} */}
                     <a  className="round-button" id={this.props.id} onClick={this.popTables}>{this.props.name}</a>
                 {/* href = "#" */}
@@ -617,8 +622,13 @@ class BubbleSensor extends React.Component {
         this.sensorList = []
         this.sensorNames = []
         this.handler = this.props.handler
+        this.reClassifyBubbles = this.reClassifyBubbles.bind(this)
     }
     
+    reClassifyBubbles(){
+
+    }
+
     componentDidMount() { 
     
         this.ref.on('value', (snapshot) => { 
@@ -731,12 +741,15 @@ class BubbleSensor extends React.Component {
     render() { 
         var count = 0; 
         this.list = []; 
+
+
         this.list = this.sensorNames.map((entry) => (
             <Bubble
                 name={entry}
                 key={entry}
                 id={++count}
                 handler={this.handler}
+                
             /> 
         )); 
         
