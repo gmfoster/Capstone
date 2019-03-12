@@ -271,4 +271,4 @@ class Pastebin_Module():
                                       
 if __name__ == "__main__" and "test" in argv:
     paste = Pastebin_Module()
-    paste.search("ucsb blake")
+    paste.search("Apple Stock")
