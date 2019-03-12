@@ -154,7 +154,7 @@ class App extends React.Component {
           <Redirect to='/login'/>
         }
         {isAuthenticated &&
-          <Redirect to='/dashboard'/>
+          <Redirect to='/home'/>
         }
 
         <Route path='/home' component={Home}/>

@@ -45,7 +45,7 @@ class Sensors extends React.Component {
 
     sensorForm.submit();
     this.submittedForm = true
-    //console.log("In side the submit sensor formulat" + sensorForm.submit());
+    //console.log("In side the submit sensor formulat" + this.submittedForm)
     sensorForm.reset();
     this.forceUpdate()
     return false;

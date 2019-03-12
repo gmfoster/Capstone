@@ -12,6 +12,13 @@ ReactChartkick.addAdapter(Chart)
 var isPastebin = true;
 var isHaveIBeenPwnd = false;
 
+
+var currentDataAll = {
+    "paste":{},
+    "pwned":{},
+    "dark":{}
+};
+
 var bubbleSensors =[
     {
         name:"bUUUUUUUUU",
@@ -41,7 +48,7 @@ var lineChartData = {
 
 var allChartData = [
     {"name":"Pastebin", "data":{}},
-    {"name":"Have I Been Pwned", "data":{}},
+    {"name":"Database Breach", "data":{}},
     {"name":"Darkweb", "data":{}}
 ];
 
@@ -145,10 +152,125 @@ class DarkwebEntry extends React.Component{
     }
 }
 
+class ChartAll extends React.Component{
+    constructor(){
+        super()
+        //super(props)
+        this.pasteRef = firebase.database().ref("paste_search") 
+        //this.pwndRef = firebase.database().ref("pwned_search")
+        //this.darkRef = firebase.database().ref("dark_search")
+        this.chartData = []
+    }
+
+    
+    render(){
+
+        
+        var now = new Date()
+        var newDataPoints = []
+
+        if (allCurrentPasteData != undefined){
+            var last6Months = new Date()
+            last6Months.setMonth(last6Months.getMonth() - 6)
+            var last6MonthsNumber = last6Months.getTime()
+            
+            
+
+            
+            for (var paste in allCurrentPasteData){
+
+                var date = new Date(1000 * Number(allCurrentPasteData[paste]["time posted"]))
+
+                if (date.getTime() >= last6MonthsNumber){
+                    newDataPoints.push(date.toLocaleDateString())
+                }
+
+            }
+        
+        }
+
+        if (allCurrentPwndData != undefined){
+            var last6Months = new Date()
+            last6Months.setMonth(last6Months.getMonth() - 6)
+            var last6MonthsNumber = last6Months.getTime()
+            
+
+            for(var i in allCurrentPwndData ){
+
+                var tempDate = allCurrentPwndData[i].BreachDate
+                if(tempDate.getTime() >= last6MonthsNumber){
+                    newDataPoints.push(tempDate.toLocaleDateString())
+                    
+                }
+            }
+           
+        }
+
+
+        var last6Months = new Date()
+        last6Months.setMonth(last6Months.getMonth() - 6) 
+        var last6MonthsNumber = last6Months.getTime()
+
+        var pasteChartData = {}
+        var pwnedChartData = {}
+            
+            
+        for (var d = last6Months; d <= now ; d.setDate(d.getDate() + 30)){
+            //console.log("d  " + d)
+            pasteChartData[d.toLocaleDateString()] = 0
+            pwnedChartData[d.toLocaleDateString()] = 0
+        }
+        
+
+        for (var i in newDataPoints){
+            var date = newDataPoints[i]
+            pasteChartData[date] = 0
+            pwnedChartData[date] = 0
+        }
+        
+
+        for(var paste in allCurrentPasteData){
+            var tempDate = new Date(1000 * Number(allCurrentPasteData[paste]["time posted"]))
+            if (tempDate.getTime() >= last6MonthsNumber){
+                
+                if (pasteChartData[tempDate.toLocaleDateString()] == undefined){
+                    pasteChartData[tempDate.toLocaleDateString()] = 0
+                }
+                
+
+                pasteChartData[tempDate.toLocaleDateString()] = pasteChartData[tempDate.toLocaleDateString()] + 1
+            }
+        }
+
+        for(var i in allCurrentPwndData){
+            var tempDate = allCurrentPwndData[i].BreachDate
+            if (tempDate.getTime() >= last6MonthsNumber){
+                pwnedChartData[tempDate.toLocaleDateString()] = 0
+            }
+            pwnedChartData[tempDate.toLocaleDateString()] = pwnedChartData[tempDate.toLocaleDateString()] + 1
+        }
+
+        allChartData[0]["data"] = pasteChartData
+        allChartData[1]["data"] = pwnedChartData
+
+        return (
+            <main role="main" className="container">
+                <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
+                    <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (2018-2019)" ytitle="Data"/>
+                </div>
+            </main>   
+        );
+
+    }
+}
+
+//set in pastebin table and used in chart info
+var allCurrentPasteData = []
 
 class PastebinTable extends React.Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
+        this.forceDashboardUpdate = this.props.forceDashboardUpdate
         this.pasteList = [];
         this.ref = firebase.database().ref('paste_search');
         this.number = 0;
@@ -162,6 +284,7 @@ class PastebinTable extends React.Component {
                 return
             }
 
+
             var data = items[this.props.sensorKey]
             if(data == undefined){
                 this.pasteList = <PastebinEntry
@@ -169,6 +292,7 @@ class PastebinTable extends React.Component {
                     Description={"No data found for keyword" + this.props.sensorString}
                 />
             }else{
+                
                 //.slice(0,5)
                 var tempList = []
                 for (var key in data){
@@ -178,10 +302,24 @@ class PastebinTable extends React.Component {
                     
                     //var date = new Date(1000 * Number(data[key]["time posted"]))
                     tempDict["time posted"] = data[key]["time posted"]//date.toLocaleDateString()
+                    var tempDate= data[key]["time discovered(day:hour:minute:second)"]
+                    
+                    var day = 1
+                    if (tempDate != undefined){
+                        tempDate = tempDate.split(":")
+                        day = Number(tempDate[0])
+                    }
+                    
+                    var now = new Date()
+
+                    var newDate = new Date(now.getFullYear(), now.getMonth(), day)
+                    tempDict["time discovered"] = newDate.toLocaleDateString()//data[key]["time discovered(day:hour:minute:second)"]
                     //console.log(" Key " + key)
                     //console.log("Date " +  date)
                     tempDict["link"] = data[key]["link"]
+                    allCurrentPasteData.push(tempDict)
                     tempList.push(tempDict)
+                    //allCurrentPasteData.push(tempDict)
                 }
 
                 //var newList = sorted(tempList, key=lambda k, k['time posted']) 
@@ -197,16 +335,24 @@ class PastebinTable extends React.Component {
                     return  Number(b["time posted"]) - Number(a["time posted"])
                 })
 
+                
+
                 this.pasteList = tempList.map((val)=>(
                     <PastebinEntry
                     Date={ new Date(1000* Number(val["time posted"])).toLocaleDateString()}
                     key={val["key"]}
-                    Key={val["key"]}
+                    TimeDiscovered={val["time discovered"]}
                     Link={val["link"]}
                     Preview={val["preview"]}
                     />
                 ));
+                
+                
+                
             }
+
+
+            this.forceDashboardUpdate()
             this.forceUpdate()
             
         });
@@ -224,7 +370,7 @@ class PastebinTable extends React.Component {
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
-                            <th scope="col">Key</th>
+                            <th scope="col">Time Discovered</th>
                             <th scope="col">Link</th>
                             <th scope="col">Preview</th>
                             {/*<th scope="col">Preview</th>*/}
@@ -246,7 +392,7 @@ class PastebinEntry extends React.Component{
         return(
             <tr>
                 <td scope="row">{this.props.Date}</td>
-                <td scope="row">{this.props.Key}</td>
+                <td scope="row">{this.props.TimeDiscovered}</td>
                 <td scope="row"><a href={this.props.Link}>{this.props.Link}</a></td>
                 <td>{this.props.Preview}</td>
             </tr>    
@@ -259,13 +405,17 @@ const pwnedStyles = {
     "background-color":"turquoise"
 };
 
+
+var allCurrentPwndData = []
+
 class HaveIBeenPwndTable extends React.Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.pwndList = [];
         this.ref = firebase.database().ref('pwned_search');
         this.noData = false;
         this.number = 0;
+        this.forceDashboardUpdate = this.props.forceDashboardUpdate
     }
 
     componentDidMount(){
@@ -285,11 +435,32 @@ class HaveIBeenPwndTable extends React.Component{
                         Breached={false}
                     />
                 }else{
-                    console.log("Not undefined")
+                    
+                    for (var pwnd in PWND_LIST){
+                        /*
+                        var tempDate = allCurrentPwndData[i].BreachDate
+                        console.log(tempDate)
+                        tempDate = tempDate.split("-")
+                        var date = new Date(Number(tempDate[0]), Number(tempDate[1]) -1, Number(tempDate[2]), 0 ,0 ,0,0,0)
+                        console.log(date)
+                        */
+                        var tempDate = PWND_LIST[pwnd].BreachDate
+                        console.log(tempDate)
+                        tempDate = tempDate.split("-")
+                        var date = new Date(Number(tempDate[0]), Number(tempDate[1]) -1, Number(tempDate[2]))
+                        PWND_LIST[pwnd].BreachDate = date
+                    
+                        allCurrentPwndData.push(PWND_LIST[pwnd])
+                    }
+
+                    PWND_LIST.sort(function(a,b){
+                        return  b.BreachDate.getTime() - a.BreachDate.getTime()
+                    })
+
                     this.pwndList = PWND_LIST.map((entry)=>(
                         <HaveIBeenPwndEntry
                             key={entry.Description}
-                            BreachDate={entry.BreachDate}
+                            BreachDate={entry.BreachDate.toLocaleDateString()}
                             Domain={entry.LogoPath}
                             Name={entry.Name}
                             Description={entry.Description}
@@ -298,7 +469,7 @@ class HaveIBeenPwndTable extends React.Component{
                     ));
                 }
             }
-            
+            this.forceDashboardUpdate()
             this.forceUpdate()
             
 
@@ -377,6 +548,8 @@ class Bubble extends React.Component{
         var pwnSensors = allSensors[this.props.name]["pwned"]
         var darkSensors = allSensors[this.props.name]["dark"]
 
+        allCurrentPwndData = []
+        allCurrentPasteData = []
         currentPwnedSensors = pwnSensors
         currentPasteSensors = pasteSensors
         currentDarkSensors = darkSensors
@@ -384,7 +557,7 @@ class Bubble extends React.Component{
 
         currentID = this.props.name
         //currentPwnedSensors = pwnSensors
-        console.log("Pop Tables")
+        
         console.log("Pwned Senors")
         console.log(pwnSensors)
 
@@ -466,8 +639,6 @@ class BubbleSensor extends React.Component {
                             }
                             
                             allSensors[key]["pwned"].push(tempDict)
-                            
-
                             
                     }
                     if (i == 0){
@@ -558,187 +729,7 @@ class BubbleSensor extends React.Component {
     }
 }
 
-class ChartAll extends React.Component{
-    constructor(){
-        super()
-        //super(props)
-        this.pasteRef = firebase.database().ref("paste_search") 
-        //this.pwndRef = firebase.database().ref("pwned_search")
-        //this.darkRef = firebase.database().ref("dark_search")
-        this.chartData = []
-    }
 
-    componentDidMount(){
-        this.pasteRef.on('value', (snapshot) => {
-            //let items = snapshot.val();
-            
-            console.log("Chart all")
-            console.log(this.props.PasteSensors)
-            
-            var allData = []
-            for (var i in this.props.PasteSensors){
-                var key = this.props.PasteSensors[i]["key"]
-                //var name = this.props.PasteSensors[i]["string"]
-                var tempData = snapshot.val()[key]
-                if (tempData != undefined){
-                    for(var key in tempData){
-                        var tempDict = {}
-                        tempDict["key"] = key
-                        tempDict["link"] = tempData[key]["link"]
-                        tempDict["time posted"] = tempData[key]["time posted"]
-                        tempDict["time discovered"] = tempData[key]["time discovered(day:hour:minute:second)"]
-                        tempDict["preview"] = tempData[key]["preview"]
-                        allData.push(tempDict)
-                    }
-                }
-            }
-
-            allData.sort(function(a,b){
-                if (a["time posted"] == ""){
-                    a["time posted"] = 0
-                }
-
-                if (b["time posted"] == ""){
-                    b["time posted"] = 0
-                }
-
-                return  Number(b["time posted"]) - Number(a["time posted"])
-            })
-             
-            
-            
-            console.log("Dates")
-            var lastMonth = new Date()
-            lastMonth.setMonth(lastMonth.getMonth() - 1)
-            var lastMonthNumber = lastMonth.getTime()
-            console.log(lastMonthNumber)
-            var lastMonthCount = 0
-
-            var last2Month = new Date()
-            last2Month.setMonth(last2Month.getMonth() - 2)
-            var last2MonthNumber = last2Month.getTime()
-            console.log(last2MonthNumber)
-            var last2MonthCount = 0
-
-            var last3Months = new Date()
-            last3Months.setMonth(last3Months.getMonth() - 3)
-            var last3MonthsNumber = last3Months.getTime()
-            console.log(last3MonthsNumber)
-            var last3MonthsCount = 0
-
-
-            var last4Months = new Date()
-            last4Months.setMonth(last4Months.getMonth() - 4)
-            var last4MonthsNumber = last4Months.getTime()
-            console.log(last4MonthsNumber)
-            var last4MonthsCount = 0
-
-            var last5Months = new Date()
-            last5Months.setMonth(last5Months.getMonth() - 5)
-            var last5MonthsNumber = last5Months.getTime()
-            console.log(last5MonthsNumber)
-            var last5MonthsCount = 0
-
-            var last6Months = new Date()
-            last6Months.setMonth(last6Months.getMonth() - 6)
-            
-            var last6MonthsNumber = last6Months.getTime()
-            console.log(last6MonthsNumber)
-            var last6MonthsCount = 0
-            
-
-            var tempChartData = {}
-            var now = new Date()
-
-            for (var d = last6Months; d <= now ; d.setDate(d.getDate() + 5)){
-                //console.log("d  " + d)
-                tempChartData[d.toLocaleDateString()] = 0
-            }
-
-            for (var paste in allData){
-
-                var date = new Date(1000 * Number(allData[paste]["time posted"]))
-
-                if (date.getTime() >= last6MonthsNumber){
-                    
-                    if (tempChartData[date.toLocaleDateString()] == undefined){
-                        tempChartData[date.toLocaleDateString()] = 0
-                    }
-
-                    tempChartData[date.toLocaleDateString()] = tempChartData[date.toLocaleDateString()] + 1
-
-                }
-                //console.log(paste)
-                /*
-                var date = new Date(1000 * Number(allData[paste]["time posted"]))
-                //
-                if(date.getTime() >= lastMonthNumber){
-                    console.log("Paste " + paste)
-                    console.log("Last month")
-                    console.log(date)
-                    lastMonthCount = lastMonthCount + 1
-                }
-
-                if(date.getTime() < lastMonthNumber && date.getTime() >= last2MonthNumber){
-                    last2MonthCount = last2MonthCount + 1
-
-                }else if(date.getTime() < last2MonthNumber && date.getTime() >= last3MonthsNumber){
-                    last3MonthsCount = last3MonthsCount + 1
-
-                }else if(date.getTime() < last3MonthsNumber && date.getTime() >= last4MonthsNumber){
-                    last4MonthsCount = last4MonthsCount + 1
-
-                }else if(date.getTime() < last4MonthsNumber && date.getTime() >= last5MonthsNumber){
-                    last5MonthsCount = last5MonthsCount + 1
-
-                }else if (date.getTime() < last5MonthsNumber && date.getTime() >= last6MonthsNumber){
-                    last6MonthsCount = last6MonthsCount + 1
-
-                }
-                */
-                
-                
-                
-            }
-            console.log("Number of pastes in last month")
-            console.log(lastMonthCount)
-            console.log(last2MonthCount)
-            console.log(last3MonthsCount)
-            console.log(last4MonthsCount)
-            console.log(last5MonthsCount)
-            console.log(last6MonthsCount)
-            
-            var dataC = {}
-            dataC["2019-02-11"] = lastMonthCount
-            dataC["2019-01-11"] = last2MonthCount
-            dataC["2018-12-11"] = last3MonthsCount
-            dataC["2018-11-11"] = last4MonthsCount
-            dataC["2018-10-11"] = last5MonthsCount
-            dataC["2018-9-11"] = last6MonthsCount
-
-
-            console.log("Temp chart date")
-            console.log(tempChartData)
-            allChartData[0]["data"] = tempChartData
-            
-            console.log("All Data")
-            console.log(allData)
-            this.forceUpdate()
-        });
-    }
-
-    
-    render(){
-        return (
-            <main role="main" className="container">
-                <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
-                    <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
-                </div>
-            </main>   
-        );
-
-    }
-}
 
 
 class Dashboard extends React.Component {
@@ -750,7 +741,7 @@ class Dashboard extends React.Component {
 
     handler(){
         this.forceUpdate()
-        console.log("Force update dashboa rd")
+        //console.log("Force update dashboa rd")
     }
 
     render(){
@@ -766,31 +757,39 @@ class Dashboard extends React.Component {
             
             this.chart = <ChartAll
                 key = {currentPasteSensors[0]["key"]}
-                PasteSensors={currentPasteSensors}
+                //PasteSensors={currentPasteSensors}
             />
             
 
-            pwndSensor = currentPasteSensors.map((sensor)=>(
+            
+            pastSensors = currentPasteSensors.map((sensor)=>(
                 <PastebinTable
                 key={sensor.key}
                 sensorKey={sensor.key}
                 sensorString={sensor.string}
+                forceDashboardUpdate={this.handler}
+                
                 />
 
                 
             ));
-        }else{
-            this.chart= []
         }
             
         
 
         if(currentPwnedSensors != undefined){
-            pastSensors = currentPwnedSensors.map((sensor)=>(
+
+            this.chart = <ChartAll
+                key = {currentPwnedSensors[0]["key"]}
+                //PasteSensors={currentPasteSensors}
+            />
+
+            pwndSensor = currentPwnedSensors.map((sensor)=>(
                 <HaveIBeenPwndTable
                 key={sensor.key}
                 sensorKey={sensor.key}
                 sensorString={sensor.string}
+                forceDashboardUpdate={this.handler}
                 />
                 
             ));
@@ -831,8 +830,9 @@ class Dashboard extends React.Component {
                 <main role="main" className="container">
                 {/*SENSORS*/}
                 
-                {pastSensors}
+                
                 {pwndSensor}
+                {pastSensors}
                 {darkSensors}
                 </main>
                 
