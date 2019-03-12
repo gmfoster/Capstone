@@ -25,6 +25,8 @@ class Search_Manager():
         self.dark_sensors = dict() #dict to store hashed valuse of darknet keywords
         self.dark_keywords = [] #array to store darknet keywords
 
+        self.demo_keywords = ['Omer Cohen']
+        
         self.pwned_module = pwned.Pwned_Module()
         self.dark_module = dread.Dread_Module()
         #self.paste_module = pastebin.Pastebin_Module()
@@ -143,7 +145,7 @@ class Search_Manager():
                     if (firstTime == 1):
                         pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
                     else:
-                        paste = self.recent_pastes.search(self.paste_keywords) #otherwise we scrape 25 most recent pastes
+                        paste = self.recent_pastes.search(self.demo_keywords) #otherwise we scrape 25 most recent pastes
                         pasteCount = paste[0] + pasteCount
                         link = paste[1]
                 #if(firstTime == 1):
