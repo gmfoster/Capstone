@@ -150,7 +150,7 @@ class Dread_Module():
 if __name__ == '__main__':
     print("searching Dread")
     ds = Dread_Module()
-    queries = ['credit card dump']
+    queries = ['leaked passwords']
     dread_results = ds.run(queries=queries, wait_time=0)
 
 

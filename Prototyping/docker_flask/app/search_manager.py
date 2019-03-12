@@ -129,7 +129,7 @@ class Search_Manager():
         pwnedCount = 0
         newCount = 0
         firstTime = 0
-        numPastes = 9999
+        numPastes = 0
         while(1):
         #start infinite loop                                                                          
             self.getPasteSensors() #get paste sensors

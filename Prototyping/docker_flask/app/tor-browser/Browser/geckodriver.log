@@ -11293,3 +11293,377 @@ Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/
                        dreadditevelidot.onion:4b962ac477c8948ee8e78936a0d31746
 [02-19 20:34:31] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
                        dreadditevelidot.onion:4b962ac477c8948ee8e78936a0d31746
+1552417666561	geckodriver	INFO	Listening on 127.0.0.1:33271
+1552417669295	geckodriver::marionette	INFO	Starting browser /home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/firefox with args ["-marionette"]
+[03-12 19:07:51] Torbutton INFO: Torbutton debug output ready
+[03-12 19:07:51] Torbutton INFO: Component Load 5: New CookieJarSelector @torproject.org/cookie-jar-selector;1
+[03-12 19:07:51] Torbutton INFO: Cookie jar selector got profile-after-change
+[03-12 19:07:51] Torbutton INFO: domain isolator: set up isolating circuits by domain
+[03-12 19:07:51] Torbutton INFO: Component Load 0: New DragDropFilter.
+[03-12 19:07:51] Torbutton INFO: Startup Observer created
+[03-12 19:07:51] Torbutton INFO: This is a Tor Browser's XPCOM
+[03-12 19:07:51] TorLauncher INFO: debug output ready
+[03-12 19:07:51] TorLauncher INFO: SOCKS port type: TCP
+[03-12 19:07:51] TorLauncher INFO: SOCKS host: 127.0.0.1
+[03-12 19:07:51] TorLauncher INFO: SOCKS port: 9250
+[03-12 19:07:51] Torbutton INFO: Reset socks host to 127.0.0.1
+[03-12 19:07:51] Torbutton INFO: Reset socks port to 9250
+[03-12 19:07:51] Torbutton INFO: Synced network settings to environment.
+[03-12 19:07:51] Torbutton INFO: Listening for message from NoScript.
+[03-12 19:07:51] Torbutton INFO: Reset socks host to 127.0.0.1
+[03-12 19:07:51] Torbutton INFO: Reset socks port to 9250
+[03-12 19:07:51] Torbutton INFO: Synced network settings to environment.
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1552417672396	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Loading extension '{73a6fe31-595d-460b-a920-fcc0f8843232}': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+[03-12 19:07:52] Torbutton INFO: Loading tor-control-port.js
+JavaScript error: chrome://torbutton/content/torbutton.js, line 16: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIXPCComponents_Utils.importGlobalProperties]
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+[03-12 19:07:52] Torbutton INFO: called init()
+[03-12 19:07:52] Torbutton NOTE: Initializing security-prefs.js
+[03-12 19:07:52] Torbutton NOTE: security-prefs.js initialization complete
+[03-12 19:07:52] Torbutton INFO: This is not a Tor Browser: TypeError: m_tb_prefs is undefined
+JavaScript error: chrome://torbutton/content/torbutton.js, line 348: TypeError: m_tb_prefs is undefined
+1552417673016	addons.webextension.https-everywhere-eff@eff.org	WARN	Please specify whether you want browser_style or not in your browser_action options.
+1552417673016	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Please specify whether you want browser_style or not in your browser_action options.
+JavaScript error: resource://gre/modules/ExtensionContent.jsm, line 489: TypeError: Argument 1 of PrecompiledScript.executeInGlobal is not an object.
+JavaScript error: moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/lib/CSP.js, line 1: SyntaxError: redeclaration of let CSP
+Extension error: [Exception... "Component returned failure code: 0x80070057 (NS_ERROR_ILLEGAL_VALUE) [nsIDOMWindowUtils.addSheet]"  nsresult: "0x80070057 (NS_ERROR_ILLEGAL_VALUE)"  location: "JS frame :: resource://gre/modules/ExtensionUtils.jsm :: runSafeSyncWithoutClone :: line 63"  data: no] undefined 63
+[[Exception stack
+runSafeSyncWithoutClone@resource://gre/modules/ExtensionUtils.jsm:63:14
+inject/cssPromise<@resource://gre/modules/ExtensionContent.jsm:434:13
+Current stack
+runSafeSyncWithoutClone@resource://gre/modules/ExtensionUtils.jsm:65:129
+inject/cssPromise<@resource://gre/modules/ExtensionContent.jsm:434:13
+]]
+JavaScript error: moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/lib/Messages.js, line 68: Error: Could not establish connection. Receiving end does not exist.
+1552417673530	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+1552417673613	addons.webextension.<unknown>	WARN	Loading extension 'null': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+1552417673648	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+[03-12 19:07:53] Torbutton INFO: Message received from NoScript: [{"__meta":{"name":"started","recipientInfo":null},"_messageName":"started"},{"id":"{73a6fe31-595d-460b-a920-fcc0f8843232}","url":"moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/_generated_background_page.html","envType":"addon_child","extensionId":"{73a6fe31-595d-460b-a920-fcc0f8843232}","contextId":4},null]
+[03-12 19:07:53] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//latest-rulesets-timestamp via
+                       --unknown--:df095af3cbf6de6592cfccb7fca55fac
+1552417674335	Marionette	INFO	Listening on port 46347
+1552417674444	Marionette	WARN	TLS certificate errors will be ignored for this session
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+[03-12 19:07:55] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/ via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:07:55] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//rulesets-signature.1552001871.sha256 via
+                       --unknown--:df095af3cbf6de6592cfccb7fca55fac
+[03-12 19:07:55] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//default.rulesets.1552001871.gz via
+                       --unknown--:df095af3cbf6de6592cfccb7fca55fac
+[03-12 19:08:02] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:03] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/protect via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:04] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/ddos.css via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:05] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/dread-icon.png via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:05] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/fonts/Roboto-Regular.woff2 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:08] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:08] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:09] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:10] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=2 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:11] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=3 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:12] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:13] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:14] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:15] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:16] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:16] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:16] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:16] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:16] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:18] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:19] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:20] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:20] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:22] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:23] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:24] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:25] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:26] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/protect via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:28] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:30] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/dread.css via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:32] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/search.png via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:34] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:34] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:37] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:38] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?q=Novacoast via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:41] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/dread.css via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:41] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:44cdcc1d2522db011d0386383e6eb82b
+[03-12 19:08:51] Torbutton DBUG: Got timer update, but no cookie change.
+[Child 3237, Chrome_ChildThread] WARNING: pipe error (21): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+[Child 3237, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+1552417783008	geckodriver	INFO	Listening on 127.0.0.1:44147
+1552417785569	geckodriver::marionette	INFO	Starting browser /home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/firefox with args ["-marionette"]
+[03-12 19:09:45] Torbutton INFO: Torbutton debug output ready
+[03-12 19:09:45] Torbutton INFO: Component Load 5: New CookieJarSelector @torproject.org/cookie-jar-selector;1
+[03-12 19:09:45] Torbutton INFO: Cookie jar selector got profile-after-change
+[03-12 19:09:45] Torbutton INFO: domain isolator: set up isolating circuits by domain
+[03-12 19:09:45] Torbutton INFO: Component Load 0: New DragDropFilter.
+[03-12 19:09:45] Torbutton INFO: Startup Observer created
+[03-12 19:09:45] Torbutton INFO: This is a Tor Browser's XPCOM
+[03-12 19:09:45] TorLauncher INFO: debug output ready
+[03-12 19:09:45] TorLauncher INFO: SOCKS port type: TCP
+[03-12 19:09:45] TorLauncher INFO: SOCKS host: 127.0.0.1
+[03-12 19:09:45] TorLauncher INFO: SOCKS port: 9250
+[03-12 19:09:45] Torbutton INFO: Reset socks host to 127.0.0.1
+[03-12 19:09:45] Torbutton INFO: Reset socks port to 9250
+[03-12 19:09:45] Torbutton INFO: Synced network settings to environment.
+[03-12 19:09:45] Torbutton INFO: Listening for message from NoScript.
+[03-12 19:09:45] Torbutton INFO: Reset socks host to 127.0.0.1
+[03-12 19:09:45] Torbutton INFO: Reset socks port to 9250
+[03-12 19:09:45] Torbutton INFO: Synced network settings to environment.
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1552417786100	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Loading extension '{73a6fe31-595d-460b-a920-fcc0f8843232}': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+[03-12 19:09:46] Torbutton INFO: Loading tor-control-port.js
+JavaScript error: chrome://torbutton/content/torbutton.js, line 16: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIXPCComponents_Utils.importGlobalProperties]
+[03-12 19:09:46] Torbutton INFO: called init()
+[03-12 19:09:46] Torbutton NOTE: Initializing security-prefs.js
+[03-12 19:09:46] Torbutton NOTE: security-prefs.js initialization complete
+[03-12 19:09:46] Torbutton INFO: This is not a Tor Browser: TypeError: m_tb_prefs is undefined
+JavaScript error: chrome://torbutton/content/torbutton.js, line 348: TypeError: m_tb_prefs is undefined
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1552417786563	Marionette	INFO	Listening on port 38195
+1552417786624	Marionette	WARN	TLS certificate errors will be ignored for this session
+1552417786704	addons.webextension.https-everywhere-eff@eff.org	WARN	Please specify whether you want browser_style or not in your browser_action options.
+1552417786705	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Please specify whether you want browser_style or not in your browser_action options.
+JavaScript error: moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/lib/Messages.js, line 68: Error: Could not establish connection. Receiving end does not exist.
+1552417786951	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+1552417787031	addons.webextension.<unknown>	WARN	Loading extension 'null': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+1552417787069	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+[03-12 19:09:47] Torbutton INFO: Message received from NoScript: [{"__meta":{"name":"started","recipientInfo":null},"_messageName":"started"},{"id":"{73a6fe31-595d-460b-a920-fcc0f8843232}","url":"moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/_generated_background_page.html","envType":"addon_child","extensionId":"{73a6fe31-595d-460b-a920-fcc0f8843232}","contextId":4},null]
+[03-12 19:09:47] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//latest-rulesets-timestamp via
+                       --unknown--:ea75c0d34cae12072ba887eb8bb5c80a
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+[03-12 19:09:47] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/ via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:49] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//rulesets-signature.1552001871.sha256 via
+                       --unknown--:ea75c0d34cae12072ba887eb8bb5c80a
+[03-12 19:09:49] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//default.rulesets.1552001871.gz via
+                       --unknown--:ea75c0d34cae12072ba887eb8bb5c80a
+[03-12 19:09:52] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:53] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/protect via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:53] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/ddos.css via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:54] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/dread-icon.png via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:54] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/fonts/Roboto-Regular.woff2 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:57] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:57] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:57] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:58] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=2 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:59] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=3 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:09:59] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:00] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:01] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:01] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:02] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:02] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:02] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:02] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:02] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:03] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:04] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:04] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:05] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:06] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:07] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:07] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:08] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:08] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/protect via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:09] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:11] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/dread.css via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:12] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/search.png via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:13] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:13] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:16] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:17] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?q=Credit%20Card%20Dump via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:19] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/dread.css via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:20] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/vote-up.png via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:20] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/vote-down.png via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[03-12 19:10:21] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:5b692efd7f39731e4b539d9ad273c783
+[Child 3595, Chrome_ChildThread] WARNING: pipe error (19): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+[Child 3595, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
+1552418841940	geckodriver	INFO	Listening on 127.0.0.1:48003
+1552418844500	geckodriver::marionette	INFO	Starting browser /home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/firefox with args ["-marionette"]
+[03-12 19:27:24] Torbutton INFO: Torbutton debug output ready
+[03-12 19:27:24] Torbutton INFO: Component Load 5: New CookieJarSelector @torproject.org/cookie-jar-selector;1
+[03-12 19:27:24] Torbutton INFO: Cookie jar selector got profile-after-change
+[03-12 19:27:24] Torbutton INFO: domain isolator: set up isolating circuits by domain
+[03-12 19:27:24] Torbutton INFO: Component Load 0: New DragDropFilter.
+[03-12 19:27:24] Torbutton INFO: Startup Observer created
+[03-12 19:27:24] Torbutton INFO: This is a Tor Browser's XPCOM
+[03-12 19:27:24] TorLauncher INFO: debug output ready
+[03-12 19:27:24] TorLauncher INFO: SOCKS port type: TCP
+[03-12 19:27:24] TorLauncher INFO: SOCKS host: 127.0.0.1
+[03-12 19:27:24] TorLauncher INFO: SOCKS port: 9250
+[03-12 19:27:24] Torbutton INFO: Reset socks host to 127.0.0.1
+[03-12 19:27:24] Torbutton INFO: Reset socks port to 9250
+[03-12 19:27:24] Torbutton INFO: Synced network settings to environment.
+[03-12 19:27:24] Torbutton INFO: Listening for message from NoScript.
+[03-12 19:27:24] Torbutton INFO: Reset socks host to 127.0.0.1
+[03-12 19:27:24] Torbutton INFO: Reset socks port to 9250
+[03-12 19:27:24] Torbutton INFO: Synced network settings to environment.
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1552418845042	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Loading extension '{73a6fe31-595d-460b-a920-fcc0f8843232}': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+[03-12 19:27:25] Torbutton INFO: Loading tor-control-port.js
+JavaScript error: chrome://torbutton/content/torbutton.js, line 16: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsIXPCComponents_Utils.importGlobalProperties]
+[03-12 19:27:25] Torbutton INFO: called init()
+[03-12 19:27:25] Torbutton NOTE: Initializing security-prefs.js
+[03-12 19:27:25] Torbutton NOTE: security-prefs.js initialization complete
+[03-12 19:27:25] Torbutton INFO: This is not a Tor Browser: TypeError: m_tb_prefs is undefined
+JavaScript error: chrome://torbutton/content/torbutton.js, line 348: TypeError: m_tb_prefs is undefined
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+1552418845611	addons.webextension.https-everywhere-eff@eff.org	WARN	Please specify whether you want browser_style or not in your browser_action options.
+1552418845611	addons.webextension.{73a6fe31-595d-460b-a920-fcc0f8843232}	WARN	Please specify whether you want browser_style or not in your browser_action options.
+JavaScript error: moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/lib/Messages.js, line 68: Error: Could not establish connection. Receiving end does not exist.
+1552418845863	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+1552418845946	addons.webextension.<unknown>	WARN	Loading extension 'null': Reading manifest: Error processing background.persistent: Event pages are not currently supported. This will run as a persistent background page.
+1552418845984	addons.xpi	WARN	Please specify whether you want browser_style or not in your options_ui options.
+[03-12 19:27:26] Torbutton INFO: Message received from NoScript: [{"__meta":{"name":"started","recipientInfo":null},"_messageName":"started"},{"id":"{73a6fe31-595d-460b-a920-fcc0f8843232}","url":"moz-extension://6cde81c7-0cc6-462d-b4b9-d5eff8883a8b/_generated_background_page.html","envType":"addon_child","extensionId":"{73a6fe31-595d-460b-a920-fcc0f8843232}","contextId":4},null]
+[03-12 19:27:26] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//latest-rulesets-timestamp via
+                       --unknown--:e8c854c5922d4240399cd1c12a3b5b44
+1552418846199	Marionette	INFO	Listening on port 41321
+1552418846221	Marionette	WARN	TLS certificate errors will be ignored for this session
+Fontconfig warning: "/home/graham/Desktop/Capstone/Prototyping/docker_flask/app/tor-browser/Browser/TorBrowser/Data/fontconfig/fonts.conf", line 145: blank doesn't take any effect anymore. please remove it from your fonts.conf
+[03-12 19:27:27] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/ via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:27] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//rulesets-signature.1552001871.sha256 via
+                       --unknown--:e8c854c5922d4240399cd1c12a3b5b44
+[03-12 19:27:27] Torbutton INFO: tor SOCKS: https://www.https-rulesets.org/v1//default.rulesets.1552001871.gz via
+                       --unknown--:e8c854c5922d4240399cd1c12a3b5b44
+[03-12 19:27:32] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:34] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/protect via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:35] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/ddos.css via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:36] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/dread-icon.png via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:36] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/fonts/Roboto-Regular.woff2 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:39] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:39] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:40] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=1 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:41] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=2 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:42] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico?tc=3 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:43] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:44] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:45] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:46] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:47] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:47] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:47] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=2 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:47] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=3 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:47] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:49] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/@botfail?tc=1 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:50] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/protect via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:52] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:53] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/dread.css via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:54] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/search.png via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:56] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:56] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:27:59] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?tc=1 via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:28:00] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/search/?q=leaked%20passwords via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:28:02] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/css/dread.css via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:28:03] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/images/comment-reply.png via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[03-12 19:28:04] Torbutton INFO: tor SOCKS: http://dreadditevelidot.onion/favicon.ico via
+                       dreadditevelidot.onion:4a922ab41e0b5e7676583bf5df9bd7cd
+[Child 4933, Chrome_ChildThread] WARNING: pipe error (3): Connection reset by peer: file /var/tmp/build/firefox-7393f1ffd512/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 342
