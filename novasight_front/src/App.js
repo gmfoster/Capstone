@@ -71,15 +71,10 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-
-    var submit = document.getElementById("scanForm")
-    submit.submit()
-
-
-    console.log("App is being mounted")
+    
     this.ref.on('value', (snapshot) => {
       let items = snapshot.val();
-      console.log(items)
+      
       if(items["isLoggedIn"] == true){
         isAuthenticated = true
         onlyOnce = true
@@ -163,10 +158,7 @@ class App extends React.Component {
         {!isAuthenticated && 
           <Redirect to='/login'/>
         }
-        {isAuthenticated && !onlyOnce && 
-          <Redirect to='/home'/>
-        }
-        {isAuthenticated && onlyOnce &&
+        {isAuthenticated &&
           <Redirect to='/dashboard'/>
         }
 
