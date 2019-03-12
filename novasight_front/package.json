@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.3.0",
+    "bootstrap": "^4.3.1",
     "chart.js": "^2.7.3",
-    "firebase": "^5.8.2",
+    "firebase": "^5.8.6",
     "jquery": "^3.3.1",
     "node-sass": "^4.11.0",
     "popper.js": "^1.14.7",

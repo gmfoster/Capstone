@@ -63,9 +63,9 @@ class Sensors extends React.Component {
       <main role="main" class="container">
         <div id="example" class="my-3 p-3 rounded_25 my-shadow bg_theme">
          {/* <span id='close' onclick={this.close()}>x</span> */}
-          <p  class="form-text black_text "><b>Paste-Sites Suggested Keywords:</b> Account Usernamess, emails, IP addresses, Names </p>
+          <p  class="form-text black_text "><b>Paste-Sites Suggested Keywords:</b> Account Usernames, Emails, IP Addresses, Names </p>
           <p  class="form-text black_text"> <b>Breached Database Suggested Keywords:</b> Emails </p>
-          <p  class="form-text black_text"><b>DarkWeb Sweep Keywords:</b> Account Usernamess, emails, comapany name, API Keys </p>
+          <p  class="form-text black_text"><b>DarkWeb Sweep Keywords:</b> Account Usernames, Emails, Company Name, API Keys </p>
 
           {/*<h6 class="border-bottom border-gray pb-2 mb-3">Sensors Configuration</h6>
           <div class="mb-3 clearfix">
