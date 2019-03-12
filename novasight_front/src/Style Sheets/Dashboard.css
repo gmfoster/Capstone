@@ -81,6 +81,9 @@
 
 }
 
+div.rounded_12{
+  border-radius: 12px;
+}
 div.rounded_25{
   border-radius: 25px;
 }
