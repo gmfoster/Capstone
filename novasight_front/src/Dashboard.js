@@ -761,7 +761,7 @@ class ChartAll extends React.Component{
                 <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
      
                     <div className="top_left_div"> <h1>{currentID}</h1> </div>
-                    <div className="top_right_div">  <h1 class={this.getColor()}>{this.getHealth()}</h1></div>
+                    <div className="top_right_div">  <h1 color={this.getColor()}>{this.getHealth()}</h1></div>
 
                     <LineChart title="Elapsed Data"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
             
