@@ -83,6 +83,7 @@ class Recent_Pastes():
             link.append("http://pastebin.com/" + l)
             id = hashlib.md5(k.encode()).hexdigest()
             self.db.child("paste_search").child(id).child(l).set(data)
+        print("about to return")
         return(len(self.keys),link)
         
 

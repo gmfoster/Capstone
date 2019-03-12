@@ -140,15 +140,16 @@ class Search_Manager():
                 numPastes = len(self.paste_keywords)
                 
             if (len(self.paste_keywords) != 0):
-                pasteCount = 0
-                for i in range(len(self.paste_keywords)):             
-                    if (firstTime == 1):
-                        pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
-                    else:
-                        paste = self.recent_pastes.search(self.demo_keywords) #otherwise we scrape 25 most recent pastes
-                        pasteCount = paste[0] + pasteCount
-                        link = paste[1]
+                pasteCount = 0             
+                if (firstTime == 1):
+                    pasteCount = pasteCount + self.pastebin_module.search(self.paste_keywords[i]) #first time we run full paste scrape
+                else:
+                    paste = self.recent_pastes.search(self.demo_keywords) #otherwise we scrape 25 most recent pastes
+                    pasteCount = paste[0] + pasteCount
+                    print("paste_count: ",pasteCount )
+                    link = paste[1]
                 #if(firstTime == 1):
+            print("here")
                 #    self.pastebin_module.close()
             self.getPwnedSensors() #get pwned sensors                                                 
             if (len(self.pwned_keywords) != 0):
@@ -169,7 +170,7 @@ class Search_Manager():
                 print("sending alert")
             if(pasteCount > 0 and sent == 0):
                 #self.alert.sendEmail(self.user.name, self.user.email)
-                self.alert.sendText(self.user.name, self.user.phone,link)
+                self.alert.sendText(self.user.name, self.user.phone,link[0])
                 print("sending alert")
                 sent = 1
             pasteCount = 0
