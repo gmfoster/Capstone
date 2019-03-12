@@ -8,7 +8,7 @@ import { format } from 'url';
     const pStyle= {
     color:"green",
     align:"center"
-  
+
   };
 
   const iFrameStyle = {
@@ -18,8 +18,8 @@ import { format } from 'url';
     display:"none"
   };
 
-var textFieldName = "Omer Cohen";
-var textFieldEmail = "omer@gmail.com";
+var textFieldName = "First Last";
+var textFieldEmail = "username@gmail.com";
 var textFieldPhoneNumber = "619-991-9097";
 
 class Profile extends React.Component {
@@ -50,15 +50,15 @@ class Profile extends React.Component {
         var profileForm = document.getElementById("profileForm")
         profileForm.reset()
         this.forceUpdate()
-        
-        
+
+
 
     }
 
     render(){
         return(
             <main role="main" class="container">
-                
+
                 <form action="#" target={"hiddenFrame"} id="profileForm">
                 <div class="my-3 p-3 bg_complement rounded_25 shadow-sm">
                     <h6 class="border-bottom border-gray pb-2 mb-3">Profile Information</h6>
