@@ -627,41 +627,45 @@ class ChartAll extends React.Component{
              
             
             
-
+            console.log("Dates")
             var lastMonth = new Date()
             lastMonth.setMonth(lastMonth.getMonth() - 1)
             var lastMonthNumber = lastMonth.getTime()
+            console.log(lastMonthNumber)
             var lastMonthCount = 0
 
             var last2Month = new Date()
             last2Month.setMonth(last2Month.getMonth() - 2)
             var last2MonthNumber = last2Month.getTime()
+            console.log(last2MonthNumber)
             var last2MonthCount = 0
 
             var last3Months = new Date()
             last3Months.setMonth(last3Months.getMonth() - 3)
             var last3MonthsNumber = last3Months.getTime()
+            console.log(last3MonthsNumber)
             var last3MonthsCount = 0
 
 
             var last4Months = new Date()
             last4Months.setMonth(last4Months.getMonth() - 4)
             var last4MonthsNumber = last4Months.getTime()
+            console.log(last4MonthsNumber)
             var last4MonthsCount = 0
 
             var last5Months = new Date()
             last5Months.setMonth(last5Months.getMonth() - 5)
             var last5MonthsNumber = last5Months.getTime()
+            console.log(last5MonthsNumber)
             var last5MonthsCount = 0
 
             var last6Months = new Date()
             last6Months.setMonth(last6Months.getMonth() - 6)
+            
             var last6MonthsNumber = last6Months.getTime()
+            console.log(last6MonthsNumber)
             var last6MonthsCount = 0
-            console.log("Last Six Months")
-            console.log(last6Months.toLocaleString())
-            console.log(last6Months.getTime())
-
+            
             for (var paste in allData){
                 //console.log(paste)
                 var date = new Date(1000 * Number(allData[paste]["time posted"]))
@@ -689,9 +693,7 @@ class ChartAll extends React.Component{
                     last6MonthsCount = last6MonthsCount + 1
 
                 }
-                else{
-                    break
-                }
+                
                 
                 
             }

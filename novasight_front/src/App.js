@@ -17,12 +17,7 @@ import createHistory from 'history/createBrowserHistory';
 
 var onlyOnce = true
 
-const iFrameStyle = {
-  width:0,
-  height:0,
-  border:0,
-  display:"none"
-};
+
 
 const Route = ({ path, component}, {location}) => {
   const pathname = location.pathname;
@@ -167,10 +162,7 @@ class App extends React.Component {
         <Route path='/sensors' component={Sensors}/>
         <Route path='/login' component={Login}/>
         <Route path='/profile'component={Profile}/>
-        <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"get"}>
-          
-        </form>
-        <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
+        
       </Router>
       
     );
