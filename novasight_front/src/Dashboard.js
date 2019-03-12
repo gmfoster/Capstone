@@ -731,8 +731,9 @@ class ChartAll extends React.Component{
     render(){
         return (
             <main role="main" className="container">
-                <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
-
+                <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
+                    <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
+                </div>
             </main>   
         );
 
