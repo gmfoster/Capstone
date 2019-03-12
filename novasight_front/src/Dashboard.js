@@ -42,8 +42,8 @@ var lineChartData = {
 
 var allChartData = [
     {"name":"Pastebin", "data":{}},
-    {"name":"Have I Been Pwned", "data":{}},
-    {"name":"Darkweb", "data":{}}
+    {"name":"Breached Databases", "data":{}},
+    {"name":"DarkWeb", "data":{}}
 ];
 
 var currentPasteSensors = undefined
@@ -97,7 +97,7 @@ class DarkWebTable extends React.Component{
     }
     render(){
         return(
-            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
+            <div className="my-3 p-3 rounded_12 shadow-sm bg_complement" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -219,7 +219,7 @@ class PastebinTable extends React.Component {
 
     render(){
         return (
-            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement scrollable" >
+            <div className="my-3 p-3 rounded_12 shadow-sm bg_complement scrollable" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -312,7 +312,7 @@ class HaveIBeenPwndTable extends React.Component{
     
     render(){
         return (
-            <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
+            <div className="my-3 p-3  rounded_12 shadow-sm bg_complement" >
                 <h6 className="border-bottom border-gray pb-2 mb-0" >{this.props.sensorString} </h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -758,12 +758,12 @@ class ChartAll extends React.Component{
     render(){
         return (
             <main role="main" className="container">
-                <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
+                <div className="my-3 p-3 shadow-sm bg_complement" >
      
-                    <div className="top_left_div"> <h1>{currentID}</h1> </div>
-                    <div className="top_right_div">  <h1 color={this.getColor()}>{this.getHealth()}</h1></div>
+                    {/* <div className="top_left_div"> <h1>{currentID}</h1> </div> */}
+                    {/* <div className="top_right_div">  <h1 color={this.getColor()}>{this.getHealth()}</h1></div> */}
 
-                    <LineChart title="Elapsed Data"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
+                    <LineChart title="Data Breaches"  curve={false} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
             
                  </div>
             </main>   
@@ -782,7 +782,7 @@ class Dashboard extends React.Component {
 
     handler(){
         this.forceUpdate()
-        console.log("Force update dashboa rd")
+        console.log("Force update dashboard")
     }
 
     render(){
