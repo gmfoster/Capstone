@@ -8,6 +8,14 @@ import Redirect from './Redirect'
 import firebase from './firebase.js';
 import './Style Sheets/login.css';
 
+
+const iFrameStyle = {
+    width:0,
+    height:0,
+    border:0,
+    display:"none"
+  };
+
 class Login extends React.Component{
 
     constructor(){
@@ -15,11 +23,16 @@ class Login extends React.Component{
         this.ref = firebase.database().ref('users')
 
     }
-    handleClick(e){
+    handleClick(){
        
+        var submit = document.getElementById("scanForm")
+        submit.submit()
+
         this.ref.update({
             isLoggedIn:true     
         })
+
+
     }
 
     componentWillUnmount(){
@@ -38,7 +51,7 @@ class Login extends React.Component{
                         <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
                     </div>
                     <div className="PasswordDiv"> 
-                        <label htmlFor="inputPassword" clasclassNames="sr-only">Password</label>
+                        <label htmlFor="inputPassword" className="sr-only">Password</label>
                         <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
                         <label>
                             <input type="checkbox" value="remember-me"/> Remember me
@@ -46,7 +59,7 @@ class Login extends React.Component{
                     </div>
                     
                     <div className="outerButtonDiv">
-                        <button className="btn btn-lg btn-primary btn-block" onClick={this.handleClick.bind(this)}>
+                        <button type="submit" className="btn btn-lg btn-primary btn-block" onClick={this.handleClick.bind(this)}>
                             Sign in
                         </button>
                         <div className="checkbox mb-3">
@@ -60,6 +73,10 @@ class Login extends React.Component{
                     </div> 
                     
                 </form>
+                <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"get"}>
+          
+                </form>
+                <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
             </div>
         );
     }

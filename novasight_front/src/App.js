@@ -17,12 +17,7 @@ import createHistory from 'history/createBrowserHistory';
 
 var onlyOnce = true
 
-const iFrameStyle = {
-  width:0,
-  height:0,
-  border:0,
-  display:"none"
-};
+
 
 const Route = ({ path, component}, {location}) => {
   const pathname = location.pathname;
@@ -71,15 +66,10 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-
-    var submit = document.getElementById("scanForm")
-    submit.submit()
-
-
-    console.log("App is being mounted")
+    
     this.ref.on('value', (snapshot) => {
       let items = snapshot.val();
-      console.log(items)
+      
       if(items["isLoggedIn"] == true){
         isAuthenticated = true
         onlyOnce = true
@@ -163,10 +153,7 @@ class App extends React.Component {
         {!isAuthenticated && 
           <Redirect to='/login'/>
         }
-        {isAuthenticated && !onlyOnce && 
-          <Redirect to='/home'/>
-        }
-        {isAuthenticated && onlyOnce &&
+        {isAuthenticated &&
           <Redirect to='/dashboard'/>
         }
 
@@ -175,10 +162,7 @@ class App extends React.Component {
         <Route path='/sensors' component={Sensors}/>
         <Route path='/login' component={Login}/>
         <Route path='/profile'component={Profile}/>
-        <form id={"scanForm"} action={"http://localhost:5000/scan/"} target="hiddenFrame" method={"get"}>
-          
-        </form>
-        <iframe name="hiddenFrame"  style={iFrameStyle}></iframe>
+        
       </Router>
       
     );

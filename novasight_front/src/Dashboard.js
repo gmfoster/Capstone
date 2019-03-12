@@ -6,6 +6,7 @@ import './Style Sheets/Dashboard.css'
 import firebase from './firebase.js';
 import ReactChartkick, { LineChart, AreaChart } from 'react-chartkick'
 import Chart from 'chart.js'
+import { all } from 'q';
 
 ReactChartkick.addAdapter(Chart)
 
@@ -34,36 +35,15 @@ var allSensors = []
 
 
 var lineChartData = {
-    "2019-01-01":10,
-    "2019-01-02":20,
-    "2019-01-03":13,
-    "2019-01-04":15,
-    "2019-01-05":2,
-    "2019-01-06":50,
-    "2019-01-07":10,
-    "2019-01-08":20,
-    "2019-01-09":13,
-    "2019-01-10":15,
-    "2019-01-11":2,
-    "2019-01-12":50,
-    "2019-01-13":10,
-    "2019-01-14":20,
-    "2019-01-15":13,
-    "2019-01-16":15,
-    "2019-01-17":2,
-    "2019-01-18":50,
-    "2019-01-19":10,
-    "2019-01-20":20,
-    "2019-01-21":13,
-    "2019-01-22":15,
-    "2019-01-23":2,
-    "2019-01-24":50
+    "01/01/2019":10,
+    "01/02/2019":20,
+    
 }
 
-var allData = [
-    {"name":"Pastebin", "data":[]},
-    {"name":"Have I Been Pwned", "data":[]},
-    {"name":"Darkweb", "data":[]}
+var allChartData = [
+    {"name":"Pastebin", "data":{}},
+    {"name":"Have I Been Pwned", "data":{}},
+    {"name":"Darkweb", "data":{}}
 ];
 
 var currentPasteSensors = undefined
@@ -555,6 +535,7 @@ class BubbleSensor extends React.Component {
     }
     render() { 
         var count = 0; 
+        this.list = []; 
         this.list = this.sensorNames.map((entry) => (
             <Bubble
                 name={entry}
@@ -586,7 +567,10 @@ class ChartAll extends React.Component{
         this.pasteRef = firebase.database().ref("paste_search") 
         //this.pwndRef = firebase.database().ref("pwned_search")
         //this.darkRef = firebase.database().ref("dark_search")
+        this.chartData = []
+       this.MyallData = [];
     }
+
 
     componentDidMount(){
         this.pasteRef.on('value', (snapshot) => {
@@ -595,7 +579,8 @@ class ChartAll extends React.Component{
             console.log("Chart all")
             console.log(this.props.PasteSensors)
             
-            var allData = []
+            var allData =[]; 
+            this.MyallData = allData;
             for (var i in this.props.PasteSensors){
                 var key = this.props.PasteSensors[i]["key"]
                 //var name = this.props.PasteSensors[i]["string"]
@@ -625,24 +610,162 @@ class ChartAll extends React.Component{
                 return  Number(b["time posted"]) - Number(a["time posted"])
             })
              
+            
+            
+            console.log("Dates")
+            var lastMonth = new Date()
+            lastMonth.setMonth(lastMonth.getMonth() - 1)
+            var lastMonthNumber = lastMonth.getTime()
+            console.log(lastMonthNumber)
+            var lastMonthCount = 0
+
+            var last2Month = new Date()
+            last2Month.setMonth(last2Month.getMonth() - 2)
+            var last2MonthNumber = last2Month.getTime()
+            console.log(last2MonthNumber)
+            var last2MonthCount = 0
+
+            var last3Months = new Date()
+            last3Months.setMonth(last3Months.getMonth() - 3)
+            var last3MonthsNumber = last3Months.getTime()
+            console.log(last3MonthsNumber)
+            var last3MonthsCount = 0
+
+
+            var last4Months = new Date()
+            last4Months.setMonth(last4Months.getMonth() - 4)
+            var last4MonthsNumber = last4Months.getTime()
+            console.log(last4MonthsNumber)
+            var last4MonthsCount = 0
+
+            var last5Months = new Date()
+            last5Months.setMonth(last5Months.getMonth() - 5)
+            var last5MonthsNumber = last5Months.getTime()
+            console.log(last5MonthsNumber)
+            var last5MonthsCount = 0
+
+            var last6Months = new Date()
+            last6Months.setMonth(last6Months.getMonth() - 6)
+            
+            var last6MonthsNumber = last6Months.getTime()
+            console.log(last6MonthsNumber)
+            var last6MonthsCount = 0
+            
+
+            var tempChartData = {}
+            var now = new Date()
+
+            for (var d = last6Months; d <= now ; d.setDate(d.getDate() + 5)){
+                //console.log("d  " + d)
+                tempChartData[d.toLocaleDateString()] = 0
+            }
+
             for (var paste in allData){
-                console.log(paste)
-                var date = new Date(Number(allData[paste]["time posted"]))
-                var lastSixMonths = new Date()
-                lastSixMonths.setMonth(lastSixMonths.getMonth, -6)
+
+                var date = new Date(1000 * Number(allData[paste]["time posted"]))
+
+                if (date.getTime() >= last6MonthsNumber){
+                    
+                    if (tempChartData[date.toLocaleDateString()] == undefined){
+                        tempChartData[date.toLocaleDateString()] = 0
+                    }
+
+                    tempChartData[date.toLocaleDateString()] = tempChartData[date.toLocaleDateString()] + 1
+
+                }
+                //console.log(paste)
+                /*
+                var date = new Date(1000 * Number(allData[paste]["time posted"]))
+                //
+                if(date.getTime() >= lastMonthNumber){
+                    console.log("Paste " + paste)
+                    console.log("Last month")
+                    console.log(date)
+                    lastMonthCount = lastMonthCount + 1
+                }
+
+                if(date.getTime() < lastMonthNumber && date.getTime() >= last2MonthNumber){
+                    last2MonthCount = last2MonthCount + 1
+
+                }else if(date.getTime() < last2MonthNumber && date.getTime() >= last3MonthsNumber){
+                    last3MonthsCount = last3MonthsCount + 1
+
+                }else if(date.getTime() < last3MonthsNumber && date.getTime() >= last4MonthsNumber){
+                    last4MonthsCount = last4MonthsCount + 1
+
+                }else if(date.getTime() < last4MonthsNumber && date.getTime() >= last5MonthsNumber){
+                    last5MonthsCount = last5MonthsCount + 1
+
+                }else if (date.getTime() < last5MonthsNumber && date.getTime() >= last6MonthsNumber){
+                    last6MonthsCount = last6MonthsCount + 1
+
+                }
+                */
+                
                 
                 
             }
+            console.log("Number of pastes in last month")
+            console.log(lastMonthCount)
+            console.log(last2MonthCount)
+            console.log(last3MonthsCount)
+            console.log(last4MonthsCount)
+            console.log(last5MonthsCount)
+            console.log(last6MonthsCount)
             
+            var dataC = {}
+            dataC["2019-02-11"] = lastMonthCount
+            dataC["2019-01-11"] = last2MonthCount
+            dataC["2018-12-11"] = last3MonthsCount
+            dataC["2018-11-11"] = last4MonthsCount
+            dataC["2018-10-11"] = last5MonthsCount
+            dataC["2018-9-11"] = last6MonthsCount
+
+
+            console.log("Temp chart date")
+            console.log(tempChartData)
+            allChartData[0]["data"] = tempChartData
+            
+            console.log("All Data")
+            console.log(allData)
             this.forceUpdate()
         });
+    }
+
+    getHealth() { 
+        if (this.MyallData > 5 && this.MyallData < 20) { 
+            return "Average"; 
+        }
+        else if (this.MyallData < 5) { 
+            return "Good"; 
+        } else { 
+            return "Poor"; 
+        }
+    }
+
+    getColor() { 
+        if (this.MyallData > 5 && this.MyallData < 20) { 
+            return "#FFD700"; 
+        }
+        else if (this.MyallData < 5) { 
+            return "#7CFC00"; 
+        } else { 
+            return "#FF0000"; 
+        }
     }
 
     
     render(){
         return (
             <main role="main" className="container">
-                <LineChart title="Paste Dump"  data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
+                <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
+     
+                    <div className="top_left_div"> <h1>{currentID}</h1> </div>
+                    <div className="top_right_div">  <h1 color={this.getColor()}>{this.getHealth()}</h1></div>
+
+                    <LineChart title="Elapsed Data"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
+            
+                 </div>
             </main>   
         );
 
@@ -688,6 +811,8 @@ class Dashboard extends React.Component {
 
                 
             ));
+        }else{
+            this.chart= []
         }
             
         
@@ -730,7 +855,7 @@ class Dashboard extends React.Component {
                 <main>
                     <BubbleSensor handler={this.handler}/>
                 </main> 
-                <h3 className="center" >{currentID}</h3>
+               
                 
                 {this.chart}
                 
