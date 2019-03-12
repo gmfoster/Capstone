@@ -34,36 +34,15 @@ var allSensors = []
 
 
 var lineChartData = {
-    "2019-01-01":10,
-    "2019-01-02":20,
-    "2019-01-03":13,
-    "2019-01-04":15,
-    "2019-01-05":2,
-    "2019-01-06":50,
-    "2019-01-07":10,
-    "2019-01-08":20,
-    "2019-01-09":13,
-    "2019-01-10":15,
-    "2019-01-11":2,
-    "2019-01-12":50,
-    "2019-01-13":10,
-    "2019-01-14":20,
-    "2019-01-15":13,
-    "2019-01-16":15,
-    "2019-01-17":2,
-    "2019-01-18":50,
-    "2019-01-19":10,
-    "2019-01-20":20,
-    "2019-01-21":13,
-    "2019-01-22":15,
-    "2019-01-23":2,
-    "2019-01-24":50
+    "01/01/2019":10,
+    "01/02/2019":20,
+    
 }
 
-var allData = [
-    {"name":"Pastebin", "data":[]},
-    {"name":"Have I Been Pwned", "data":[]},
-    {"name":"Darkweb", "data":[]}
+var allChartData = [
+    {"name":"Pastebin", "data":{}},
+    {"name":"Have I Been Pwned", "data":{}},
+    {"name":"Darkweb", "data":{}}
 ];
 
 var currentPasteSensors = undefined
@@ -586,6 +565,7 @@ class ChartAll extends React.Component{
         this.pasteRef = firebase.database().ref("paste_search") 
         //this.pwndRef = firebase.database().ref("pwned_search")
         //this.darkRef = firebase.database().ref("dark_search")
+        this.chartData = []
     }
 
     componentDidMount(){
@@ -666,8 +646,30 @@ class ChartAll extends React.Component{
             console.log(last6MonthsNumber)
             var last6MonthsCount = 0
             
+
+            var tempChartData = {}
+            var now = new Date()
+
+            for (var d = last6Months; d <= now ; d.setDate(d.getDate() + 5)){
+                //console.log("d  " + d)
+                tempChartData[d.toLocaleDateString()] = 0
+            }
+
             for (var paste in allData){
+
+                var date = new Date(1000 * Number(allData[paste]["time posted"]))
+
+                if (date.getTime() >= last6MonthsNumber){
+                    
+                    if (tempChartData[date.toLocaleDateString()] == undefined){
+                        tempChartData[date.toLocaleDateString()] = 0
+                    }
+
+                    tempChartData[date.toLocaleDateString()] = tempChartData[date.toLocaleDateString()] + 1
+
+                }
                 //console.log(paste)
+                /*
                 var date = new Date(1000 * Number(allData[paste]["time posted"]))
                 //
                 if(date.getTime() >= lastMonthNumber){
@@ -693,6 +695,7 @@ class ChartAll extends React.Component{
                     last6MonthsCount = last6MonthsCount + 1
 
                 }
+                */
                 
                 
                 
@@ -705,6 +708,21 @@ class ChartAll extends React.Component{
             console.log(last5MonthsCount)
             console.log(last6MonthsCount)
             
+            var dataC = {}
+            dataC["2019-02-11"] = lastMonthCount
+            dataC["2019-01-11"] = last2MonthCount
+            dataC["2018-12-11"] = last3MonthsCount
+            dataC["2018-11-11"] = last4MonthsCount
+            dataC["2018-10-11"] = last5MonthsCount
+            dataC["2018-9-11"] = last6MonthsCount
+
+
+            console.log("Temp chart date")
+            console.log(tempChartData)
+            allChartData[0]["data"] = tempChartData
+            
+            console.log("All Data")
+            console.log(allData)
             this.forceUpdate()
         });
     }
@@ -713,7 +731,8 @@ class ChartAll extends React.Component{
     render(){
         return (
             <main role="main" className="container">
-                <LineChart title="Paste Dump"  data={lineChartData} xtitle="Time (days)" ytitle="Pastes"/>
+                <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
+
             </main>   
         );
 
@@ -759,6 +778,8 @@ class Dashboard extends React.Component {
 
                 
             ));
+        }else{
+            this.chart= []
         }
             
         
