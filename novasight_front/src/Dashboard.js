@@ -6,6 +6,7 @@ import './Style Sheets/Dashboard.css'
 import firebase from './firebase.js';
 import ReactChartkick, { LineChart, AreaChart } from 'react-chartkick'
 import Chart from 'chart.js'
+import { all } from 'q';
 
 ReactChartkick.addAdapter(Chart)
 
@@ -534,6 +535,7 @@ class BubbleSensor extends React.Component {
     }
     render() { 
         var count = 0; 
+        this.list = []; 
         this.list = this.sensorNames.map((entry) => (
             <Bubble
                 name={entry}
@@ -566,7 +568,9 @@ class ChartAll extends React.Component{
         //this.pwndRef = firebase.database().ref("pwned_search")
         //this.darkRef = firebase.database().ref("dark_search")
         this.chartData = []
+       this.MyallData = [];
     }
+
 
     componentDidMount(){
         this.pasteRef.on('value', (snapshot) => {
@@ -575,7 +579,8 @@ class ChartAll extends React.Component{
             console.log("Chart all")
             console.log(this.props.PasteSensors)
             
-            var allData = []
+            var allData =[]; 
+            this.MyallData = allData;
             for (var i in this.props.PasteSensors){
                 var key = this.props.PasteSensors[i]["key"]
                 //var name = this.props.PasteSensors[i]["string"]
@@ -727,13 +732,40 @@ class ChartAll extends React.Component{
         });
     }
 
+    getHealth() { 
+        if (this.MyallData > 5 && this.MyallData < 20) { 
+            return "Average"; 
+        }
+        else if (this.MyallData < 5) { 
+            return "Good"; 
+        } else { 
+            return "Poor"; 
+        }
+    }
+
+    getColor() { 
+        if (this.MyallData > 5 && this.MyallData < 20) { 
+            return "#FFD700"; 
+        }
+        else if (this.MyallData < 5) { 
+            return "#7CFC00"; 
+        } else { 
+            return "#FF0000"; 
+        }
+    }
+
     
     render(){
         return (
             <main role="main" className="container">
-                <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
-                    <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
-                </div>
+                <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
+     
+                    <div className="top_left_div"> <h1>{currentID}</h1> </div>
+                    <div className="top_right_div">  <h1 class={this.getColor()}>{this.getHealth()}</h1></div>
+
+                    <LineChart title="Elapsed Data"  curve={true} data={allChartData} xtitle="Time (Months)" ytitle="Data"/>
+            
+                 </div>
             </main>   
         );
 
@@ -823,7 +855,7 @@ class Dashboard extends React.Component {
                 <main>
                     <BubbleSensor handler={this.handler}/>
                 </main> 
-                <h3 className="center" >{currentID}</h3>
+               
                 
                 {this.chart}
                 
