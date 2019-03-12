@@ -23,17 +23,17 @@ class Sensor_Manager():
 
 
     def addSensor(self, sensor, type, tag):
-        if (type == "Paste-Sites"):
+        if (type == "paste"):
             id = hashlib.md5(sensor.encode()).hexdigest()
             data = {"sensor":sensor}
             self.db.child("sensors").child(tag).child("paste_sensors").child(id).set(data)
         
-        elif (type == "Breached DataBases"):
+        elif (type == "pwned"):
             id = hashlib.md5(sensor.encode()).hexdigest()
             data = {"sensor":sensor}
             self.db.child("sensors").child(tag).child("pwned_sensors").child(id).set(data)
 
-        elif (type == "DarkWeb Marketplaces"):
+        elif (type == "dark"):
             id = hashlib.md5(sensor.encode()).hexdigest()
             data = {"sensor":sensor}
             self.db.child("sensors").child(tag).child("dark_sensors").child(id).set(data)

@@ -86,11 +86,11 @@ class Recent_Pastes():
         return(len(self.keys),link)
         
 
-if __name__ == "__main__":
-    paste = Recent_Pastes()
-    keywords = ['Graham Test','Second Test']
-    while(1):
-        paste.search(keywords)
+#if __name__ == "__main__":
+#    paste = Recent_Pastes()
+#    keywords = ['Graham Test','Second Test']
+#    while(1):
+#        paste.search(keywords)
 #    keyword = "5973"
 #    id = hashlib.md5(keyword.encode()).hexdigest()
 #    print(id)
