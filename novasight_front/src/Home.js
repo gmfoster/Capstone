@@ -72,7 +72,7 @@ class Home extends React.Component {
             <img className="resize" src={require('./images/ezgif-3-88d63871ccb9.gif')}></img>
             </div>
             <div class="inner-grid"> 
-                <div><h1 className="display-4">Welcome to Novasight</h1></div>
+                <div><h1 className="display-4">Welcome to NovaSight</h1></div>
                 <div><p className="lead">The real time online security feed and monitoring application.</p></div>   
                 <div className="getStartedDiv"> 
                     

@@ -62,10 +62,10 @@ class Sensors extends React.Component {
     return(
       <main role="main" class="container">
         <div id="example" class="my-3 p-3 rounded_25 my-shadow bg_theme">
-         <span id='close' onclick={this.close()}>x</span>
+         {/* <span id='close' onclick={this.close()}>x</span> */}
           <p  class="form-text black_text "><b>Paste-Sites Suggested Keywords:</b> Account Usernamess, emails, IP addresses, Names </p>
           <p  class="form-text black_text"> <b>Breached Database Suggested Keywords:</b> Emails </p>
-          <p  class="form-text black_text"><b>Dark Web Sweep Keywords:</b> Account Usernamess, emails, comapany name, API Keys </p>
+          <p  class="form-text black_text"><b>DarkWeb Sweep Keywords:</b> Account Usernamess, emails, comapany name, API Keys </p>
 
           {/*<h6 class="border-bottom border-gray pb-2 mb-3">Sensors Configuration</h6>
           <div class="mb-3 clearfix">
@@ -162,9 +162,9 @@ class Sensors extends React.Component {
               <label for="exampleFormControlSelect1" >Source Type</label>
               <select class="form-control custom-select " name="sensorType" onChange={e => this.handleChange(e)}>
                 <option>Select One</option>
-                <option>paste</option>
-                <option>pwned</option>
-                <option>dark</option>
+                <option>Paste-Sites</option>
+                <option>Breached DataBases</option>
+                <option>DarkWeb Marketplaces</option>
               </select>
             </div>
             {/*
