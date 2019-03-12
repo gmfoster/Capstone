@@ -6,6 +6,7 @@ import './Style Sheets/Dashboard.css'
 import firebase from './firebase.js';
 import ReactChartkick, { LineChart, AreaChart } from 'react-chartkick'
 import Chart from 'chart.js'
+import { all } from 'q';
 
 ReactChartkick.addAdapter(Chart)
 
@@ -48,8 +49,8 @@ var lineChartData = {
 
 var allChartData = [
     {"name":"Pastebin", "data":{}},
-    {"name":"Database Breach", "data":{}},
-    {"name":"Darkweb", "data":{}}
+    {"name":"Breached Databases", "data":{}},
+    {"name":"DarkWeb", "data":{}}
 ];
 
 var currentPasteSensors = undefined
@@ -103,7 +104,7 @@ class DarkWebTable extends React.Component{
     }
     render(){
         return(
-            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement" >
+            <div className="my-3 p-3 rounded_12 shadow-sm bg_complement" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -160,15 +161,37 @@ class ChartAll extends React.Component{
         //this.pwndRef = firebase.database().ref("pwned_search")
         //this.darkRef = firebase.database().ref("dark_search")
         this.chartData = []
+        this.myAllData = []
     }
 
+    getHealth() { 
+        if (this.MyallData > 5 && this.MyallData < 20) { 
+            return "Average"; 
+        }
+        else if (this.MyallData < 5) { 
+            return "Good"; 
+        } else { 
+            return "Poor"; 
+        }
+    }
+
+    getColor() { 
+        if (this.MyallData > 5 && this.MyallData < 20) { 
+            return "#FFD700"; 
+        }
+        else if (this.MyallData < 5) { 
+            return "#7CFC00"; 
+        } else { 
+            return "#FF0000"; 
+        }
+    }
     
     render(){
 
         
         var now = new Date()
         var newDataPoints = []
-
+        this.myAllData = newDataPoints
         if (allCurrentPasteData != undefined){
             var last6Months = new Date()
             last6Months.setMonth(last6Months.getMonth() - 6)
@@ -256,6 +279,8 @@ class ChartAll extends React.Component{
         return (
             <main role="main" className="container">
                 <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
+                    {/* <div className="top_left_div"> <h1>{currentID}</h1> </div> */}
+                    {/* <div className="top_right_div">  <h1 color={this.getColor()}>{this.getHealth()}</h1></div> */}
                     <LineChart title="Data Dump"  curve={true} data={allChartData} xtitle="Time (2018-2019)" ytitle="Data"/>
                 </div>
             </main>   
@@ -364,7 +389,7 @@ class PastebinTable extends React.Component {
 
     render(){
         return (
-            <div className="my-3 p-3 rounded_25 shadow-sm bg_complement scrollable" >
+            <div className="my-3 p-3 rounded_12 shadow-sm bg_complement scrollable" >
                 <h6 className="border-bottom border-gray pb-2 mb-0">{this.props.sensorString}</h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -482,7 +507,7 @@ class HaveIBeenPwndTable extends React.Component{
     
     render(){
         return (
-            <div className="my-3 p-3  rounded_25 shadow-sm bg_complement" >
+            <div className="my-3 p-3  rounded_12 shadow-sm bg_complement" >
                 <h6 className="border-bottom border-gray pb-2 mb-0" >{this.props.sensorString} </h6>
                 <table className="table table-responsive small">
                     <thead>
@@ -705,6 +730,7 @@ class BubbleSensor extends React.Component {
     }
     render() { 
         var count = 0; 
+        this.list = []; 
         this.list = this.sensorNames.map((entry) => (
             <Bubble
                 name={entry}
@@ -730,8 +756,6 @@ class BubbleSensor extends React.Component {
 }
 
 
-
-
 class Dashboard extends React.Component {
     constructor(props){
         super(props)
@@ -741,7 +765,7 @@ class Dashboard extends React.Component {
 
     handler(){
         this.forceUpdate()
-        //console.log("Force update dashboa rd")
+        console.log("Force update dashboard")
     }
 
     render(){
@@ -822,7 +846,7 @@ class Dashboard extends React.Component {
                 <main>
                     <BubbleSensor handler={this.handler}/>
                 </main> 
-                <h3 className="center" >{currentID}</h3>
+               
                 
                 {this.chart}
                 

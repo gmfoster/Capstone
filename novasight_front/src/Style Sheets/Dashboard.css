@@ -81,6 +81,9 @@
 
 }
 
+div.rounded_12{
+  border-radius: 12px;
+}
 div.rounded_25{
   border-radius: 25px;
 }
@@ -123,4 +126,18 @@ div.scrollable{
 div.my-shadow {
   box-shadow:  3px 3px 3px 0px #ccc;
   background: white;
+}
+
+.top_right_div { 
+  position: relative;
+  top: 0; 
+  right: 0; 
+  text-align:right;
+}
+
+.top_left_div { 
+  position: relative;
+  top: 0; 
+  float:left;
+  text-align: left;
 }
