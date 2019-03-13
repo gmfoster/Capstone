@@ -37,7 +37,8 @@
 
   .round-button {
     width:100%;
-    color: white
+    color: white;
+    cursor: pointer !important;
   }
   .round-button-circle {
     width: 100%;

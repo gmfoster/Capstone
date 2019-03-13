@@ -102,7 +102,7 @@ class Home extends React.Component {
         <div className="container-fluid">
             <div className="row align-items-center px-3 py-5">
                 <div className="col-6">
-                    <img className="img-fluid rounded shadow" src={require('./images/noti.png')}></img>
+                    <img className="img-fluid rounded shadow" src={require('./images/new.png')}></img>
                 </div>
                 <div className="col-5 mx-auto">
                     <p className="lead text-muted text-uppercase">Brand Monitoring</p>
