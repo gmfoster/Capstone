@@ -22,7 +22,7 @@ class alert():
 
     def sendEmail(self, name, email):
         toaddr = email
-        fromaddr = "quintinhill1316@gmail.com"
+        fromaddr = "@gmail.com"
         msg = MIMEMultipart()
         msg['From'] = fromaddr
         msg['To'] = toaddr
@@ -34,7 +34,7 @@ class alert():
         toaddr = email
         server = smtplib.SMTP('smtp.gmail.com:587')
         server.starttls()
-        server.login(fromaddr, "30261316Sss")
+        server.login(fromaddr, "")
         server.sendmail(fromaddr, toaddr, text)
         server.quit()
 

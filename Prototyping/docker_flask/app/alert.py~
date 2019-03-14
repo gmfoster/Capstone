@@ -13,7 +13,7 @@ class alert():
 
     def sendText(self, name, phone,link):
         message = self.client.messages.create(
-            body = " " +name+ "\nYou are being alerted because a sensor from NovaSight has been triggered. Please navigate to http://localhost:3000/login view your dashboard",
+            body = " " +name+ "\nYou are being alerted because a sensor from NovaSight has been triggered by: " + link + " For more information visit your NovaSight Dashboard" ,
             from_ = '+19152283110',
             to = '+17147475699')
             # need to authorize a phone number with twilio before you're able to send to it
