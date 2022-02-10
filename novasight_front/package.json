@@ -7,7 +7,7 @@
     "chart.js": "^2.7.3",
     "firebase": "^5.8.6",
     "jquery": "^3.3.1",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.14.7",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
