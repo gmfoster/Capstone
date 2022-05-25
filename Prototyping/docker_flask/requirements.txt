@@ -23,7 +23,7 @@ Jinja2==2.10
 httpie == 1.0.0
 Mako==1.0.7
 MarkupSafe==1.0
-PyJWT==1.5.3
+PyJWT==2.4.0
 
 pyrebase == 3.0.27
 
